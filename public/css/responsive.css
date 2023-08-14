@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media(max-width: 667px){
+    .title_main {
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+    .main_text::before {
+        top: 30px;
+    }
+    .partners_section.pt-5.pb-5 {
+        padding: 1rem 0 !important;
+    }
+    .service_section {
+        min-height: auto;
+        margin-bottom: 15px;
+    }
+    .image_text h1 {
+        font-size: 22px;
+    }
+    .image_text p {
+        font-size: 16px;
+        width: 100%;
+        line-height: normal;
+    }
+    .experts_section {
+        min-height: auto;
+    }
+    .consulting_section .nav-pills .nav-link {
+        padding: 6px;
+        font-size: 13px;
+    }
+    .count1, .count2, .count3, .count4 {
+        padding: 26px 0;
+    }
+    .counter {
+        font-size: 34px;
+    }
+    .testimonial_section {
+        padding: 24px 0;
+    }
+    .testimonial {
+        padding: 15px 0;
+    }
+    .testimonial .item-owl .test-review p {
+        font-size: 14px;
+    }
+    .testimonial_name {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    .experts_des {
+        min-height: auto;
+        margin-bottom: 15px;
+    }
+    .news_details {
+        padding: 0 10px;
+    }
+    .news_update p, .news_update h2 {
+        padding: 5px 15px;
+    }
+    .news_update {
+        min-height: auto;
+        margin-bottom: 15px;
+    }
+    .footer_section {
+        padding: 50px 0;
+    }
+    .footer_bottom .col-md-6 {
+        font-size: 12px;
+    }
+    .footer_bottom .footer_text {
+        font-size: 11px;
+    }
+    .footer_bottom .footer_text2 {
+        padding-left: 0;
+    }
+}
