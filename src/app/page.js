@@ -1,15 +1,11 @@
-import Footer from "@/components/Footer";
-import styles from "./page.module.css";
-import Header from "@/components/Header";
-import SmallHeader from "@/components/SmallHeader";
-import SmallFooter from "@/components/SmallFooter";
 import Head from "next/head";
-import Slider from "@/components/HomePage/Slider";
+
 import SmallSlider from "@/components/HomePage/SmallSlider";
 import NavContent from "@/components/HomePage/NavContent";
 import Testimonial from "@/components/HomePage/Testimonial";
 import Updates from "@/components/HomePage/Updates";
 import TopSlider from "@/components/HomePage/Slider";
+import Counter from "@/components/HomePage/Counter";
 
 export default function Home() {
   const chooseUsArr = [
@@ -95,6 +91,7 @@ export default function Home() {
           crossorigin="anonymous"
         ></script>
       </Head>
+
       <TopSlider />
       <SmallSlider />
       <section className="partners_section pt-5 pb-5">
@@ -184,11 +181,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section class="experts_section pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="image_text">
+      <section className="experts_section pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="image_text">
                 <h1>World Class CX Experts</h1>
                 <p>
                   Our team aims to protect your customers from the competition
@@ -200,57 +197,28 @@ export default function Home() {
         </div>
       </section>
       <NavContent />
-      <section class="counts_section">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-3 count1">
-              <div class="count_text_section text-center">
-                <h1 class="counter mb-3">12,000</h1>
-                <p class="count_text">Staff worldwide</p>
-              </div>
-            </div>
-            <div class="col-md-3 count2">
-              <div class="count_text_section text-center">
-                <h1 class="counter mb-3">300,000</h1>
-                <p class="count_text">Satisfied customers</p>
-              </div>
-            </div>
-            <div class="col-md-3 count3">
-              <div class="count_text_section text-center">
-                <h1 class="counter mb-3">34 Years</h1>
-                <p class="count_text">In the industry</p>
-              </div>
-            </div>
-            <div class="col-md-3 count4">
-              <div class="count_text_section text-center">
-                <h1 class="counter mb-3">6+</h1>
-                <p class="count_text">Average # of services per client</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Counter />
       <Testimonial />
-      <section class="why_choose_us_section pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_main">
-                <span class="main_text">Why choose Us</span>
+      <section className="why_choose_us_section pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text">Why choose Us</span>
               </div>
             </div>
           </div>
-          <div class="row  mb-5">
+          <div className="row  mb-5">
             {chooseUsArr?.map((el, index) => {
               return (
                 <>
-                  <div class="col-md-4">
-                    <div class="service_section">
-                      <div class="service_icon w-25 m-auto text-center">
-                        <img src={el?.image} class="img-fluid" />
+                  <div className="col-md-4">
+                    <div className="service_section">
+                      <div className="service_icon w-25 m-auto text-center">
+                        <img src={el?.image} className="img-fluid" />
                       </div>
-                      <h2 class="text-center mb-3">{el?.heading}</h2>
-                      <p class="text-left">{el?.text}</p>
+                      <h2 className="text-center mb-3">{el?.heading}</h2>
+                      <p className="text-left">{el?.text}</p>
                     </div>
                   </div>
                 </>
@@ -259,88 +227,50 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section class="our_experts_section pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_main">
-                <span class="main_text text-white">Our Experts</span>
+      <section className="our_experts_section pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text text-white">Our Experts</span>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_dec text-white">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_dec text-white">
                 Meet Our Awesome & Hard working People
               </div>
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             {expertsArr?.map((el, index) => {
               return (
                 <>
-                  <div class="col-md-3 mt-3">
-                    <div class="experts_des">
-                      <div class="service_icon m-auto text-center">
-                        <img src={el?.image} class="img-fluid" />
+                  <div className="col-md-3 mt-3">
+                    <div className="experts_des">
+                      <div className="service_icon m-auto text-center">
+                        <img src={el?.image} className="img-fluid" />
                       </div>
-                      <h2 class="text-center mb-3 blue_text">{el?.heading}</h2>
-                      <p class="text-left">{el?.text}</p>
+                      <h2 className="text-center mb-3 blue_text">
+                        {el?.heading}
+                      </h2>
+                      <p className="text-left">{el?.text}</p>
                     </div>
                   </div>
                 </>
               );
             })}
-
-            {/* <div class="col-md-3">
-              <div class="experts_des">
-                <div class="service_icon m-auto text-center">
-                  <img src="images/team_1.jpg" class="img-fluid" />
-                </div>
-                <h2 class="text-center mb-3 blue_text">Aleen Valzac</h2>
-                <p class="text-left">
-                  We cater to all hours, service all time zones across the
-                  globe, and offer multi-language support to ensure a timely
-                  customer response.
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="experts_des">
-                <div class="service_icon m-auto text-center">
-                  <img src="images/team_1.jpg" class="img-fluid" />
-                </div>
-                <h2 class="text-center mb-3 blue_text">Aleen Valzac</h2>
-                <p class="text-left">
-                  CPG, Telecom, Ecommerce, Home Improvement, Financial Services,
-                  Healthcare, Insurance.
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="experts_des">
-                <div class="service_icon m-auto text-center">
-                  <img src="images/team_1.jpg" class="img-fluid" />
-                </div>
-                <h2 class="text-center mb-3 blue_text">Aleen Valzac</h2>
-                <p class="text-left">
-                  Our in-house development allows us to provide custom solutions
-                  in application development, mobile apps, SEO, Reputation
-                  Management, and telecom enhancement.
-                </p>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>
       <Updates />
-      <section class="map_section">
+      <section className="map_section">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3015.5149376362447!2d-74.727421!3d40.904454!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb4b06f723c4be5e2!2sTMP%20Direct!5e0!3m2!1sen!2sin!4v1618039746097!5m2!1sen!2sin"
           width="100%"
           height="450"
           style={{ border: 0 }}
-          allowfullscreen=""
           loading="lazy"
         ></iframe>
       </section>

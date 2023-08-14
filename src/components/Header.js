@@ -1,7 +1,21 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export default function Header() {
+  const arr = [
+    { rajesh: "Services", href: "/services" },
+    { rajesh: "Experience", href: "/experience" },
+    { rajesh: "About Us", href: "/about" },
+    { rajesh: "Blogs", href: "/blogs" },
+    { rajesh: "Resource Center", href: "/resources" },
+    { rajesh: "Contact Us", href: "/contactus" },
+  ];
+
+  let location = usePathname();
+  location = location.split("/")[1];
+
   return (
     <>
       <header className="header_section">
@@ -32,31 +46,24 @@ export default function Header() {
                 id="navbarSupportedContent"
               >
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item active">
-                    <Link className="nav-link" href="/services">
-                      Services
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" href="/experience">
-                      Experience
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" href="/about">
-                      About Us
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" href="/resources">
-                      Resource Center
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" href="/contactus">
-                      Contact Us
-                    </Link>
-                  </li>
+                  {arr?.map((el, i) => {
+                    return (
+                      <>
+                        <li className="nav-item">
+                          <Link
+                            className={
+                              location === el.href.split("/")[1]
+                                ? "nav-link active"
+                                : "nav-link"
+                            }
+                            href={el?.href}
+                          >
+                            {el?.rajesh}
+                          </Link>
+                        </li>
+                      </>
+                    );
+                  })}
                 </ul>
               </div>
             </nav>

@@ -19,12 +19,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-      <SmallHeader />
-      <Header />
-      <body className={inter.className}>{children}</body>
-      <Footer />
+      <html>
+        <body className={inter.className}>
+          <SmallHeader />
+          <Header />
 
-      <SmallFooter />
+          {children}
+
+          <Footer />
+
+          <SmallFooter />
+        </body>
+      </html>
     </>
   );
 }
