@@ -4,10 +4,10 @@ import { Inter } from "next/font/google";
 import "../../public/css/style.css";
 import "../../public/css/bootstrap.min.css";
 import "../../public/css/font-awesome.min.css";
-import Footer from "@/components/Footer";
-import SmallFooter from "@/components/SmallFooter";
-import SmallHeader from "@/components/SmallHeader";
-import Header from "@/components/Header";
+import Footer from "@/components/Layout/Footer";
+import SmallFooter from "@/components/Layout/SmallFooter";
+import SmallHeader from "@/components/Layout/SmallHeader";
+import Header from "@/components/Layout/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 

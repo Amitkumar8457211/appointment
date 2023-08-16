@@ -1,6 +1,23 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 export default function NavContent() {
+  const [Content, setContent] = useState("");
+  const tabsarr = [
+    { name: "Customer Service", content: "Here is the content1" },
+    { name: "Lead Management", content: "Here is the content2" },
+    { name: "Cross-Selling", content: "Here is the content3" },
+
+    { name: "Retention", content: "Here is the content4" },
+    { name: " C-Sat / NPS", content: "Here is the content5" },
+    { name: "Analytics & Insights", content: "Here is the content6" },
+    { name: "IT", content: "Here is the content7" },
+    { name: "Industries Served", content: "Here is the content8" },
+  ];
+
+  const ActiveContent = (content) => {
+    setContent(content);
+  };
   return (
     <>
       <section class="consulting_section pt-5 pb-5">
@@ -16,7 +33,7 @@ export default function NavContent() {
             <div class="col-md-12">
               <div class="title_dec">
                 We have the best experts to elevate your business to the next
-                level, try is and you will see!
+                level, try this and you will see!
               </div>
             </div>
           </div>
@@ -28,161 +45,41 @@ export default function NavContent() {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                <a
-                  class="nav-link active"
-                  id="v-pills-home-tab"
-                  data-toggle="pill"
-                  href="#v-pills-home"
-                  role="tab"
-                  aria-controls="v-pills-home"
-                  aria-selected="true"
-                >
-                  Customer Service
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-profile-tab"
-                  data-toggle="pill"
-                  href="#v-pills-profile"
-                  role="tab"
-                  aria-controls="v-pills-profile"
-                  aria-selected="false"
-                >
-                  Lead Management
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-messages-tab"
-                  data-toggle="pill"
-                  href="#v-pills-messages"
-                  role="tab"
-                  aria-controls="v-pills-messages"
-                  aria-selected="false"
-                >
-                  Cross-Selling
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-settings-tab"
-                  data-toggle="pill"
-                  href="#v-pills-settings"
-                  role="tab"
-                  aria-controls="v-pills-settings"
-                  aria-selected="false"
-                >
-                  Retention
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-NPS-tab"
-                  data-toggle="pill"
-                  href="#v-pills-NPS"
-                  role="tab"
-                  aria-controls="v-pills-NPS"
-                  aria-selected="false"
-                >
-                  C-Sat / NPS
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-analytics-tab"
-                  data-toggle="pill"
-                  href="#v-pills-analytics"
-                  role="tab"
-                  aria-controls="v-pills-analytics"
-                  aria-selected="false"
-                >
-                  Analytics & Insights
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-it-tab"
-                  data-toggle="pill"
-                  href="#v-pills-it"
-                  role="tab"
-                  aria-controls="v-pills-it"
-                  aria-selected="false"
-                >
-                  IT
-                </a>
-                <a
-                  class="nav-link"
-                  id="v-pills-industries-tab"
-                  data-toggle="pill"
-                  href="#v-pills-industries"
-                  role="tab"
-                  aria-controls="v-pills-industries"
-                  aria-selected="false"
-                >
-                  Industries Served
-                </a>
+                {tabsarr?.map((el, index) => {
+                  return (
+                    <>
+                      <a
+                        class={
+                          el.content === Content
+                            ? "nav-link active"
+                            : "nav-link"
+                        }
+                        id={`v-pills-${index}-tab`}
+                        data-toggle="pill"
+                        role="tab"
+                        aria-controls={`v-pills-${index}`}
+                        aria-selected="true"
+                        onClick={() => {
+                          ActiveContent(el?.content);
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {el?.name}
+                      </a>
+                    </>
+                  );
+                })}
               </div>
             </div>
             <div class="col-md-9 col-8">
               <div class="tab-content" id="v-pills-tabContent">
                 <div
                   class="tab-pane fade show active"
-                  id="v-pills-home"
+                  id={`v-pills-home`}
                   role="tabpanel"
-                  aria-labelledby="v-pills-home-tab"
+                  aria-labelledby={`v-pills-home-tab`}
                 >
-                  Aenean massa. Cum sociis natoque penatibus et magnis dis
-                  parturient montes
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="v-pills-profile"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-profile-tab"
-                >
-                  Aenean massa. Cum sociis natoque penatibus et magnis dis
-                  parturient montes
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="v-pills-messages"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-messages-tab"
-                >
-                  Aenean massa. Cum sociis natoque penatibus et magnis dis
-                  parturient montes
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="v-pills-settings"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-settings-tab"
-                >
-                  Aenean massa. Cum sociis natoque penatibus et magnis dis
-                  parturient montes
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="v-pills-NPS"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-NPS-tab"
-                >
-                  Aenean massa. Cum sociis natoque penatibus et magnis dis
-                  parturient montes
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="v-pills-analytics"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-analytics-tab"
-                >
-                  {" "}
-                  massa. Cum sociis natoque penatibus et magnis dis parturient
-                  montes
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="v-pills-industries"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-industries-tab"
-                >
-                  {" "}
-                  Cum sociis natoque penatibus et magnis dis parturient montes
+                  {Content}
                 </div>
               </div>
             </div>

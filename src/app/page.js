@@ -196,7 +196,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <NavContent />
+
       <Counter />
       <Testimonial />
       <section className="why_choose_us_section pt-5 pb-5">
