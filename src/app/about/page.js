@@ -7,35 +7,35 @@ export default function page() {
       <Head>
         <title>About us</title>
       </Head>
-      <section class="banner_section about_page inner_page">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 p-0">
-              <span class="page_title">About Us</span>
+      <section className="banner_section about_page inner_page">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 p-0">
+              <span className="page_title">About Us</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="about_content pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_main">
-                <span class="main_text">For over 30 years</span>
+      <section className="about_content pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text">For over 30 years</span>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="left_img">
-                <div class="slide">
-                  <img src="images/30_years.jpg" class="img-fluid" />
+          <div className="row">
+            <div className="col-md-6">
+              <div className="left_img">
+                <div className="slide">
+                  <img src="images/30_years.jpg" className="img-fluid" />
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="right_text">
+            <div className="col-md-6">
+              <div className="right_text">
                 <p>
                   For over 30 years, TMP has kept a promise to our clients and
                   customers: White Glove Service. Within our BPO framework, our
@@ -51,18 +51,18 @@ export default function page() {
         </div>
       </section>
 
-      <section class="about_content pt-5 pb-5 bg-light">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_main">
-                <span class="main_text">Our People</span>
+      <section className="about_content pt-5 pb-5 bg-light">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text">Our People</span>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="right_text">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="right_text">
                 <p>
                   Our People are our most valuable resource to maintain
                   high-quality service. It helps to have staff you know; our
@@ -75,10 +75,10 @@ export default function page() {
                 </p>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="left_img">
-                <div class="slide">
-                  <img src="images/our_people.jpg" class="img-fluid" />
+            <div className="col-md-6">
+              <div className="left_img">
+                <div className="slide">
+                  <img src="images/our_people.jpg" className="img-fluid" />
                 </div>
               </div>
             </div>
@@ -86,25 +86,25 @@ export default function page() {
         </div>
       </section>
 
-      <section class="about_content pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_main">
-                <span class="main_text">Our Products</span>
+      <section className="about_content pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text">Our Products</span>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="left_img">
-                <div class="slide">
-                  <img src="images/our_products.jpg" class="img-fluid" />
+          <div className="row">
+            <div className="col-md-6">
+              <div className="left_img">
+                <div className="slide">
+                  <img src="images/our_products.jpg" className="img-fluid" />
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="right_text">
+            <div className="col-md-6">
+              <div className="right_text">
                 <p>
                   Our Products will incorporate all your custom needs: CRM
                   Tools, IT Infrastructure, and Telecom platforms ensure that

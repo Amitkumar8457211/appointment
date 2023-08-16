@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 export default function NavContent() {
   const [Content, setContent] = useState("");
@@ -18,29 +18,33 @@ export default function NavContent() {
   const ActiveContent = (content) => {
     setContent(content);
   };
+  useLayoutEffect(() => {
+    document.getElementById("v-pills-0-tab").click();
+  }, []);
+
   return (
     <>
-      <section class="consulting_section pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_main">
-                <span class="main_text">Get your free consulting </span>
+      <section className="consulting_section pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text">Get your free consulting </span>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="title_dec">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_dec">
                 We have the best experts to elevate your business to the next
                 level, try this and you will see!
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-3 col-4">
+          <div className="row">
+            <div className="col-md-3 col-4">
               <div
-                class="nav flex-column nav-pills"
+                className="nav flex-column nav-pills"
                 id="v-pills-tab"
                 role="tablist"
                 aria-orientation="vertical"
@@ -48,33 +52,36 @@ export default function NavContent() {
                 {tabsarr?.map((el, index) => {
                   return (
                     <>
-                      <a
-                        class={
-                          el.content === Content
-                            ? "nav-link active"
-                            : "nav-link"
-                        }
-                        id={`v-pills-${index}-tab`}
-                        data-toggle="pill"
-                        role="tab"
-                        aria-controls={`v-pills-${index}`}
-                        aria-selected="true"
-                        onClick={() => {
-                          ActiveContent(el?.content);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {el?.name}
-                      </a>
+                      <div key={index}>
+                        <a
+                          key={index}
+                          className={
+                            el.content === Content
+                              ? "nav-link active"
+                              : "nav-link"
+                          }
+                          id={`v-pills-${index}-tab`}
+                          data-toggle="pill"
+                          role="tab"
+                          aria-controls={`v-pills-${index}`}
+                          aria-selected="true"
+                          onClick={() => {
+                            ActiveContent(el?.content);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {el?.name}
+                        </a>
+                      </div>
                     </>
                   );
                 })}
               </div>
             </div>
-            <div class="col-md-9 col-8">
-              <div class="tab-content" id="v-pills-tabContent">
+            <div className="col-md-9 col-8">
+              <div className="tab-content" id="v-pills-tabContent">
                 <div
-                  class="tab-pane fade show active"
+                  className="tab-pane fade show active"
                   id={`v-pills-home`}
                   role="tabpanel"
                   aria-labelledby={`v-pills-home-tab`}
