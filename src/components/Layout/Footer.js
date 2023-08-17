@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Footer() {
@@ -11,10 +13,13 @@ export default function Footer() {
                 <div className="footer_details_text">
                   <div className="footer_text">
                     <p>
-                      <img
-                        src="images/footer_logo.png"
+                      <Image
+                        src="/images/footer_logo.png"
                         alt="tmp direct logo"
                         className="img-fluid footer_logo"
+                        unoptimized
+                        height={100}
+                        width={100}
                       />
                       <br />
                       Get in touch for a consultation to find out what
@@ -22,7 +27,7 @@ export default function Footer() {
                       business and customers!
                     </p>
                     <p>
-                      <a className="footer_readmore" href="#">
+                      <a className="footer_readmore" href="/contactus">
                         Get in Touch <i className="fa fa-long-arrow-right"></i>
                       </a>
                     </p>
@@ -51,19 +56,19 @@ export default function Footer() {
                       <div className="footer_menu_container">
                         <ul className="footer_menu">
                           <li className="footer_menu_item">
-                            <a href="#">Services</a>
+                            <Link href="/services">Services</Link>
                           </li>
                           <li className="footer_menu_item">
-                            <a href="#">Experience</a>
+                            <Link href="/experience">Experience</Link>
                           </li>
                           <li className="footer_menu_item">
-                            <a href="#">About Us</a>
+                            <Link href="/about">About Us</Link>
                           </li>
                           <li className="footer_menu_item">
-                            <a href="#">Resource Center</a>
+                            <Link href="/resources">Resource Center</Link>
                           </li>
                           <li className="footer_menu_item">
-                            <a href="#">Contact Us</a>
+                            <Link href="/contactus">Contact Us</Link>
                           </li>
                         </ul>
                       </div>
@@ -99,6 +104,18 @@ export default function Footer() {
             </div>
           </div>
         </footer>
+      </section>
+      <section className="footer_botton_section">
+        <div className="footer_bottom">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 col-4 footer_text">TMP Direct</div>
+              <div className="col-md-6 col-8 text-right footer_text footer_text2">
+                &copy; 2021 TMP Direct All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import Image from "next/image";
 
 export default function Header() {
   const arr = [
@@ -19,13 +20,32 @@ export default function Header() {
   return (
     <>
       <header className="header_section">
+        <div className="header_top">
+          <div className="container-fluid">
+            <div className="connect_us">
+              <div className="social_icon">
+                <i className="fa fa-phone"></i>
+                <span>Call us: 1234 - 5678 - 9809</span>
+                <i className="fa fa-envelope"></i>
+                <span> Email us: ourmailo@copary.com </span>
+                <i className="fa fa-clock-o"></i>
+                <span className="">Working Hours: 8am - 6pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <header className="header_section">
         <div className="header_main">
           <div className="container-fluid">
             <nav className="navbar navbar-expand-lg navbar-light pl-0 pr-0">
               <Link className="navbar-brand" href="/">
-                <img
-                  src="images/logo.png"
+                <Image
+                  width={45}
+                  height={45}
+                  src="/images/logo.png"
                   alt="tmp_direct_logo"
+                  unoptimized
                   className="logo"
                 />
               </Link>
@@ -48,20 +68,18 @@ export default function Header() {
                 <ul className="navbar-nav ml-auto">
                   {arr?.map((el, i) => {
                     return (
-                      <>
-                        <li className="nav-item">
-                          <Link
-                            className={
-                              location === el.href.split("/")[1]
-                                ? "nav-link active"
-                                : "nav-link"
-                            }
-                            href={el?.href}
-                          >
-                            {el?.rajesh}
-                          </Link>
-                        </li>
-                      </>
+                      <li className="nav-item" key={i}>
+                        <Link
+                          className={
+                            location === el.href.split("/")[1]
+                              ? "nav-link active"
+                              : "nav-link"
+                          }
+                          href={el?.href}
+                        >
+                          {el?.rajesh}
+                        </Link>
+                      </li>
                     );
                   })}
                 </ul>
