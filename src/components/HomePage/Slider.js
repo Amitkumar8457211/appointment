@@ -1,66 +1,93 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import axios from "axios";
 
 import { Navigation, Autoplay, Pagination, Parallax } from "swiper/modules";
-import Callceneter1 from "../../../public/images/call_center.jpg";
-import Callceneter2 from "../../../public/images/call_center2.jpg";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { axiosApi } from "@/axios";
 
 export default function TopSlider() {
+  const [first, setfirst] = useState([]);
+  const [loading, setloading] = useState(false);
+  const getAllCarousel = async () => {
+    try {
+      setloading(true);
+      const res = await axiosApi(`/home/carousel`);
+
+      if (res.data.responseWrapper.statusDescription.statusCode == 200) {
+        setloading(false);
+
+        setfirst(res.data.responseWrapper.data);
+      }
+    } catch (error) {
+      setloading(false);
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAllCarousel();
+  }, []);
+
+  console.log(first, "ll");
+
+  // Main Slider
+
   return (
     <>
-      {" "}
       <section className="banner_section">
-        <div
-          id="carouselExampleCaptions"
-          className="carousel slide"
-          data-ride="carousel"
-        >
+        <>
           <Swiper
-            spaceBetween={30}
-            centeredSlides={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
+            style={{
+              "--swiper-navigation-color": "#fff",
+              "--swiper-pagination-color": "#fff",
             }}
+            speed={600}
             parallax={true}
             pagination={{
               clickable: true,
             }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
             navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
+            modules={[Parallax, Pagination, Navigation, Autoplay]}
             className="mySwiper"
           >
-            {/* <div className="carousel-inner">
-              <div className="carousel-item slide_1 active">
-                <div className="carousel-caption d-md-block">
-                  <h5>First slide label</h5>
-                  <p>
-                    Some representative placeholder content for the first slide.
-                  </p>
-                </div>
-              </div>
-              <div className="carousel-item slide_2">
-                <div className="carousel-caption d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>
-                    Some representative placeholder content for the second
-                    slide.
-                  </p>
-                </div>
-              </div>
-            </div> */}
-            <SwiperSlide>
-              <img src={Callceneter1.src} />{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <img src={Callceneter2.src} />
-            </SwiperSlide>
+            {first?.map((el, index) => {
+              return (
+                <div
+                  key={index}
+                  slot="container-start"
+                  className="parallax-bg"
+                  style={{
+                    backgroundImage: `url(${el?.imageUrl})`,
+                  }}
+                  data-swiper-parallax="-23%"
+                ></div>
+              );
+            })}
+            {first?.map((el, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <div className="title" data-swiper-parallax="-300">
+                    {el?.title}
+                  </div>
+                  <div className="subtitle" data-swiper-parallax="-200">
+                    {el?.subtitle}
+                  </div>
+                  <div className="text" data-swiper-parallax="-100">
+                    <p>{el?.text}</p>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
-        </div>
+        </>
       </section>
     </>
   );

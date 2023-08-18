@@ -1,19 +1,29 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination, Autoplay } from "swiper/modules";
+import { axiosApi } from "@/axios";
 
 export default function SmallSlider() {
-  const imagsArr = [
-    { img: "images/w1.png" },
-    { img: "images/w2.png" },
-    { img: "images/w3.png" },
-    { img: "images/w4.png" },
-  ];
+  const [first, setfirst] = useState([]);
+  const getAllCarousel = async () => {
+    try {
+      console.log("object");
+      const res = await axiosApi(`/home/smallCarousel`);
+
+      setfirst(res.data.responseWrapper.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAllCarousel();
+    console.log("object");
+  }, []);
 
   return (
     <>
@@ -47,36 +57,15 @@ export default function SmallSlider() {
                   modules={[Autoplay]}
                   className="mySwiper"
                 >
-                  <SwiperSlide>
-                    <div className="slide">
-                      <img src="/images/w1.png" alt="Partner Logo 1" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="slide">
-                      <img src="/images/w2.png" alt="Partner Logo 1" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="slide">
-                      <img src="/images/w3.png" alt="Partner Logo 1" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="slide">
-                      <img src="/images/w4.png" alt="Partner Logo 1" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="slide">
-                      <img src="/images/w1.png" alt="Partner Logo 1" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="slide">
-                      <img src="/images/w2.png" alt="Partner Logo 1" />
-                    </div>
-                  </SwiperSlide>
+                  {first?.map((el, index) => {
+                    return (
+                      <SwiperSlide key={index}>
+                        <div className="slide">
+                          <img src={el?.image_url} alt="Partner Logo 1" />
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
                 </Swiper>
                 {/* </>
                   );
