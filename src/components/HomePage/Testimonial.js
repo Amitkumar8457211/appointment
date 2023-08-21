@@ -1,12 +1,28 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination, Autoplay } from "swiper/modules";
+import axios from "axios";
+import { axiosApi } from "@/axios";
+
 export default function Testimonial() {
+  const [first, setfirst] = useState([]);
+  const getTestimonial = async () => {
+    const res = await axiosApi(`/home/testimonial`);
+    console.log(res.data.responseWrapper.data);
+    if (res?.data?.responseWrapper?.statusDescription?.statusCode == 200) {
+      setfirst(res.data.responseWrapper.data);
+    }
+  };
+
+  useEffect(() => {
+    getTestimonial();
+  }, []);
+
   const testimonialArr = [
     {
       left: "images/left-quotes.png",
@@ -66,20 +82,26 @@ export default function Testimonial() {
                       modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {testimonialArr?.map((data, ind) => {
+                      {first?.map((data, ind) => {
                         return (
                           <>
-                            <SwiperSlide>
+                            <SwiperSlide key={ind}>
                               {" "}
                               <div className="item-owl">
                                 <div className="test-review">
                                   <p>
-                                    <img src={data?.left} alt="Left Quote" />
-                                    {data?.text}
-                                    <img src={data?.right} alt="Right Quote" />
+                                    <img
+                                      src="images/left-quotes.png"
+                                      alt="Left Quote"
+                                    />
+                                    {data?.quotation}
+                                    <img
+                                      src="images/right-quotes.png"
+                                      alt="Right Quote"
+                                    />
                                   </p>
                                   <h5 className="testimonial_name">
-                                    {data?.author}
+                                    {data?.writer}
                                   </h5>
                                 </div>
                               </div>

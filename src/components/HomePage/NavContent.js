@@ -1,25 +1,33 @@
 "use client";
+import { axiosApi } from "@/axios";
 import React, { useEffect, useLayoutEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 export default function NavContent() {
   const [Content, setContent] = useState("");
-  const tabsarr = [
-    { name: "Customer Service", content: "Here is the content1" },
-    { name: "Lead Management", content: "Here is the content2" },
-    { name: "Cross-Selling", content: "Here is the content3" },
+  const [first, setfirst] = useState([]);
+  const [laoding, setlaoding] = useState(false);
 
-    { name: "Retention", content: "Here is the content4" },
-    { name: " C-Sat / NPS", content: "Here is the content5" },
-    { name: "Analytics & Insights", content: "Here is the content6" },
-    { name: "IT", content: "Here is the content7" },
-    { name: "Industries Served", content: "Here is the content8" },
-  ];
+  const getNavContent = async () => {
+    try {
+      setlaoding(true);
+      const res = await axiosApi(`/home/navcontent`);
+      if (res.data.responseWrapper.statusDescription.statusCode == 200) {
+        setfirst(res.data.responseWrapper.data);
+        setlaoding(false);
+      }
+    } catch (error) {
+      setlaoding(false);
+      console.log(error);
+    }
+  };
 
   const ActiveContent = (content) => {
     setContent(content);
   };
-  useLayoutEffect(() => {
-    document.getElementById("v-pills-0-tab").click();
+  useLayoutEffect(async () => {
+    getNavContent();
+    await document.getElementById("v-pills-0-tab")?.click();
   }, []);
 
   return (
@@ -49,33 +57,41 @@ export default function NavContent() {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                {tabsarr?.map((el, index) => {
-                  return (
-                    <>
-                      <div key={index}>
-                        <a
-                          key={index}
-                          className={
-                            el.content === Content
-                              ? "nav-link active"
-                              : "nav-link"
-                          }
-                          id={`v-pills-${index}-tab`}
-                          data-toggle="pill"
-                          role="tab"
-                          aria-controls={`v-pills-${index}`}
-                          aria-selected="true"
-                          onClick={() => {
-                            ActiveContent(el?.content);
-                          }}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {el?.name}
-                        </a>
-                      </div>
-                    </>
-                  );
-                })}
+                {laoding ? (
+                  <>
+                    <Skeleton count={18} />
+                  </>
+                ) : (
+                  <>
+                    {first?.map((el, index) => {
+                      return (
+                        <>
+                          <div key={index}>
+                            <a
+                              key={index}
+                              className={
+                                el.content === Content
+                                  ? "nav-link active"
+                                  : "nav-link"
+                              }
+                              id={`v-pills-${index}-tab`}
+                              data-toggle="pill"
+                              role="tab"
+                              aria-controls={`v-pills-${index}`}
+                              aria-selected="true"
+                              onClick={() => {
+                                ActiveContent(el?.content);
+                              }}
+                              style={{ cursor: "pointer" }}
+                            >
+                              {el?.name}
+                            </a>
+                          </div>
+                        </>
+                      );
+                    })}
+                  </>
+                )}
               </div>
             </div>
             <div className="col-md-9 col-8">

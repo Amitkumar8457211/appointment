@@ -1,4 +1,5 @@
 "use client";
+import { axiosApi } from "@/axios";
 import React, { useLayoutEffect, useState } from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
@@ -8,13 +9,22 @@ export default function Counter() {
     triggerOnce: true,
     threshold: 0,
   });
+  const [first, setfirst] = useState([]);
 
-  const CounterMap = [
-    { value: "9827", text: "Staff worldwide" },
-    { value: "3269885", text: "Satisfied customers" },
-    { value: "27", text: "Years in the Industry" },
-    { value: "9", text: "Average # of services per client" },
-  ];
+  const counterData = async () => {
+    try {
+      const res = await axiosApi(`/home/counter`);
+      if (res.data.responseWrapper.statusDescription.statusCode == 200) {
+        setfirst(res.data.responseWrapper.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useLayoutEffect(() => {
+    counterData();
+  }, []);
 
   return (
     <>
@@ -23,7 +33,7 @@ export default function Counter() {
           <div className="row" ref={ref}>
             {inView && (
               <>
-                {CounterMap?.map((data, i) => {
+                {first?.map((data, i) => {
                   return (
                     <>
                       <div className={`col-md-3 count${i + 1}`}>

@@ -6,71 +6,32 @@ import Testimonial from "@/components/HomePage/Testimonial";
 import Updates from "@/components/HomePage/Updates";
 import TopSlider from "@/components/HomePage/Slider";
 import Counter from "@/components/HomePage/Counter";
+import { axiosApi } from "@/axios";
+import axios from "axios";
 
-export default function Home() {
-  const chooseUsArr = [
-    {
-      heading: "Turn-Key Solutions",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices elit id metus varius finibus. Suspendisse ac tellus eget risus suscipit egestas et ac sapien. Mauris blandit ultricies mauris eget hendrerit.",
-      image: "images/turn_key_solutions.png",
-    },
-    {
-      heading: "In-House IT Development",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices elit id metus varius finibus. Suspendisse ac tellus eget risus suscipit egestas et ac sapien. Mauris blandit ultricies mauris eget hendrerit.",
-      image: "images/in_house_IT_evelopment.png",
-    },
-    {
-      heading: "Multi-Application Integration",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices elit id metus varius finibus. Suspendisse ac tellus eget risus suscipit egestas et ac sapien. Mauris blandit ultricies mauris eget hendrerit.",
-      image: "images/multi_application_integration.png",
-    },
-  ];
+const getServerSideProps1 = async () => {
+  try {
+    const res1 = axios(`http://127.0.0.1:8000/home/services`);
+    const res2 = axios(`http://127.0.0.1:8000/home/experience`);
+    const res3 = axios(`http://127.0.0.1:8000/home/testimonial`);
+    const res4 = axios(`http://127.0.0.1:8000/home/whychoose`);
+    const res5 = axios(`http://127.0.0.1:8000/home/experts`);
+    const allSettled = await Promise.allSettled([res1, res2, res3, res4, res5]);
 
-  const expertsArr = [
-    {
-      heading: "Aleen Valzac",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI.",
-      image: "images/team_1.jpg",
-    },
-    {
-      heading: "Aleen Valzac",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI.",
-      image: "images/team_1.jpg",
-    },
-    {
-      heading: "Aleen Valzac",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI.",
-      image: "images/team_1.jpg",
-    },
-    {
-      heading: "Aleen Valzac",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI.",
-      image: "images/team_1.jpg",
-    },
-  ];
+    return allSettled;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  const wideArr = [
-    {
-      heading: "Omnichannel Services",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI",
-      image: "images/w1.png",
-    },
-    {
-      heading: "Omnichannel Services",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI",
-      image: "images/w1.png",
-    },
-    {
-      heading: "Omnichannel Services",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI",
-      image: "images/w1.png",
-    },
-    {
-      heading: "Omnichannel Services",
-      text: "Allow us to provide end-to-end solutions to handle your customer traffic whether it is through calls, email, chat/sms, social media, and self-service AI",
-      image: "images/w1.png",
-    },
-  ];
+export default async function Home({ result }) {
+  const data = await getServerSideProps1();
+
+  console.log(
+    data?.[4]?.value?.data?.responseWrapper?.data,
+    "resultwhychooseus"
+  );
+
   return (
     <>
       <Head>
@@ -106,8 +67,7 @@ export default function Home() {
           <div className="row">
             <div className="col-md-12">
               <div className="title_dec">
-                TMP Direct is an Award-Winning BPO company providing White-Glove
-                service to our clients with 24x7 Omni-channel Support.
+                {data?.[1]?.value?.data?.responseWrapper?.data?.[0]?.header}
               </div>
             </div>
           </div>
@@ -116,7 +76,10 @@ export default function Home() {
               <div className="left_img">
                 <div className="slide">
                   <img
-                    src="images/call_center.jpg"
+                    src={
+                      data?.[1]?.value?.data?.responseWrapper?.data?.[0]
+                        ?.imageurl
+                    }
                     className="img-fluid"
                     alt="Call Center"
                   />
@@ -125,17 +88,12 @@ export default function Home() {
             </div>
             <div className="col-md-6">
               <div className="right_text">
-                <h2>Customer Journey, NPS, Whiteglove</h2>
+                <h2>
+                  {" "}
+                  {data?.[1]?.value?.data?.responseWrapper?.data?.[0]?.title}
+                </h2>
                 <p>
-                  The way consumers interact with their favorite brands is
-                  constantly evolving; TMP Direct is prepared to assist clients
-                  in the support of these ever-changing operations. TMP can
-                  provide flexibility with “Best Shore” solutions by providing
-                  teams in the U.S., along with a large offshore workforce
-                  across the globe that provides support for voice, email, chat,
-                  messaging, and fulfillment. Our support staff and custom IT
-                  abilities provide our clients with a fully customizable
-                  experience.
+                  {data?.[1]?.value?.data?.responseWrapper?.data?.[0]?.desc}
                 </p>
               </div>
             </div>
@@ -159,20 +117,20 @@ export default function Home() {
             </div>
           </div>
           <div className="row">
-            {wideArr?.map((e, index) => {
+            {data?.[0]?.value?.data?.responseWrapper?.data?.map((e, index) => {
               return (
                 <>
                   <div className="col-md-3">
                     <div className="service_section">
                       <div className="service_icon w-25 m-auto text-center">
                         <img
-                          src={e?.image}
+                          src="images/w1.png"
                           className="img-fluid"
                           alt="Omnichannel Services"
                         />
                       </div>
-                      <h2 className="text-center mb-3">{e?.heading}</h2>
-                      <p className="text-left">{e?.text}</p>
+                      <h2 className="text-center mb-3">{e?.title}</h2>
+                      <p className="text-left">{e?.desc}</p>
                     </div>
                   </div>
                 </>
@@ -200,6 +158,9 @@ export default function Home() {
       <NavContent />
 
       <Counter />
+      {/* Testimonial conetnt */}
+
+      {/* Testimonial conetnt */}
       <Testimonial />
       <section className="why_choose_us_section pt-5 pb-5">
         <div className="container">
@@ -211,16 +172,16 @@ export default function Home() {
             </div>
           </div>
           <div className="row  mb-5">
-            {chooseUsArr?.map((el, index) => {
+            {data?.[3]?.value?.data?.responseWrapper?.data?.map((el, index) => {
               return (
                 <>
                   <div className="col-md-4">
                     <div className="service_section">
                       <div className="service_icon w-25 m-auto text-center">
-                        <img src={el?.image} className="img-fluid" />
+                        <img src={el?.icon} className="img-fluid" />
                       </div>
-                      <h2 className="text-center mb-3">{el?.heading}</h2>
-                      <p className="text-left">{el?.text}</p>
+                      <h2 className="text-center mb-3">{el?.title}</h2>
+                      <p className="text-left">{el?.description}</p>
                     </div>
                   </div>
                 </>
@@ -246,23 +207,25 @@ export default function Home() {
             </div>
           </div>
           <div className="row">
-            {expertsArr?.map((el, index) => {
-              return (
-                <>
-                  <div className="col-md-3 mt-3">
-                    <div className="experts_des">
-                      <div className="service_icon m-auto text-center">
-                        <img src={el?.image} className="img-fluid" />
+            {data?.[4]?.value?.data?.responseWrapper?.data?.map?.(
+              (el, index) => {
+                return (
+                  <>
+                    <div className="col-md-3 mt-3">
+                      <div className="experts_des">
+                        <div className="service_icon m-auto text-center">
+                          <img src={el?.image} className="img-fluid" />
+                        </div>
+                        <h2 className="text-center mb-3 blue_text">
+                          {el?.name}
+                        </h2>
+                        <p className="text-left">{el?.about}</p>
                       </div>
-                      <h2 className="text-center mb-3 blue_text">
-                        {el?.heading}
-                      </h2>
-                      <p className="text-left">{el?.text}</p>
                     </div>
-                  </div>
-                </>
-              );
-            })}
+                  </>
+                );
+              }
+            )}
           </div>
         </div>
       </section>
