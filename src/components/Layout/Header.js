@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Header() {
   const arr = [
     { rajesh: "Services", href: "/services" },
-    { rajesh: "Experience", href: "/experience" },
+
     { rajesh: "About Us", href: "/about" },
     { rajesh: "Blogs", href: "/blogs" },
     { rajesh: "Resource Center", href: "/resources" },

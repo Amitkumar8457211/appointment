@@ -1,6 +1,6 @@
 "use client";
 import { axiosApi } from "@/axios";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -33,22 +33,22 @@ const Sidebar = () => {
 
   var string1 = first?.rightText.split(".");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getAllServices();
+  }, []);
 
+  useEffect(() => {
     if (typeof window !== undefined) {
       if (typeof document !== undefined) {
         if (first?.data?.length > 0) {
           console.log("here i am");
-          setTimeout(() => {
-            document.getElementById("sidebar0").click();
-          }, 500);
+          // setTimeout(() => {
+          document.getElementById("sidebar0").click();
+          // }, 500);
         }
       }
     }
-  }, []);
-
-  console.log(first.data, "arrau");
+  }, [first]);
 
   return (
     <section className="main_section mt-5 mb-5">
