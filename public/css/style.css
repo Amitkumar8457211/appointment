@@ -276,6 +276,7 @@ select,
 .header_main .navbar-light .navbar-nav .nav-link.show,
 .header_main .navbar-light .navbar-nav .show > .nav-link {
   color: #0083bd;
+  font-size: larger;
 }
 .header_top {
   background-color: #000;
