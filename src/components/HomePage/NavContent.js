@@ -25,9 +25,11 @@ export default function NavContent() {
   const ActiveContent = (content) => {
     setContent(content);
   };
-  useLayoutEffect(async () => {
+  useLayoutEffect(() => {
     getNavContent();
-    await document.getElementById("v-pills-0-tab")?.click();
+    setTimeout(() => {
+      document.getElementById("v-pills-0-tab")?.click();
+    }, 500);
   }, []);
 
   return (
@@ -65,47 +67,57 @@ export default function NavContent() {
                   <>
                     {first?.map((el, index) => {
                       return (
-                        <>
-                          <div key={index}>
-                            <a
-                              key={index}
-                              className={
-                                el.content === Content
-                                  ? "nav-link active"
-                                  : "nav-link"
-                              }
-                              id={`v-pills-${index}-tab`}
-                              data-toggle="pill"
-                              role="tab"
-                              aria-controls={`v-pills-${index}`}
-                              aria-selected="true"
-                              onClick={() => {
-                                ActiveContent(el?.content);
-                              }}
-                              style={{ cursor: "pointer" }}
-                            >
-                              {el?.name}
-                            </a>
-                          </div>
-                        </>
+                        <div key={index}>
+                          <a
+                            key={index}
+                            className={
+                              el.content === Content
+                                ? "nav-link active"
+                                : "nav-link"
+                            }
+                            id={`v-pills-${index}-tab`}
+                            data-toggle="pill"
+                            role="tab"
+                            aria-controls={`v-pills-${index}`}
+                            aria-selected="true"
+                            onClick={() => {
+                              ActiveContent(el?.content);
+                            }}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {el?.name}
+                          </a>
+                        </div>
                       );
                     })}
                   </>
                 )}
               </div>
             </div>
-            <div className="col-md-9 col-8">
-              <div className="tab-content" id="v-pills-tabContent">
-                <div
-                  className="tab-pane fade show active"
-                  id={`v-pills-home`}
-                  role="tabpanel"
-                  aria-labelledby={`v-pills-home-tab`}
-                >
-                  {Content}
-                </div>
+
+            {laoding ? (
+              <div className="col-md-9 col-8">
+                <Skeleton
+                  enableAnimation={true}
+                  style={{ width: "100%", height: "425px" }}
+                />
               </div>
-            </div>
+            ) : (
+              <>
+                <div className="col-md-9 col-8">
+                  <div className="tab-content" id="v-pills-tabContent">
+                    <div
+                      className="tab-pane fade show active"
+                      id={`v-pills-home`}
+                      role="tabpanel"
+                      aria-labelledby={`v-pills-home-tab`}
+                    >
+                      {Content}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>

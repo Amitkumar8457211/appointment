@@ -23,32 +23,6 @@ export default function Testimonial() {
     getTestimonial();
   }, []);
 
-  const testimonialArr = [
-    {
-      left: "images/left-quotes.png",
-      text: " A nice comfortable place to stay with much more to it. With 24/7 open Recreation Centre I look  forward to the fun-filled activities which is a nice break from the college stress.",
-      right: "images/right-quotes.png",
-      author: "Shyam",
-    },
-    {
-      left: "images/left-quotes.png",
-      text: "  Singing, stand-up comedy and story slams are performed by people from various clubs as well as people living here. It’s motivating to be surrounded by such people.",
-      right: "images/right-quotes.png",
-      author: "Anmol",
-    },
-    {
-      left: "images/left-quotes.png",
-      text: "You can get everything in life you want if you will just help enough other people get what they want ",
-      right: "images/right-quotes.png",
-      author: "Paras",
-    },
-    {
-      left: "images/left-quotes.png",
-      text: " 'Learn something new today'. 'Good thoughts make a happy person'. 'If you have a dream, never let go of it, chase it till the end'. 'Make yourself your own competition, strive to be better than yesterday, and you'll find the true essence of life! ",
-      right: "images/right-quotes.png",
-      author: "Nikhil",
-    },
-  ];
   return (
     <>
       <section className="testimonial_section">
@@ -84,29 +58,27 @@ export default function Testimonial() {
                     >
                       {first?.map((data, ind) => {
                         return (
-                          <>
-                            <SwiperSlide key={ind}>
-                              {" "}
-                              <div className="item-owl">
-                                <div className="test-review">
-                                  <p>
-                                    <img
-                                      src="images/left-quotes.png"
-                                      alt="Left Quote"
-                                    />
-                                    {data?.quotation}
-                                    <img
-                                      src="images/right-quotes.png"
-                                      alt="Right Quote"
-                                    />
-                                  </p>
-                                  <h5 className="testimonial_name">
-                                    {data?.writer}
-                                  </h5>
-                                </div>
+                          <SwiperSlide key={ind}>
+                            {" "}
+                            <div className="item-owl">
+                              <div className="test-review">
+                                <p>
+                                  <img
+                                    src="images/left-quotes.png"
+                                    alt="Left Quote"
+                                  />
+                                  {data?.quotation}
+                                  <img
+                                    src="images/right-quotes.png"
+                                    alt="Right Quote"
+                                  />
+                                </p>
+                                <h5 className="testimonial_name">
+                                  {data?.writer}
+                                </h5>
                               </div>
-                            </SwiperSlide>
-                          </>
+                            </div>
+                          </SwiperSlide>
                         );
                       })}
                     </Swiper>

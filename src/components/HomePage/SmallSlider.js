@@ -45,21 +45,11 @@ export default function SmallSlider() {
             </div>
             {laoding ? (
               <>
-                <div className="col-md-2">
-                  <Skeleton count={1} width={"50%"} height={"100%"} circle />
-                </div>
-                <div className="col-md-1"></div>
-                <div className="col-md-2">
-                  <Skeleton count={1} width={"50%"} height={"100%"} circle />
-                </div>
-                <div className="col-md-1"></div>
-                <div className="col-md-2">
-                  <Skeleton count={1} width={"50%"} height={"100%"} circle />
-                </div>
-
-                <div className="col-md-2">
-                  <Skeleton count={1} width={"50%"} height={"100%"} circle />
-                </div>
+                {[1, 2, 3, 4].map((index) => (
+                  <div className="col-md-2" key={index}>
+                    <Skeleton count={1} width={"80%"} height={"90%"} circle />
+                  </div>
+                ))}
               </>
             ) : (
               <>

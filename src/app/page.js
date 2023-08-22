@@ -6,17 +6,17 @@ import Testimonial from "@/components/HomePage/Testimonial";
 import Updates from "@/components/HomePage/Updates";
 import TopSlider from "@/components/HomePage/Slider";
 import Counter from "@/components/HomePage/Counter";
-import { axiosApi } from "@/axios";
+
 import axios from "axios";
 
 const getServerSideProps1 = async () => {
   try {
     const res1 = axios(`http://127.0.0.1:8000/home/services`);
     const res2 = axios(`http://127.0.0.1:8000/home/experience`);
-    const res3 = axios(`http://127.0.0.1:8000/home/testimonial`);
-    const res4 = axios(`http://127.0.0.1:8000/home/whychoose`);
-    const res5 = axios(`http://127.0.0.1:8000/home/experts`);
-    const allSettled = await Promise.allSettled([res1, res2, res3, res4, res5]);
+    const res3 = axios(`http://127.0.0.1:8000/home/whychoose`);
+    const res4 = axios(`http://127.0.0.1:8000/home/experts`);
+    // const res5 = axios(`http://127.0.0.1:8000/home/experts`);
+    const allSettled = await Promise.allSettled([res1, res2, res3, res4]);
 
     return allSettled;
   } catch (error) {
@@ -26,11 +26,6 @@ const getServerSideProps1 = async () => {
 
 export default async function Home({ result }) {
   const data = await getServerSideProps1();
-
-  console.log(
-    data?.[4]?.value?.data?.responseWrapper?.data,
-    "resultwhychooseus"
-  );
 
   return (
     <>
@@ -119,21 +114,19 @@ export default async function Home({ result }) {
           <div className="row">
             {data?.[0]?.value?.data?.responseWrapper?.data?.map((e, index) => {
               return (
-                <>
-                  <div className="col-md-3">
-                    <div className="service_section">
-                      <div className="service_icon w-25 m-auto text-center">
-                        <img
-                          src="images/w1.png"
-                          className="img-fluid"
-                          alt="Omnichannel Services"
-                        />
-                      </div>
-                      <h2 className="text-center mb-3">{e?.title}</h2>
-                      <p className="text-left">{e?.desc}</p>
+                <div className="col-md-3" key={e.desc?.[index]}>
+                  <div className="service_section">
+                    <div className="service_icon w-25 m-auto text-center">
+                      <img
+                        src="images/w1.png"
+                        className="img-fluid"
+                        alt="Omnichannel Services"
+                      />
                     </div>
+                    <h2 className="text-center mb-3">{e?.title}</h2>
+                    <p className="text-left">{e?.desc}</p>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
@@ -172,19 +165,17 @@ export default async function Home({ result }) {
             </div>
           </div>
           <div className="row  mb-5">
-            {data?.[3]?.value?.data?.responseWrapper?.data?.map((el, index) => {
+            {data?.[2]?.value?.data?.responseWrapper?.data?.map((el, index) => {
               return (
-                <>
-                  <div className="col-md-4">
-                    <div className="service_section">
-                      <div className="service_icon w-25 m-auto text-center">
-                        <img src={el?.icon} className="img-fluid" />
-                      </div>
-                      <h2 className="text-center mb-3">{el?.title}</h2>
-                      <p className="text-left">{el?.description}</p>
+                <div className="col-md-4">
+                  <div className="service_section">
+                    <div className="service_icon w-25 m-auto text-center">
+                      <img src={el?.icon} className="img-fluid" />
                     </div>
+                    <h2 className="text-center mb-3">{el?.title}</h2>
+                    <p className="text-left">{el?.description}</p>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
@@ -207,22 +198,19 @@ export default async function Home({ result }) {
             </div>
           </div>
           <div className="row">
-            {data?.[4]?.value?.data?.responseWrapper?.data?.map?.(
+            {data?.[3]?.value?.data?.responseWrapper?.data?.map?.(
               (el, index) => {
+                console.log(el, "funny scne");
                 return (
-                  <>
-                    <div className="col-md-3 mt-3">
-                      <div className="experts_des">
-                        <div className="service_icon m-auto text-center">
-                          <img src={el?.image} className="img-fluid" />
-                        </div>
-                        <h2 className="text-center mb-3 blue_text">
-                          {el?.name}
-                        </h2>
-                        <p className="text-left">{el?.about}</p>
+                  <div className="col-md-3 mt-3">
+                    <div className="experts_des">
+                      <div className="service_icon m-auto text-center">
+                        <img src={el?.image} className="img-fluid" />
                       </div>
+                      <h2 className="text-center mb-3 blue_text">{el?.name}</h2>
+                      <p className="text-left">{el?.about}</p>
                     </div>
-                  </>
+                  </div>
                 );
               }
             )}

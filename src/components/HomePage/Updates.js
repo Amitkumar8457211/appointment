@@ -56,7 +56,7 @@ export default function Updates() {
                     <div className="col-md-4" key={index}>
                       <div className="news_update">
                         <div className="service_icon m-auto text-center">
-                          <img src="images/update1.jpg" className="img-fluid" />
+                          <img src={el?.image} className="img-fluid" />
                         </div>
                         <div className="news_details">
                           <span>{el?.date}</span>-<span>root</span> -

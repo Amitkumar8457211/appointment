@@ -313,6 +313,7 @@ select,
 .title_small {
   font-size: 22px;
   font-weight: 600;
+  margin-top: 40px;
 }
 .blue_text {
   color: #0083bd;
