@@ -25,11 +25,15 @@ export default function NavContent() {
   const ActiveContent = (content) => {
     setContent(content);
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     getNavContent();
-    setTimeout(() => {
-      document.getElementById("v-pills-0-tab")?.click();
-    }, 500);
+  }, []);
+  useEffect(() => {
+    if (first.length > 0) {
+      setTimeout(() => {
+        document.getElementById("v-pills-0-tab")?.click();
+      });
+    }
   }, []);
 
   return (

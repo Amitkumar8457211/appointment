@@ -41,7 +41,6 @@ const Sidebar = () => {
     if (typeof window !== undefined) {
       if (typeof document !== undefined) {
         if (first?.data?.length > 0) {
-          console.log("here i am");
           // setTimeout(() => {
           document.getElementById("sidebar0").click();
           // }, 500);
@@ -65,7 +64,7 @@ const Sidebar = () => {
                   <ul className="sidebar_menu">
                     {first?.data?.map((evale, index) => {
                       return (
-                        <li key={index}>
+                        <li>
                           <a
                             // key={index}
                             className={
