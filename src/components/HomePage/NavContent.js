@@ -30,11 +30,9 @@ export default function NavContent() {
   }, []);
   useEffect(() => {
     if (first.length > 0) {
-      setTimeout(() => {
-        document.getElementById("v-pills-0-tab")?.click();
-      });
+      document.getElementById("v-pills-0-tab")?.click();
     }
-  }, []);
+  }, [first]);
 
   return (
     <>

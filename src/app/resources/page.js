@@ -1,7 +1,23 @@
 import QueryFrom from "@/components/ResourceCenter/QueryFrom";
+import axios from "axios";
 import React from "react";
 
-export default function page() {
+const getServerSideProps1 = async () => {
+  try {
+    const res1 = axios(`http://127.0.0.1:8000/resources/all`);
+
+    // const res5 = axios(`http://127.0.0.1:8000/home/experts`);
+    const allSettled = await Promise.allSettled([res1]);
+
+    return allSettled;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export default async function page() {
+  const data = await getServerSideProps1();
+  console.log(data[0].value.data.responseWrapper.data);
+
   return (
     <>
       <section className="banner_section resource_center_page inner_page">
@@ -23,111 +39,32 @@ export default function page() {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4">
-              <div className="news_update">
-                <div className="service_icon m-auto text-center">
-                  <img
-                    src="images/update1.jpg"
-                    className="img-fluid"
-                    alt="Update 1"
-                  />
+            {data[0].value.data.responseWrapper.data?.map((data, index) => {
+              return (
+                <div className="col-md-4">
+                  <div className="news_update">
+                    <div className="service_icon m-auto text-center">
+                      <img
+                        src={data?.image}
+                        className="img-fluid"
+                        alt="Update 1"
+                      />
+                    </div>
+                    <div className="news_details">{data?.date}</div>
+                    <h2 className="mb-2 blue_text">{data?.title}</h2>
+                    <p className="text-left">{data?.description}</p>
+                    <p>
+                      <button
+                        type="button"
+                        className="btn btn-outline-primary btn-sm"
+                      >
+                        Read More
+                      </button>
+                    </p>
+                  </div>
                 </div>
-                <div className="news_details">
-                  <span>December 28, 2017</span> -<span>root</span> -
-                  <span>
-                    <a className="blue_text" href="#">
-                      News
-                    </a>
-                  </span>
-                </div>
-                <h2 className="mb-2 blue_text">
-                  Bring to the table win-win survival strategies
-                </h2>
-                <p className="text-left">
-                  Allow us to provide end-to-end solutions to handle your
-                  customer traffic whether it is through calls, email, chat/sms,
-                  social media, and self-service AI.
-                </p>
-                <p>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary btn-sm"
-                  >
-                    Read More
-                  </button>
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="news_update">
-                <div className="service_icon m-auto text-center">
-                  <img
-                    src="images/update1.jpg"
-                    className="img-fluid"
-                    alt="Update 2"
-                  />
-                </div>
-                <div className="news_details">
-                  <span>December 28, 2017</span> -<span>root</span> -
-                  <span>
-                    <a className="blue_text" href="#">
-                      News
-                    </a>
-                  </span>
-                </div>
-                <h2 className="mb-2 blue_text">
-                  Bring to the table win-win survival strategies
-                </h2>
-                <p className="text-left">
-                  Allow us to provide end-to-end solutions to handle your
-                  customer traffic whether it is through calls, email, chat/sms,
-                  social media, and self-service AI.
-                </p>
-                <p>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary btn-sm"
-                  >
-                    Read More
-                  </button>
-                </p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="news_update">
-                <div className="service_icon m-auto text-center">
-                  <img
-                    src="images/update1.jpg"
-                    className="img-fluid"
-                    alt="Update 3"
-                  />
-                </div>
-                <div className="news_details">
-                  <span>December 28, 2017</span> -<span>root</span> -
-                  <span>
-                    <a className="blue_text" href="#">
-                      News
-                    </a>
-                  </span>
-                </div>
-                <h2 className="mb-2 blue_text">
-                  Bring to the table win-win survival strategies
-                </h2>
-                <p className="text-left">
-                  Allow us to provide end-to-end solutions to handle your
-                  customer traffic whether it is through calls, email, chat/sms,
-                  social media, and self-service AI.
-                </p>
-                <p>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary btn-sm"
-                  >
-                    Read More
-                  </button>
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>

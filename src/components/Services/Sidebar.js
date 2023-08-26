@@ -47,7 +47,7 @@ const Sidebar = () => {
         }
       }
     }
-  }, [first]);
+  }, [first?.data]);
 
   return (
     <section className="main_section mt-5 mb-5">
@@ -63,10 +63,10 @@ const Sidebar = () => {
                 <aside className="left_sidebar">
                   <ul className="sidebar_menu">
                     {first?.data?.map((evale, index) => {
+                      console.log(evale, "objects");
                       return (
-                        <li>
+                        <li key={evale?.name[index]}>
                           <a
-                            // key={index}
                             className={
                               first?.name === evale?.name
                                 ? "sidebar-active"

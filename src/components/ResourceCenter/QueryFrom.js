@@ -1,6 +1,12 @@
+"use client";
 import React from "react";
 
 export default function QueryFrom() {
+  const submitquery = (e) => {
+    e.preventDefault();
+    try {
+    } catch (error) {}
+  };
   return (
     <>
       <section className="about_content pt-5">
@@ -58,21 +64,21 @@ export default function QueryFrom() {
                 </p>
 
                 {/* Form */}
-                <form className="mt-5 p-3 bg-light">
+                <form onSubmit={submitquery} className="mt-5 p-3 bg-light">
                   <div className="form-row">
                     <div className="form-group col-md-6">
                       <label>Name</label>
-                      <input type="text" className="form-control" />
+                      <input type="text" required className="form-control" />
                     </div>
                     <div className="form-group col-md-6">
                       <label>Address</label>
-                      <input type="text" className="form-control" />
+                      <input type="text" required className="form-control" />
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-group col-md-6">
                       <label>City</label>
-                      <input type="text" className="form-control" />
+                      <input type="text" required className="form-control" />
                     </div>
                     <div className="form-group col-md-4">
                       <label>State</label>
@@ -83,17 +89,17 @@ export default function QueryFrom() {
                     </div>
                     <div className="form-group col-md-2">
                       <label>Zip</label>
-                      <input type="text" className="form-control" />
+                      <input type="number" required className="form-control" />
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-group col-md-6">
                       <label>Phone</label>
-                      <input type="text" className="form-control" />
+                      <input type="number" required className="form-control" />
                     </div>
                     <div className="form-group col-md-6">
                       <label>Email</label>
-                      <input type="email" className="form-control" />
+                      <input type="email" required className="form-control" />
                     </div>
                   </div>
                   <div className="form-row">
