@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// console.log("urlis", Router.basePath);
-
 let baseURL;
 
 if (typeof window !== "undefined") {
