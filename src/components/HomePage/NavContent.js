@@ -3,36 +3,16 @@ import { axiosApi } from "@/axios";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 
-export default function NavContent() {
+export default function NavContent({ data }) {
   const [Content, setContent] = useState("");
   const [first, setfirst] = useState([]);
   const [laoding, setlaoding] = useState(false);
 
-  const getNavContent = async () => {
-    try {
-      setlaoding(true);
-      const res = await axiosApi(`/home/navcontent`);
-      if (res.data.responseWrapper.statusDescription.statusCode == 200) {
-        setfirst(res.data.responseWrapper.data);
-        setlaoding(false);
-      }
-    } catch (error) {
-      setlaoding(false);
-      console.log(error);
-    }
-  };
-
-  const ActiveContent = (content) => {
-    setContent(content);
-  };
   useEffect(() => {
-    getNavContent();
-  }, []);
-  useEffect(() => {
-    if (first.length > 0) {
+    if (data.length > 0) {
       document.getElementById("v-pills-0-tab")?.click();
     }
-  }, [first]);
+  }, [data]);
 
   return (
     <>
@@ -67,11 +47,10 @@ export default function NavContent() {
                   </>
                 ) : (
                   <>
-                    {first?.map((el, index) => {
+                    {data?.map((el, index) => {
                       return (
-                        <div key={index}>
+                        <div>
                           <a
-                            key={index}
                             className={
                               el.content === Content
                                 ? "nav-link active"
@@ -83,7 +62,7 @@ export default function NavContent() {
                             aria-controls={`v-pills-${index}`}
                             aria-selected="true"
                             onClick={() => {
-                              ActiveContent(el?.content);
+                              setContent(el?.content);
                             }}
                             style={{ cursor: "pointer" }}
                           >

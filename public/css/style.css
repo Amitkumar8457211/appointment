@@ -689,3 +689,7 @@ ul.sidebar_menu li:hover a {
   background-color: #0083bd;
   border-top: 1px solid #02aaf4;
 }
+
+.swiper-wrapper {
+  transition-timing-function: linear;
+}

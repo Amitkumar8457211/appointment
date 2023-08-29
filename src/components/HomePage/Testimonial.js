@@ -9,20 +9,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import axios from "axios";
 import { axiosApi } from "@/axios";
 
-export default function Testimonial() {
-  const [first, setfirst] = useState([]);
-  const getTestimonial = async () => {
-    const res = await axiosApi(`/home/testimonial`);
-    console.log(res.data.responseWrapper.data);
-    if (res?.data?.responseWrapper?.statusDescription?.statusCode == 200) {
-      setfirst(res.data.responseWrapper.data);
-    }
-  };
-
-  useEffect(() => {
-    getTestimonial();
-  }, []);
-
+export default function Testimonial({ data }) {
   return (
     <>
       <section className="testimonial_section">
@@ -56,9 +43,9 @@ export default function Testimonial() {
                       modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {first?.map((data, ind) => {
+                      {data?.map((data, ind) => {
                         return (
-                          <SwiperSlide key={ind}>
+                          <SwiperSlide>
                             {" "}
                             <div className="item-owl">
                               <div className="test-review">

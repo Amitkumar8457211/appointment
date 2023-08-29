@@ -16,7 +16,6 @@ const getServerSideProps1 = async () => {
 };
 export default async function page() {
   const data = await getServerSideProps1();
-  console.log(data[0].value.data.responseWrapper.data);
 
   return (
     <>

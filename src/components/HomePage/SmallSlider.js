@@ -1,33 +1,36 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
-
-import { Pagination, Autoplay } from "swiper/modules";
-import { axiosApi } from "@/axios";
+import { Autoplay } from "swiper/modules";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export default function SmallSlider() {
-  const [first, setfirst] = useState([]);
-  const [laoding, setlaoding] = useState(true);
-  const getAllCarousel = async () => {
-    try {
-      setlaoding(true);
-      const res = await axiosApi(`/home/smallCarousel`);
+  const [data, setData] = useState(false);
 
-      setfirst(res.data.responseWrapper.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setlaoding(false);
-    }
-  };
+  // Main Slider
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   useEffect(() => {
-    getAllCarousel();
+    delay(1000).then(async () => {
+      try {
+        const response = await axios("http://127.0.0.1:8000/home/all");
+        if (response.data.status) {
+          setData(response.data.response.technology_partner);
+        } else {
+          setData(false);
+        }
+      } catch (error) {
+        console.log("error", error);
+        setData(false);
+      }
+    });
   }, []);
+
+  console.log(data, "data");
 
   return (
     <>
@@ -43,51 +46,55 @@ export default function SmallSlider() {
                 Partners
               </div>
             </div>
-            {laoding ? (
-              <>
-                {[1, 2, 3, 4].map((index) => (
-                  <div className="col-md-2" key={index}>
-                    <Skeleton count={1} width={"80%"} height={"90%"} circle />
-                  </div>
-                ))}
-              </>
-            ) : (
-              <>
-                <div className="col-md-10">
-                  <div className="partners_logos slider">
-                    {/* {imagsArr?.map((e, i) => {
+
+            <div className="col-md-10">
+              <div className="partners_logos slider">
+                {/* {imagsArr?.map((e, i) => {
                   return (
                     <> */}
-                    <Swiper
-                      slidesPerView={4}
-                      spaceBetween={30}
-                      pagination={{
-                        clickable: true,
-                      }}
-                      autoplay={{
-                        delay: 1500,
-                        disableOnInteraction: false,
-                      }}
-                      modules={[Autoplay]}
-                      className="mySwiper"
-                    >
-                      {first?.map((el, index) => {
-                        return (
-                          <SwiperSlide key={index}>
-                            <div className="slide">
-                              <img src={el?.image_url} alt="Partner Logo 1" />
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Swiper>
-                    {/* </>
-                  );
-                })} */}
-                  </div>
-                </div>
-              </>
-            )}
+                {data?.length ? (
+                  <Swiper
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    autoplay={{
+                      delay: 1500,
+                      disableOnInteraction: false,
+                    }}
+                    modules={[Autoplay]}
+                    className="mySwiper"
+                  >
+                    {data?.map((el, index) => {
+                      return (
+                        <SwiperSlide>
+                          <div className="slide">
+                            <img
+                              src={el?.image_url || <Skeleton circle />}
+                              alt="Partner Logo 1"
+                            />
+                          </div>
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                ) : (
+                  <>
+                    {[1, 2, 3, 4].map((index) => (
+                      <div className="col-md-2" key={index}>
+                        <Skeleton
+                          count={1}
+                          width={"80%"}
+                          height={"90%"}
+                          circle
+                        />
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
