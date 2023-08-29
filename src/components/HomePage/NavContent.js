@@ -9,7 +9,7 @@ export default function NavContent({ data }) {
   const [laoding, setlaoding] = useState(false);
 
   useEffect(() => {
-    if (data.length > 0) {
+    if (data?.length > 0) {
       document.getElementById("v-pills-0-tab")?.click();
     }
   }, [data]);
