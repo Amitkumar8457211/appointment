@@ -5,7 +5,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 const port = process.env.PORT || 8000;
-const db = require("./models");
+// const db = require("./models");
 require("dotenv").config();
 // Router
 
@@ -17,8 +17,8 @@ app.use("/home", HomeCarouselRouter);
 app.use("/contact", ContactUsRouter);
 
 //Home routes
-db.sequelize.sync().then(() => {
+// db.sequelize.sync().then(() => {
   app.listen(port, () => {
     console.log(`Server running on port http://localhost:${port}`);
   });
-});
+// });

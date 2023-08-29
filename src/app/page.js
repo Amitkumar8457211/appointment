@@ -114,7 +114,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <NavContent data={data[0]?.value?.data?.response?.navcontent} />
+      {/* <NavContent data={data[0]?.value?.data?.response?.navcontent} /> */}
 
       <Counter data={data[0]?.value?.data?.response?.counter} />
       {/* Testimonial conetnt */}
