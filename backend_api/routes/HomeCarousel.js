@@ -508,7 +508,7 @@ router.post("/getmail", async (req, res) => {
     await doc.loadInfo();
 
     // Index of the sheet
-    let sheet = doc.sheetsByIndex[7];
+    let sheet = doc.sheetsByIndex[8];
 
     // Get all the rows
     await sheet.addRow(req.body);

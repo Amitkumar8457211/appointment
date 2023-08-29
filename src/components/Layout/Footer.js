@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import FooterNewsletter from "./FooterNewsletter";
 
 export default function Footer() {
   return (
@@ -76,31 +77,7 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-3">
-                <div className="footer_details_text">
-                  <div className="footer_text">
-                    <h2 className="footer_title">Newsletter</h2>
-                    <div className="footer_widget">
-                      <p>
-                        For more information about our company, kindly provide
-                        your e-mail address.
-                      </p>
-                      <div className="input-group mt-3">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Email Address"
-                        />
-                        <div className="input-group-append">
-                          <button className="btn btn-primary" type="button">
-                            Join
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <FooterNewsletter />
             </div>
           </div>
         </footer>

@@ -1,4 +1,5 @@
 "use client";
+import { axiosApi } from "@/axios";
 import React, { useState } from "react";
 
 export default function QueryForm() {
@@ -28,15 +29,54 @@ export default function QueryForm() {
     "Other",
   ];
 
+  const submitQuery = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axiosApi.post(`http://127.0.0.1:8000/home/contactus`, {
+        Name: ContactDetails.name,
+        Company: ContactDetails.company,
+        Title: ContactDetails.title,
+        Address: ContactDetails.address,
+        City: ContactDetails.city,
+        State: ContactDetails.state,
+        Zip: ContactDetails.zip,
+        Phone: ContactDetails.phone,
+        Email: ContactDetails.email,
+        companyWebsite: ContactDetails.companyWebsite,
+        helpCat: ContactDetails.support,
+        helpDesc: ContactDetails.help,
+      });
+
+      if (res.data.message == "Data added successfully") {
+        await setContactDetails({
+          name: "",
+          company: "",
+          title: "",
+          address: "",
+          city: "",
+          state: null,
+          zip: "",
+          phone: "",
+          email: "",
+          companyWebsite: "",
+          support: null,
+          help: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
-      <form onSubmit={""} className="mt-5 p-3 bg-light">
+      <form onSubmit={submitQuery} className="mt-5 p-3 bg-light">
         <div className="form-row">
           <div className="form-group col-md-6">
             <label>Name</label>
             <input
               type="text"
               required
+              name={ContactDetails.name}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -51,6 +91,7 @@ export default function QueryForm() {
             <input
               type="text"
               required
+              name={ContactDetails.company}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -67,6 +108,7 @@ export default function QueryForm() {
             <input
               type="text"
               required
+              name={ContactDetails.title}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -81,6 +123,7 @@ export default function QueryForm() {
             <input
               type="text"
               required
+              name={ContactDetails.address}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -97,6 +140,7 @@ export default function QueryForm() {
             <input
               type="text"
               required
+              name={ContactDetails.city}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -110,6 +154,7 @@ export default function QueryForm() {
             <label>State</label>
             <select
               className="form-control"
+              name={ContactDetails.state}
               required
               onChange={(e) => {
                 setContactDetails({
@@ -132,6 +177,7 @@ export default function QueryForm() {
             <label>Zip</label>
             <input
               type="number"
+              name={ContactDetails.zip}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -152,6 +198,7 @@ export default function QueryForm() {
             <input
               type="text"
               required
+              name={ContactDetails.phone}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -166,6 +213,7 @@ export default function QueryForm() {
             <input
               type="email"
               required
+              name={ContactDetails.email}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -182,6 +230,7 @@ export default function QueryForm() {
             <input
               type="text"
               required
+              name={ContactDetails.companyWebsite}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -195,6 +244,7 @@ export default function QueryForm() {
             <label>How Can We Help You?</label>
             <select
               className="custom-select"
+              name={ContactDetails.support}
               onChange={(e) => {
                 setContactDetails({
                   ...ContactDetails,
@@ -218,6 +268,7 @@ export default function QueryForm() {
           <div className="form-group col-md-12">
             <label>Tell us how we can help you</label>
             <textarea
+              name={ContactDetails.help}
               className="form-control"
               onChange={(e) => {
                 setContactDetails({
