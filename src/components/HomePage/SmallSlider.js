@@ -8,26 +8,31 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export default function SmallSlider() {
-  const [data, setData] = useState(false);
+  const [data, setData] = useState([]);
 
   // Main Slider
 
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  useEffect(() => {
-    delay(1000).then(async () => {
-      try {
-        const response = await axios("http://127.0.0.1:8000/home/all");
-        if (response.data.status) {
-          setData(response.data.response.technology_partner);
-        } else {
-          setData(false);
-        }
-      } catch (error) {
-        console.log("error", error);
+  const name = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/home/all");
+      const data = await response.json();
+
+      if (data.status) {
+        setData(data.response.technology_partner);
+      } else {
         setData(false);
       }
-    });
+    } catch (error) {
+      console.log("error", error);
+      setData(false);
+    }
+  };
+
+  useEffect(() => {
+    name();
+    // });
   }, []);
 
   console.log(data, "data");
@@ -52,7 +57,7 @@ export default function SmallSlider() {
                 {/* {imagsArr?.map((e, i) => {
                   return (
                     <> */}
-                {data?.length ? (
+                {data?.length > 0 ? (
                   <Swiper
                     slidesPerView={4}
                     spaceBetween={30}

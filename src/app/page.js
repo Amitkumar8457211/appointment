@@ -1,39 +1,31 @@
 import React, { Suspense } from "react";
-import Head from "next/head";
+
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Skeleton from "react-loading-skeleton";
 
-import SmallSlider from "@/components/HomePage/SmallSlider";
 import NavContent from "@/components/HomePage/NavContent";
 import Testimonial from "@/components/HomePage/Testimonial";
 import Updates from "@/components/HomePage/Updates";
-// import TopSlider from "@/components/HomePage/Slider";
+// import SmallSlider from "@/components/HomePage/SmallSlider";
 import Counter from "@/components/HomePage/Counter";
 
 const TopSlider = dynamic(() => import("@/components/HomePage/Slider"), {
   loading: () => <Skeleton count={3} />,
 });
-// const CandidateCard = dynamic(
-//   () => import("../components/election/CandidateCard/CandidateCard"),
-//   { loading: () => <Skeleton count={3} /> }
-// );
-// const CandidateCard = dynamic(
-//   () => import("../components/election/CandidateCard/CandidateCard"),
-//   { loading: () => <Skeleton count={3} /> }
-// );
-// const CandidateCard = dynamic(
-//   () => import("../components/election/CandidateCard/CandidateCard"),
-//   { loading: () => <Skeleton count={3} /> }
-// );
-// const CandidateCard = dynamic(
-//   () => import("../components/election/CandidateCard/CandidateCard"),
-//   { loading: () => <Skeleton count={3} /> }
-// );
-// const CandidateCard = dynamic(
-//   () => import("../components/election/CandidateCard/CandidateCard"),
-//   { loading: () => <Skeleton count={3} /> }
-// );
+const SmallSlider = dynamic(() => import("@/components/HomePage/SmallSlider"), {
+  loading: () => <h1> loading </h1>,
+});
+const ImproveExp = dynamic(() => import("@/components/HomePage/ImpExp"), {
+  loading: () => (
+    <div className="text-center">
+      <Skeleton
+        enableAnimation={true}
+        style={{ width: "80%", height: "300px" }}
+      />
+    </div>
+  ),
+});
 
 const getServerSideProps1 = async () => {
   try {
@@ -48,7 +40,7 @@ const getServerSideProps1 = async () => {
   }
 };
 
-export default async function Home({ result }) {
+export default async function Home() {
   const data = await getServerSideProps1();
 
   return (
@@ -59,48 +51,16 @@ export default async function Home({ result }) {
       <Suspense fallback={<Skeleton circle count={3} />}>
         <SmallSlider />
       </Suspense>
-      <section className="partners_section pt-5 pb-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="title_main">
-                <span className="main_text">Improve Your Experience</span>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              <div className="title_dec">
-                {data[0]?.value?.data?.response?.experience?.[0]?.header}
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="left_img">
-                <div className="slide">
-                  <img
-                    src={
-                      data[0]?.value?.data?.response?.experience?.[0]?.imageurl
-                    }
-                    className="img-fluid"
-                    alt="Call Center"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="right_text">
-                <h2>
-                  {" "}
-                  {data[0]?.value?.data?.response?.experience?.[0]?.title}
-                </h2>
-                <p>{data[0]?.value?.data?.response?.experience?.[0]?.desc}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Suspense
+        fallback={
+          <Skeleton
+            enableAnimation={true}
+            style={{ width: "auto", height: "300px" }}
+          />
+        }
+      >
+        <ImproveExp />
+      </Suspense>
       <section className="partners_section pt-5 pb-5">
         <div className="container">
           <div className="row">
