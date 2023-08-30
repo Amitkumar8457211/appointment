@@ -7,9 +7,29 @@ import "swiper/css/pagination";
 
 import { Pagination, Autoplay } from "swiper/modules";
 import axios from "axios";
-import { axiosApi } from "@/axios";
 
-export default function Testimonial({ data }) {
+export default function Testimonial() {
+  const [data, setData] = useState(false);
+
+  // Main Slider
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  useEffect(() => {
+    delay(100).then(async () => {
+      try {
+        const response = await axios("http://127.0.0.1:8000/home/all");
+        if (response.data.status) {
+          setData(response.data.response.testimonial);
+        } else {
+          setData(false);
+        }
+      } catch (error) {
+        console.log("error", error);
+        setData(false);
+      }
+    });
+  }, []);
   return (
     <>
       <section className="testimonial_section">
@@ -43,31 +63,32 @@ export default function Testimonial({ data }) {
                       modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {data?.map((data, ind) => {
-                        return (
-                          <SwiperSlide>
-                            {" "}
-                            <div className="item-owl">
-                              <div className="test-review">
-                                <p>
-                                  <img
-                                    src="images/left-quotes.png"
-                                    alt="Left Quote"
-                                  />
-                                  {data?.quotation}
-                                  <img
-                                    src="images/right-quotes.png"
-                                    alt="Right Quote"
-                                  />
-                                </p>
-                                <h5 className="testimonial_name">
-                                  {data?.writer}
-                                </h5>
+                      {data.length &&
+                        data?.map((data, ind) => {
+                          return (
+                            <SwiperSlide>
+                              {" "}
+                              <div className="item-owl">
+                                <div className="test-review">
+                                  <p>
+                                    <img
+                                      src="images/left-quotes.png"
+                                      alt="Left Quote"
+                                    />
+                                    {data?.quotation}
+                                    <img
+                                      src="images/right-quotes.png"
+                                      alt="Right Quote"
+                                    />
+                                  </p>
+                                  <h5 className="testimonial_name">
+                                    {data?.writer}
+                                  </h5>
+                                </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
+                            </SwiperSlide>
+                          );
+                        })}
                     </Swiper>
                   </div>
                 </div>

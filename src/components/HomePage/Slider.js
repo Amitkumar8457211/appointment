@@ -11,24 +11,18 @@ import axios from "axios";
 export default function TopSlider() {
   const [data, setData] = useState(false);
 
-  // Main Slider
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  useEffect(() => {
-    delay(1000).then(async () => {
-      try {
-        const response = await axios("http://127.0.0.1:8000/home/all");
-        if (response.data.status) {
-          setData(response.data.response.home_crousel);
-        } else {
-          setData(false);
-        }
-      } catch (error) {
-        console.log("error", error);
+  useEffect(async () => {
+    try {
+      const response = await axios("http://127.0.0.1:8000/home/all");
+      if (response.data.status) {
+        setData(response.data.response.home_crousel);
+      } else {
         setData(false);
       }
-    });
+    } catch (error) {
+      console.log("error", error);
+      setData(false);
+    }
   }, []);
 
   return (
@@ -46,8 +40,8 @@ export default function TopSlider() {
               clickable: true,
             }}
             autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
+              delay: 3000,
+              disableOnInteraction: true,
             }}
             navigation={true}
             modules={[Parallax, Pagination, Navigation, Autoplay]}
@@ -56,33 +50,53 @@ export default function TopSlider() {
             {data?.length &&
               data?.map((el, index) => {
                 return (
-                  <div
-                    key={el?.imageUrl?.[index]}
-                    slot="container-start"
-                    className="parallax-bg"
-                    style={{
-                      backgroundImage: `url(${el?.imageUrl})`,
-                    }}
-                    data-swiper-parallax="-23%"
-                  ></div>
-                );
-              })}
-            {data?.length &&
-              data?.map((el, index) => {
-                return (
                   <SwiperSlide
                     key={el?.title?.[index]}
-                    style={{ height: "600px" }}
+                    style={{ height: "500px" }}
                   >
-                    <div className="title" data-swiper-parallax="-500">
-                      {el?.title || <Skeleton width={300} />}
+                    <div
+                      key={el?.imageUrl?.[index]}
+                      slot="container-start"
+                      className="parallax-bg"
+                      style={{
+                        backgroundImage: `url(${el?.imageUrl})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                      data-swiper-parallax="-23%"
+                    ></div>
+                    <div
+                      style={{
+                        paddingTop: "150px",
+                        width: "50vW",
+                      }}
+                    >
+                      <div
+                        className="title"
+                        style={{
+                          padding: "15px",
+                          backgroundColor: "rgba(0,0,0,0.4)",
+                          borderRadius: "30px 30px 0px 0px",
+                        }}
+                        data-swiper-parallax="-500"
+                      >
+                        {el?.title || <Skeleton width={300} />}
+                      </div>
+                      <div
+                        className="subtitle"
+                        style={{
+                          padding: "15px",
+                          backgroundColor: "rgba(0,0,0,0.4)",
+                          borderRadius: "0px 0px 30px 30px",
+                        }}
+                        data-swiper-parallax="-400"
+                      >
+                        {el?.subtitle || <Skeleton width={300} />}
+                      </div>
                     </div>
-                    <div className="subtitle" data-swiper-parallax="-400">
-                      {el?.subtitle || <Skeleton width={300} />}
-                    </div>
-                    <div className="text" data-swiper-parallax="-300">
+                    {/* <div className="text" data-swiper-parallax="-300">
                       <p>{el?.text || <Skeleton width={300} />}</p>
-                    </div>
+                    </div> */}
                   </SwiperSlide>
                 );
               })}

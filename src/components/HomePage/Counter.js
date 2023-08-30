@@ -1,29 +1,56 @@
 "use client";
-import { axiosApi } from "@/axios";
-import React, { useLayoutEffect, useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import axios from "axios";
 
-export default function Counter({ data }) {
+export default function Counter() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0,
   });
 
-  const [loading, setloading] = useState(true);
+  const [data, setData] = useState(false);
+
+  // Main Slider
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  useEffect(() => {
+    delay(100).then(async () => {
+      try {
+        const response = await axios("http://127.0.0.1:8000/home/all");
+        if (response.data.status) {
+          setData(response.data.response.counter);
+        } else {
+          setData(false);
+        }
+      } catch (error) {
+        console.log("error", error);
+        setData(false);
+      }
+    });
+  }, []);
 
   return (
     <>
+      {/* <h1>hii</h1>
+      <Skeleton
+        enableAnimation={true}
+        style={{ width: "100%", height: "300px" }}
+      /> */}
+
       <section className="counts_section">
         <div className="container-fluid">
-          <div className="row mb-2" ref={ref}>
-            {inView && (
-              <>
-                {data?.map((data, i) => {
-                  return (
-                    <>
+          {data.length ? (
+            <div className="row" ref={ref}>
+              {inView && (
+                <>
+                  {data?.map((data, i) => {
+                    return (
                       <div className={`col-md-3 count${i + 1}`}>
                         <div className="count_text_section text-center">
                           <h1
@@ -52,12 +79,43 @@ export default function Counter({ data }) {
                           <p className="count_text">{data?.text}</p>
                         </div>
                       </div>
-                    </>
-                  );
-                })}
-              </>
-            )}
-          </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          ) : (
+            <>
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-md-3">
+                    <Skeleton
+                      enableAnimation={true}
+                      style={{ width: "100%", height: "200px" }}
+                    />
+                  </div>
+                  <div className="col-md-3">
+                    <Skeleton
+                      enableAnimation={true}
+                      style={{ width: "100%", height: "200px" }}
+                    />
+                  </div>
+                  <div className="col-md-3">
+                    <Skeleton
+                      enableAnimation={true}
+                      style={{ width: "100%", height: "200px" }}
+                    />
+                  </div>
+                  <div className="col-md-3">
+                    <Skeleton
+                      enableAnimation={true}
+                      style={{ width: "100%", height: "200px" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </>

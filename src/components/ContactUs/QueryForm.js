@@ -1,6 +1,10 @@
 "use client";
-import { axiosApi } from "@/axios";
+
 import React, { useState } from "react";
+import Swal from "sweetalert2";
+import Loader from "../Loader/Loader";
+import { ColorRing } from "react-loader-spinner";
+import axios from "axios";
 
 export default function QueryForm() {
   const [ContactDetails, setContactDetails] = useState({
@@ -17,6 +21,7 @@ export default function QueryForm() {
     support: null,
     help: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const StateArr = ["HR", "HP", "AP", "J&K", "TN"];
   const serviceSelect = [
@@ -31,8 +36,9 @@ export default function QueryForm() {
 
   const submitQuery = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const res = await axiosApi.post(`http://127.0.0.1:8000/home/contactus`, {
+      const res = await axios.post(`http://127.0.0.1:8000/home/contactus`, {
         Name: ContactDetails.name,
         Company: ContactDetails.company,
         Title: ContactDetails.title,
@@ -48,6 +54,12 @@ export default function QueryForm() {
       });
 
       if (res.data.message == "Data added successfully") {
+        Swal.fire({
+          icon: "success",
+          html: res.data.message,
+          timer: 3000,
+          timerProgressBar: true,
+        });
         await setContactDetails({
           name: "",
           company: "",
@@ -62,9 +74,18 @@ export default function QueryForm() {
           support: null,
           help: "",
         });
+      } else {
+        Swal.fire({
+          icon: "warning",
+          html: res.data.message,
+          timer: 3000,
+          timerProgressBar: true,
+        });
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -281,9 +302,21 @@ export default function QueryForm() {
           </div>
         </div>
         {/* Other form fields go here */}
-        <button type="submit" className="btn btn-primary">
-          Send
-        </button>
+        {loading ? (
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+        ) : (
+          <button type="submit" className="btn btn-primary">
+            Send
+          </button>
+        )}
       </form>
     </>
   );

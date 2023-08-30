@@ -65,8 +65,8 @@ export default function SmallSlider() {
                       clickable: true,
                     }}
                     autoplay={{
-                      delay: 1500,
-                      disableOnInteraction: false,
+                      delay: 150000,
+                      disableOnInteraction: true,
                     }}
                     modules={[Autoplay]}
                     className="mySwiper"

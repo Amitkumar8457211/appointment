@@ -1,12 +1,33 @@
 "use client";
-import { axiosApi } from "@/axios";
+
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import axios from "axios";
 
-export default function NavContent({ data }) {
+export default function NavContent() {
   const [Content, setContent] = useState("");
-  const [first, setfirst] = useState([]);
-  const [laoding, setlaoding] = useState(false);
+
+  const [data, setData] = useState(false);
+
+  // Main Slider
+
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  useEffect(() => {
+    delay(100).then(async () => {
+      try {
+        const response = await axios("http://127.0.0.1:8000/home/all");
+        if (response.data.status) {
+          setData(response.data.response.navcontent);
+        } else {
+          setData(false);
+        }
+      } catch (error) {
+        console.log("error", error);
+        setData(false);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (data?.length > 0) {
@@ -41,7 +62,7 @@ export default function NavContent({ data }) {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                {laoding ? (
+                {!data.length ? (
                   <>
                     <Skeleton count={18} />
                   </>
@@ -76,7 +97,7 @@ export default function NavContent({ data }) {
               </div>
             </div>
 
-            {laoding ? (
+            {!data.length ? (
               <div className="col-md-9 col-8">
                 <Skeleton
                   enableAnimation={true}

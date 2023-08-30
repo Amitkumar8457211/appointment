@@ -1,13 +1,19 @@
-import QueryForm from "@/components/ContactUs/QueryForm";
-import Head from "next/head";
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
+
+export const metadata = {
+  title: "Contact Us",
+  description: "Contact us Form",
+};
+
+// const QueryForm = dynamic(() => import("@/components/ContactUs/QueryForm"), {
+//   loading: () => <h1> loading </h1>,
+// });
 
 export default function page() {
   return (
     <>
-      <Head>
-        <title>Contact us</title>
-      </Head>
       <section className="banner_section contact_page inner_page">
         <div className="container">
           <div className="row">
@@ -40,7 +46,17 @@ export default function page() {
                   complete this form and a member of our team will get back to
                   you shortly, or you can reach us at 877-477-7845.
                 </p>
-                <QueryForm />
+                {/* <Suspense
+                  fallback={
+                    <Skeleton
+                      enableAnimation={true}
+                      style={{ width: "auto", height: "300px" }}
+                    />
+                  }
+                >
+                  <QueryForm />
+                </Suspense> */}
+
                 <p>We look forward to hearing from you!</p>
                 <p>
                   For information on career opportunities with TMP Direct,
