@@ -7,9 +7,9 @@ export const metadata = {
   description: "Contact us Form",
 };
 
-// const QueryForm = dynamic(() => import("@/components/ContactUs/QueryForm"), {
-//   loading: () => <h1> loading </h1>,
-// });
+const QueryForm = dynamic(() => import("@/components/ContactUs/QueryForm"), {
+  loading: () => <h1> loading </h1>,
+});
 
 export default function page() {
   return (
@@ -46,7 +46,7 @@ export default function page() {
                   complete this form and a member of our team will get back to
                   you shortly, or you can reach us at 877-477-7845.
                 </p>
-                {/* <Suspense
+                <Suspense
                   fallback={
                     <Skeleton
                       enableAnimation={true}
@@ -55,7 +55,7 @@ export default function page() {
                   }
                 >
                   <QueryForm />
-                </Suspense> */}
+                </Suspense>
 
                 <p>We look forward to hearing from you!</p>
                 <p>
