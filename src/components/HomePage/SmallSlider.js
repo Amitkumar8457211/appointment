@@ -73,7 +73,7 @@ export default function SmallSlider() {
                   >
                     {data?.map((el, index) => {
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide key={el?.image_url?.[index]}>
                           <div className="slide">
                             <img
                               src={el?.image_url || <Skeleton circle />}

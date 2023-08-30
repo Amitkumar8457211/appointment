@@ -70,7 +70,7 @@ export default function NavContent() {
                   <>
                     {data?.map((el, index) => {
                       return (
-                        <div>
+                        <div key={index}>
                           <a
                             className={
                               el.content === Content

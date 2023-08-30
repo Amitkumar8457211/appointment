@@ -40,7 +40,7 @@ export default async function page() {
           <div className="row">
             {data[0].value.data.responseWrapper.data?.map((data, index) => {
               return (
-                <div className="col-md-4">
+                <div className="col-md-4" key={index}>
                   <div className="news_update">
                     <div className="service_icon m-auto text-center">
                       <img

@@ -36,7 +36,7 @@ export default async function WideArrayServices() {
             {data.length ? (
               data?.map((e, index) => {
                 return (
-                  <div className="col-md-3">
+                  <div className="col-md-3" key={index}>
                     <div className="service_section">
                       <div className="service_icon w-25 m-auto text-center">
                         <img

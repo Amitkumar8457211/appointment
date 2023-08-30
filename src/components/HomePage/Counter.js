@@ -51,7 +51,7 @@ export default function Counter() {
                 <>
                   {data?.map((data, i) => {
                     return (
-                      <div className={`col-md-3 count${i + 1}`}>
+                      <div className={`col-md-3 count${i + 1}`} key={i}>
                         <div className="count_text_section text-center">
                           <h1
                             style={{ color: "white" }}

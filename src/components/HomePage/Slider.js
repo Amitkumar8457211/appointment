@@ -11,7 +11,7 @@ import axios from "axios";
 export default function TopSlider() {
   const [data, setData] = useState(false);
 
-  useEffect(async () => {
+  const sliderData = async () => {
     try {
       const response = await axios("http://127.0.0.1:8000/home/all");
       if (response.data.status) {
@@ -23,6 +23,9 @@ export default function TopSlider() {
       console.log("error", error);
       setData(false);
     }
+  };
+  useEffect(() => {
+    sliderData();
   }, []);
 
   return (

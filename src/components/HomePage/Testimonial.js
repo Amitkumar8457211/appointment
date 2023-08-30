@@ -66,7 +66,7 @@ export default function Testimonial() {
                       {data.length &&
                         data?.map((data, ind) => {
                           return (
-                            <SwiperSlide>
+                            <SwiperSlide key={ind}>
                               {" "}
                               <div className="item-owl">
                                 <div className="test-review">

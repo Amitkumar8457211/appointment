@@ -1,21 +1,20 @@
 import axios from "axios";
 import React from "react";
 
-const getServerSideProps1 = async () => {
-  try {
-    const res1 = axios(`http://127.0.0.1:8000/blogs/all`);
-
-    // const res5 = axios(`http://127.0.0.1:8000/home/experts`);
-    const allSettled = await Promise.allSettled([res1]);
-
-    return allSettled;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export default async function page() {
-  const data = await getServerSideProps1();
+  let data = {};
+  try {
+    const api = "http://127.0.0.1:8000/blogs/all";
+    // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
+    const res = await fetch(api, { next: { revalidate: 30 } });
+
+    data = await res.json();
+    if (data.responseWrapper.statusDescription.statusCode === 200) {
+      data = data.responseWrapper.data;
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
 
   return (
     <>
@@ -27,9 +26,9 @@ export default async function page() {
           Our Latest Blogs
         </p>
         <div className="row">
-          {data[0].value.data?.responseWrapper.data?.map((eleven, index) => {
+          {data?.map((eleven, index) => {
             return (
-              <div className="col-md-3">
+              <div className="col-md-3 mt-3" key={index}>
                 <div className="news_update">
                   <div className="service_icon m-auto text-center">
                     <img src="images/update1.jpg" className="img-fluid" />

@@ -95,9 +95,9 @@ const Testimonial = dynamic(() => import("@/components/HomePage/Testimonial"), {
 export default async function Home() {
   return (
     <>
-      <Suspense fallback={<Skeleton count={3} />}>
+      {/* <Suspense fallback={<Skeleton count={3} />}>
         <Slider />
-      </Suspense>
+      </Suspense> */}
       <Suspense fallback={<Skeleton circle count={3} />}>
         <SmallSlider />
       </Suspense>

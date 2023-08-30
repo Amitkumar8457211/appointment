@@ -36,7 +36,7 @@ export default async function OurExperts() {
           <div className="row">
             {data?.map?.((el, index) => {
               return (
-                <div className="col-md-3 mt-3">
+                <div className="col-md-3 mt-3" key={index}>
                   <div className="experts_des">
                     <div className="service_icon m-auto text-center">
                       <img src={el?.image} className="img-fluid" />
