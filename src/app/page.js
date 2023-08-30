@@ -7,7 +7,7 @@ const Slider = dynamic(() => import("@/components/HomePage/Slider"), {
   loading: () => <Skeleton count={3} />,
 });
 const SmallSlider = dynamic(() => import("@/components/HomePage/SmallSlider"), {
-  loading: () => <h1> loading </h1>,
+  loading: () => <Skeleton circle count={3} />,
 });
 const ImproveExp = dynamic(() => import("@/components/HomePage/ImpExp"), {
   loading: () => (

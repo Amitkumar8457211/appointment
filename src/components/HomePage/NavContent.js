@@ -3,6 +3,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import axios from "axios";
+import Image from "next/image";
 
 export default function NavContent() {
   const [Content, setContent] = useState("");
@@ -73,7 +74,7 @@ export default function NavContent() {
                         <div key={index}>
                           <a
                             className={
-                              el.content === Content
+                              el?.name === Content.name
                                 ? "nav-link active"
                                 : "nav-link"
                             }
@@ -83,7 +84,7 @@ export default function NavContent() {
                             aria-controls={`v-pills-${index}`}
                             aria-selected="true"
                             onClick={() => {
-                              setContent(el?.content);
+                              setContent(el);
                             }}
                             style={{ cursor: "pointer" }}
                           >
@@ -106,15 +107,30 @@ export default function NavContent() {
               </div>
             ) : (
               <>
-                <div className="col-md-9 col-8">
+                <div className="col-md-9 col-8 ">
                   <div className="tab-content" id="v-pills-tabContent">
-                    <div
-                      className="tab-pane fade show active"
-                      id={`v-pills-home`}
-                      role="tabpanel"
-                      aria-labelledby={`v-pills-home-tab`}
-                    >
-                      {Content}
+                    <div className="row">
+                      <div className="col-md-4">
+                        <Image
+                          src={Content?.image}
+                          width={250}
+                          height={500}
+                          alt="Picture of the author"
+                          unoptimised={true}
+                        ></Image>
+                      </div>
+                      <div className="col-md-8">
+                        <h3>{Content.content_title}</h3>
+                        <hr />
+                        <div
+                          className="tab-pane fade show active"
+                          id={`v-pills-home`}
+                          role="tabpanel"
+                          aria-labelledby={`v-pills-home-tab`}
+                        >
+                          <p>{Content?.content} </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

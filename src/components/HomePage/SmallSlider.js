@@ -14,7 +14,7 @@ export default function SmallSlider() {
 
   // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  const name = async () => {
+  const getSmallSliderData = async () => {
     try {
       const response = await fetch("http://127.0.0.1:8000/home/all");
       const data = await response.json();
@@ -31,11 +31,9 @@ export default function SmallSlider() {
   };
 
   useEffect(() => {
-    name();
+    getSmallSliderData();
     // });
   }, []);
-
-  console.log(data, "data");
 
   return (
     <>
@@ -65,7 +63,7 @@ export default function SmallSlider() {
                       clickable: true,
                     }}
                     autoplay={{
-                      delay: 150000,
+                      delay: 1500,
                       disableOnInteraction: true,
                     }}
                     modules={[Autoplay]}
@@ -80,6 +78,9 @@ export default function SmallSlider() {
                               alt="Partner Logo 1"
                             />
                           </div>
+                          <p style={{ color: "black", textAlign: "center" }}>
+                            {el?.title}
+                          </p>
                         </SwiperSlide>
                       );
                     })}
@@ -87,13 +88,10 @@ export default function SmallSlider() {
                 ) : (
                   <>
                     {[1, 2, 3, 4].map((index) => (
-                      <div className="col-md-2" key={index}>
-                        <Skeleton
-                          count={1}
-                          width={"80%"}
-                          height={"90%"}
-                          circle
-                        />
+                      <div className="row" key={index}>
+                        <div className="col-md-3">
+                          <Skeleton width={"40%"} height={"90%"} circle />
+                        </div>
                       </div>
                     ))}
                   </>
