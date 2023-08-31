@@ -57,16 +57,16 @@ export default function Footer() {
                       <div className="footer_menu_container">
                         <ul className="footer_menu">
                           <li className="footer_menu_item">
-                            <Link href="/services">Services</Link>
-                          </li>
-                          <li className="footer_menu_item">
-                            <Link href="/experience">Experience</Link>
+                            <Link href="/">Home</Link>
                           </li>
                           <li className="footer_menu_item">
                             <Link href="/about">About Us</Link>
                           </li>
                           <li className="footer_menu_item">
-                            <Link href="/resources">Resource Center</Link>
+                            <Link href="/services">Services</Link>
+                          </li>
+                          <li className="footer_menu_item">
+                            <Link href="/blog">Blogs</Link>
                           </li>
                           <li className="footer_menu_item">
                             <Link href="/contactus">Contact Us</Link>

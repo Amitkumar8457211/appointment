@@ -6,13 +6,11 @@ import Image from "next/image";
 
 export default function Header() {
   const arr = [
-    { rajesh: "Home", href: "/" },
-    { rajesh: "Services", href: "/services" },
-
-    { rajesh: "About Us", href: "/about" },
-    { rajesh: "Blogs", href: "/blogs" },
-    { rajesh: "Resource Center", href: "/resources" },
-    { rajesh: "Contact Us", href: "/contactus" },
+    { title: "Home", href: "/" },
+    { title: "About Us", href: "/about" },
+    { title: "Services", href: "/services" },
+    { title: "Blogs", href: "/blogs" },
+    { title: "Contact Us", href: "/contactus" },
   ];
 
   let location = usePathname();
@@ -78,7 +76,7 @@ export default function Header() {
                           }
                           href={el?.href}
                         >
-                          {el?.rajesh}
+                          {el?.title}
                         </Link>
                       </li>
                     );
