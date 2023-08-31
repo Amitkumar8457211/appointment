@@ -1,35 +1,34 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
+import axios from "axios";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
-import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Testimonial() {
-  const [data, setData] = useState(false);
+  const [data, setData] = useState([]);
 
-  // Main Slider
-
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  useEffect(() => {
-    delay(100).then(async () => {
-      try {
-        const response = await axios("http://127.0.0.1:8000/home/all");
-        if (response.data.status) {
-          setData(response.data.response.testimonial);
-        } else {
-          setData(false);
-        }
-      } catch (error) {
-        console.log("error", error);
+  const getdata = async () => {
+    try {
+      const response = await axios("http://127.0.0.1:8000/home/all");
+      if (response.data.status) {
+        setData(response.data.response.testimonial);
+      } else {
         setData(false);
       }
-    });
+    } catch (error) {
+      console.log("error", error);
+      setData(false);
+    }
+  }
+
+  useEffect(() => {
+    getdata();
   }, []);
+
   return (
     <>
       <section className="testimonial_section">
@@ -53,7 +52,7 @@ export default function Testimonial() {
                         clickable: true,
                       }}
                       autoplay={{
-                        delay: 1500,
+                        delay: 2500,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                       }}
@@ -63,13 +62,21 @@ export default function Testimonial() {
                       modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {data.length &&
-                        data?.map((data, ind) => {
+                      {(data?.length)?
+                        (data?.map((data, ind) => {
                           return (
                             <SwiperSlide key={ind}>
                               {" "}
                               <div className="item-owl">
-                                <div className="test-review">
+                                <div className="test-review text-center">
+                                <img
+                                  src={data?.image || <Skeleton circle />}
+                                  alt="Partner Logo 1"
+                                />
+                                  <h5 className="testimonial_name">
+                                    {data?.writer}
+                                  </h5>
+                                  <br/>
                                   <p>
                                     <img
                                       src="images/left-quotes.png"
@@ -81,14 +88,17 @@ export default function Testimonial() {
                                       alt="Right Quote"
                                     />
                                   </p>
-                                  <h5 className="testimonial_name">
-                                    {data?.writer}
-                                  </h5>
                                 </div>
                               </div>
                             </SwiperSlide>
                           );
-                        })}
+                        })):(
+                          <Skeleton
+                            enableAnimation={true}
+                            style={{ width: "100%", height: "300px" }}
+                          />
+                        )
+                      }
                     </Swiper>
                   </div>
                 </div>

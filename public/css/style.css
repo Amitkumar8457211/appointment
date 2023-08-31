@@ -434,21 +434,20 @@ h2 {
 }
 .testimonial_section {
   background-image: url("../images/testimonials.jpg");
-  padding: 100px 0;
+  padding: 50px 0;
 }
 .test-review p img {
   margin: 0 10px !important;
   box-shadow: none;
 }
 .testimonial {
-  padding: 50px 0;
   color: #fff;
 }
 .testimonial .item-owl .test-review p {
   font-size: 20px;
 }
 .testimonial_name {
-  margin-top: 50px;
+  margin-top: 10px;
   font-size: 20px;
   font-weight: 600;
 }

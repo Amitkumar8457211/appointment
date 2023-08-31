@@ -55,7 +55,7 @@ export default function TopSlider() {
                 return (
                   <SwiperSlide
                     key={el?.title?.[index]}
-                    style={{ height: "500px" }}
+                    style={{ height: "550px" }}
                   >
                     <div
                       key={el?.imageUrl?.[index]}
@@ -97,9 +97,6 @@ export default function TopSlider() {
                         {el?.subtitle || <Skeleton width={300} />}
                       </div>
                     </div>
-                    {/* <div className="text" data-swiper-parallax="-300">
-                      <p>{el?.text || <Skeleton width={300} />}</p>
-                    </div> */}
                   </SwiperSlide>
                 );
               })}
