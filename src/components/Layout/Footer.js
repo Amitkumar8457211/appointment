@@ -66,7 +66,7 @@ export default function Footer() {
                             <Link href="/services">Services</Link>
                           </li>
                           <li className="footer_menu_item">
-                            <Link href="/blog">Blogs</Link>
+                            <Link href="/blogs">Blogs</Link>
                           </li>
                           <li className="footer_menu_item">
                             <Link href="/contactus">Contact Us</Link>
