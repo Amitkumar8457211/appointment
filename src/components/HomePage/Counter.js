@@ -20,7 +20,7 @@ export default function Counter() {
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
-    delay(100).then(async () => {
+    delay(0).then(async () => {
       try {
         const response = await axios("http://127.0.0.1:8000/home/all");
         if (response.data.status) {
