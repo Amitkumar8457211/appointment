@@ -38,42 +38,48 @@ export default function QueryForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/home/contactus`, {
-        Name: ContactDetails.name,
-        Company: ContactDetails.company,
-        Title: ContactDetails.title,
-        Address: ContactDetails.address,
-        City: ContactDetails.city,
-        State: ContactDetails.state,
-        Zip: ContactDetails.zip,
-        Phone: ContactDetails.phone,
-        Email: ContactDetails.email,
-        companyWebsite: ContactDetails.companyWebsite,
-        helpCat: ContactDetails.support,
-        helpDesc: ContactDetails.help,
-      });
+      const res = await axios.post(
+        `http://127.0.0.1:8000/contactform/contactform`,
+        {
+          name: ContactDetails.name,
+          company: ContactDetails.company,
+          title: ContactDetails.title,
+          address: ContactDetails.address,
+          city: ContactDetails.city,
+          state: ContactDetails.state,
+          zip: ContactDetails.zip,
+          phone: ContactDetails.phone,
+          email: ContactDetails.email,
+          company_website: ContactDetails.companyWebsite,
+          help_support: ContactDetails.support,
+          message: ContactDetails.help,
+        }
+      );
 
-      if (res.data.message == "Data added successfully") {
+      if (res.data.message == "Contact Form submitted successfully") {
+        setTimeout(async () => {
+          await document.getElementById("resetbtn")?.click();
+        }, 100);
         Swal.fire({
           icon: "success",
           html: res.data.message,
           timer: 3000,
           timerProgressBar: true,
         });
-        await setContactDetails({
-          name: "",
-          company: "",
-          title: "",
-          address: "",
-          city: "",
-          state: null,
-          zip: "",
-          phone: "",
-          email: "",
-          companyWebsite: "",
-          support: null,
-          help: "",
-        });
+        // await setContactDetails({
+        //   name: "",
+        //   company: "",
+        //   title: "",
+        //   address: "",
+        //   city: "",
+        //   state: null,
+        //   zip: "",
+        //   phone: "",
+        //   email: "",
+        //   companyWebsite: "",
+        //   support: null,
+        //   help: "",
+        // });
       } else {
         Swal.fire({
           icon: "warning",
@@ -84,8 +90,10 @@ export default function QueryForm() {
       }
     } catch (error) {
       console.log(error);
+      await document.getElementById("resetbtn")?.click();
     } finally {
       setLoading(false);
+      await document.getElementById("resetbtn")?.click();
     }
   };
   return (
@@ -313,9 +321,24 @@ export default function QueryForm() {
             colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
           />
         ) : (
-          <button type="submit" className="btn btn-primary">
-            Send
-          </button>
+          <>
+            <div className="d-flex justify-content align-items-center">
+              <button
+                type="submit"
+                className="btn btn-primary text-start"
+                style={{ marginRight: "20px" }}
+              >
+                Send
+              </button>
+              <button
+                type="reset"
+                id="resetbtn"
+                className="btn btn-danger text-end"
+              >
+                Reset
+              </button>
+            </div>
+          </>
         )}
       </form>
     </>

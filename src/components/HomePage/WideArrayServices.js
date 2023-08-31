@@ -36,20 +36,28 @@ export default async function WideArrayServices() {
             {data.length ? (
               data?.map((e, index) => {
                 return (
-                  <div className="col-md-3" key={e?.title[index]}>
-                    <div className="service_section">
+                  <div className="col-md-4 mb-3" key={e?.title[index]}>
+                    <div
+                      className="service_section"
+                      style={{ minHeight: "370px" }}
+                    >
                       <div className="service_icon w-25 m-auto text-center">
                         <img
-                          src="images/w1.png"
+                          src={e?.logo}
                           className="img-fluid"
                           alt="Omnichannel Services"
                         />
                       </div>
-                      <h2 className="text-center mb-3">
+                      <h2
+                        style={{ fontSize: "1.5rem" }}
+                        className="text-center mb-3"
+                      >
                         {e?.title || <Skeleton count={1} width={100} />}
                       </h2>
                       <p className="text-left">
-                        {e?.desc || <Skeleton count={4} width={100} />}
+                        {e?.desc?.substring(0, 250) + "..." || (
+                          <Skeleton count={4} width={100} />
+                        )}
                       </p>
                     </div>
                   </div>
@@ -58,28 +66,21 @@ export default async function WideArrayServices() {
             ) : (
               <>
                 <div className="row">
-                  <div className="col-md-3">
+                  <div className="col-md-4">
                     <Skeleton
                       count={12}
                       enableAnimation={true}
                       style={{ width: "100%" }}
                     />
                   </div>
-                  <div className="col-md-3">
+                  <div className="col-md-4">
                     <Skeleton
                       count={12}
                       enableAnimation={true}
                       style={{ width: "100%" }}
                     />
                   </div>
-                  <div className="col-md-3">
-                    <Skeleton
-                      count={12}
-                      enableAnimation={true}
-                      style={{ width: "100%" }}
-                    />
-                  </div>
-                  <div className="col-md-3">
+                  <div className="col-md-4">
                     <Skeleton
                       count={12}
                       enableAnimation={true}

@@ -6,13 +6,13 @@ import Link from "next/link";
 export default async function Blog() {
   let data = {};
   try {
-    const api = "http://127.0.0.1:8000/blogs/all";
+    const api = "http://127.0.0.1:8000/blogs/home";
     // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
     const res = await fetch(api, { next: { revalidate: 30 } });
 
     data = await res.json();
     if (data.status) {
-      data = data.response.article_page;
+      data = data.response.blog;
     }
   } catch (error) {
     console.log("error", error);
@@ -85,24 +85,6 @@ export default async function Blog() {
                   />
                 </div>
                 <div className="col-md-4 ms-3">
-                  <Skeleton
-                    enableAnimation={true}
-                    style={{ width: "100% ", height: "250px" }}
-                  />
-                </div>
-                <div className="col-md-4 ms-3 mt-3">
-                  <Skeleton
-                    enableAnimation={true}
-                    style={{ width: "100% ", height: "250px" }}
-                  />
-                </div>
-                <div className="col-md-4 ms-3 mt-3">
-                  <Skeleton
-                    enableAnimation={true}
-                    style={{ width: "100% ", height: "250px" }}
-                  />
-                </div>
-                <div className="col-md-4 ms-3 mt-3">
                   <Skeleton
                     enableAnimation={true}
                     style={{ width: "100% ", height: "250px" }}

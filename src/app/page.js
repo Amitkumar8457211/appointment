@@ -25,28 +25,21 @@ const WideArrayServices = dynamic(
     loading: () => (
       <div className="container">
         <div className="row p-3">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <Skeleton
               count={12}
               enableAnimation={true}
               style={{ width: "100%" }}
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <Skeleton
               count={12}
               enableAnimation={true}
               style={{ width: "100%" }}
             />
           </div>
-          <div className="col-md-3">
-            <Skeleton
-              count={12}
-              enableAnimation={true}
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
             <Skeleton
               count={12}
               enableAnimation={true}

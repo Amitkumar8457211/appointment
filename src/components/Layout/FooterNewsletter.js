@@ -12,7 +12,7 @@ export default function FooterNewsletter() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axiosApi.post(`http://127.0.0.1:8000/home/getmail`, {
+      const res = await axiosApi.post(`http://127.0.0.1:8000/getmail/getmail`, {
         email: email,
       });
       if (res.data.message == "Email added successfully") {

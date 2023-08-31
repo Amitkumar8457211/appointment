@@ -27,7 +27,7 @@ const routers = router.post("/contactform", async (req, res) => {
     // Get all the rows
     await sheet.addRow(req.body);
 
-    res.status(201).json({ message: "Email added successfully" });
+    res.status(200).json({ message: "Contact Form submitted successfully" });
   } catch (error) {
     console.error("Error adding data:", error);
     res.status(500).json({ error: "An error occurred while adding email" });

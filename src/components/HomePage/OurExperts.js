@@ -34,12 +34,14 @@ export default async function OurExperts() {
             {data?.map?.((el, index) => {
               return (
                 <div className="col-md-3 mt-3" key={index}>
-                  <div className="experts_des">
+                  <div className="experts_des" style={{ minHeight: "413px" }}>
                     <div className="service_icon m-auto text-center">
                       <img src={el?.image} className="img-fluid" />
                     </div>
                     <h2 className="text-center mb-3 blue_text">{el?.name}</h2>
-                    <p className="text-left">{el?.about}</p>
+                    <p className="text-left">
+                      {el?.about.substring(0, 85) + "..."}
+                    </p>
                   </div>
                 </div>
               );
