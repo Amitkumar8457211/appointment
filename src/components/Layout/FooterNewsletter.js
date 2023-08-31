@@ -1,5 +1,5 @@
 "use client";
-import { axiosApi } from "@/axios";
+import axios from "axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { ColorRing } from "react-loader-spinner";
@@ -12,7 +12,7 @@ export default function FooterNewsletter() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axiosApi.post(`http://127.0.0.1:8000/getmail/getmail`, {
+      const res = await axios.post(`http://127.0.0.1:8000/getmail/getmail`, {
         email: email,
       });
       if (res.data.message == "Email added successfully") {
