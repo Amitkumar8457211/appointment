@@ -27,6 +27,29 @@ const routers = router.post("/getmail", async (req, res) => {
     // Get all the rows
     await sheet.addRow(req.body);
 
+    console.log("req.body",req.body);
+
+    var data = JSON.stringify({
+      "email": req.body.email
+    });
+    
+    var config = {
+      method: 'post',
+      url: 'https://musiklass.com/mailapi/contactUs.php',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
     res.status(201).json({ message: "Email added successfully" });
   } catch (error) {
     console.error("Error adding data:", error);
