@@ -9,26 +9,26 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
 
-export default function Testimonial() {
-  const [data, setData] = useState([]);
+export default function Testimonial({ data1 }) {
+  // const [data, setData] = useState([]);
 
-  const getdata = async () => {
-    try {
-      const response = await axios(`http://127.0.0.1:8000/home/all`);
-      if (response.data.status) {
-        setData(response.data.response.testimonial);
-      } else {
-        setData(false);
-      }
-    } catch (error) {
-      console.log("error", error);
-      setData(false);
-    }
-  };
+  // const getdata = async () => {
+  //   try {
+  //     const response = await axios(`http://127.0.0.1:8000/home/all`);
+  //     if (response.data.status) {
+  //       setData(response.data.response.testimonial);
+  //     } else {
+  //       setData(false);
+  //     }
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     setData(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    getdata();
-  }, []);
+  // useEffect(() => {
+  //   getdata();
+  // }, []);
 
   return (
     <>
@@ -63,8 +63,8 @@ export default function Testimonial() {
                       modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {data?.length ? (
-                        data?.map((data, ind) => {
+                      {data1?.length ? (
+                        data1?.map((data, ind) => {
                           return (
                             <SwiperSlide key={ind}>
                               {" "}

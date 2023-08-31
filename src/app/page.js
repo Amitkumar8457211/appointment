@@ -142,14 +142,28 @@ const Testimonial = dynamic(() => import("@/components/HomePage/Testimonial"), {
     </div>
   ),
 });
+
 export default async function Home() {
+  let data = {};
+
+  try {
+    const api = `http://127.0.0.1:8000/home/all`;
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+    data = await res.json();
+    if (data.status) {
+      data = data.response;
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
   return (
     <>
       <Suspense fallback={<Skeleton count={3} />}>
-        <Slider />
+        <Slider data1={data?.home_crousel} />
       </Suspense>
       <Suspense fallback={<Skeleton circle count={3} />}>
-        <SmallSlider />
+        <SmallSlider data1={data?.technology_partner} />
       </Suspense>
       <Suspense
         fallback={
@@ -191,7 +205,7 @@ export default async function Home() {
           />
         }
       >
-        <NavContent />
+        <NavContent data1={data?.navcontent} />
       </Suspense>
 
       <Suspense
@@ -199,7 +213,7 @@ export default async function Home() {
           <Skeleton enableAnimation={true} style={{ height: "300px" }} />
         }
       >
-        <Counter />
+        <Counter data1={data?.counter} />
       </Suspense>
 
       <Suspense
@@ -210,7 +224,7 @@ export default async function Home() {
           />
         }
       >
-        <Testimonial />
+        <Testimonial data1={data?.testimonial} />
       </Suspense>
 
       <Suspense

@@ -5,36 +5,36 @@ import Skeleton from "react-loading-skeleton";
 import axios from "axios";
 import Image from "next/image";
 
-export default function NavContent() {
+export default function NavContent({ data1 }) {
   const [Content, setContent] = useState("");
 
-  const [data, setData] = useState(false);
+  // const [data, setData] = useState(false);
 
-  // Main Slider
+  // // Main Slider
 
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  // useEffect(() => {
+  //   delay(0).then(async () => {
+  //     try {
+  //       const response = await axios(`http://127.0.0.1:8000/home/all`);
+  //       if (response.data.status) {
+  //         setData(response.data.response.navcontent);
+  //       } else {
+  //         setData(false);
+  //       }
+  //     } catch (error) {
+  //       console.log("error", error);
+  //       setData(false);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
-    delay(0).then(async () => {
-      try {
-        const response = await axios(`http://127.0.0.1:8000/home/all`);
-        if (response.data.status) {
-          setData(response.data.response.navcontent);
-        } else {
-          setData(false);
-        }
-      } catch (error) {
-        console.log("error", error);
-        setData(false);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    if (data?.length > 0) {
+    if (data1?.length > 0) {
       document.getElementById("v-pills-0-tab")?.click();
     }
-  }, [data]);
+  }, [data1]);
 
   return (
     <>
@@ -63,13 +63,13 @@ export default function NavContent() {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                {!data.length ? (
+                {!data1.length ? (
                   <>
                     <Skeleton count={18} />
                   </>
                 ) : (
                   <>
-                    {data?.map((el, index) => {
+                    {data1?.map((el, index) => {
                       return (
                         <div key={index}>
                           <a
@@ -98,7 +98,7 @@ export default function NavContent() {
               </div>
             </div>
 
-            {!data.length ? (
+            {!data1.length ? (
               <div className="col-md-9 col-8">
                 <Skeleton
                   enableAnimation={true}

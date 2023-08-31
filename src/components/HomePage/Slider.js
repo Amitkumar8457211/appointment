@@ -8,30 +8,30 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
 
-export default function TopSlider() {
-  const [data, setData] = useState(false);
+export default function TopSlider({ data1 }) {
+  // const [data, setData] = useState(false);
 
-  const sliderData = async () => {
-    try {
-      const response = await axios(`http://127.0.0.1:8000/home/all`);
-      if (response.data.status) {
-        setData(response.data.response.home_crousel);
-      } else {
-        setData(false);
-      }
-    } catch (error) {
-      console.log("error", error);
-      setData(false);
-    }
-  };
-  useEffect(() => {
-    sliderData();
-  }, []);
+  // const sliderData = async () => {
+  //   try {
+  //     const response = await axios(`http://127.0.0.1:8000/home/all`);
+  //     if (response.data.status) {
+  //       setData(response.data.response.home_crousel);
+  //     } else {
+  //       setData(false);
+  //     }
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     setData(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   sliderData();
+  // }, []);
 
   return (
     <>
       <section className="banner_section">
-        {data?.length ? (
+        {data1?.length ? (
           <Swiper
             style={{
               "--swiper-navigation-color": "#fff",
@@ -50,8 +50,8 @@ export default function TopSlider() {
             modules={[Parallax, Pagination, Navigation, Autoplay]}
             className="mySwiper"
           >
-            {data?.length &&
-              data?.map((el, index) => {
+            {data1?.length &&
+              data1?.map((el, index) => {
                 return (
                   <SwiperSlide
                     key={el?.title?.[index]}

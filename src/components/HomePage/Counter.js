@@ -7,33 +7,33 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
 
-export default function Counter() {
+export default function Counter({ data1 }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0,
   });
 
-  const [data, setData] = useState(false);
+  // const [data, setData] = useState(false);
 
-  // Main Slider
+  // // Main Slider
 
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  useEffect(() => {
-    delay(0).then(async () => {
-      try {
-        const response = await axios(`http://127.0.0.1:8000/home/all`);
-        if (response.data.status) {
-          setData(response.data.response.counter);
-        } else {
-          setData(false);
-        }
-      } catch (error) {
-        console.log("error", error);
-        setData(false);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   delay(0).then(async () => {
+  //     try {
+  //       const response = await axios(`http://127.0.0.1:8000/home/all`);
+  //       if (response.data.status) {
+  //         setData(response.data.response.counter);
+  //       } else {
+  //         setData(false);
+  //       }
+  //     } catch (error) {
+  //       console.log("error", error);
+  //       setData(false);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <>
@@ -45,11 +45,11 @@ export default function Counter() {
 
       <section className="counts_section">
         <div className="container-fluid">
-          {data.length ? (
+          {data1.length ? (
             <div className="row mb-2" ref={ref}>
               {inView && (
                 <>
-                  {data?.map((data, i) => {
+                  {data1?.map((data, i) => {
                     return (
                       <div className={`col-md-3 count${i + 1}`} key={i}>
                         <div className="count_text_section text-center">

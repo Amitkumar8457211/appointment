@@ -71,7 +71,7 @@ export default async function page() {
           </div>
         }
       >
-        <Sidebar />
+        <Sidebar data1={data?.services} />
       </Suspense>
     </>
   );

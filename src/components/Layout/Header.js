@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import Image from "next/image";
+import Skeleton from "react-loading-skeleton";
 
 export default function Header() {
   const arr = [

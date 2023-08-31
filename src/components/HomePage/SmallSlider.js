@@ -8,28 +8,28 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
 
-export default function SmallSlider() {
-  const [data, setData] = useState([]);
+export default function SmallSlider({ data1 }) {
+  // const [data, setData] = useState([]);
 
-  const getSmallSliderData = async () => {
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/home/all`);
-      const data = await response.json();
+  // const getSmallSliderData = async () => {
+  //   try {
+  //     const response = await fetch(`http://127.0.0.1:8000/home/all`);
+  //     const data = await response.json();
 
-      if (data.status) {
-        setData(data.response.technology_partner);
-      } else {
-        setData(false);
-      }
-    } catch (error) {
-      console.log("error", error);
-      setData(false);
-    }
-  };
+  //     if (data.status) {
+  //       setData(data.response.technology_partner);
+  //     } else {
+  //       setData(false);
+  //     }
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     setData(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    getSmallSliderData();
-  }, []);
+  // useEffect(() => {
+  //   getSmallSliderData();
+  // }, []);
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function SmallSlider() {
 
             <div className="col-md-10">
               <div className="partners_logos slider">
-                {data?.length ? (
+                {data1?.length ? (
                   <Swiper
                     slidesPerView={4}
                     spaceBetween={30}
@@ -62,7 +62,7 @@ export default function SmallSlider() {
                     modules={[Autoplay]}
                     className="mySwiper"
                   >
-                    {data?.map((el, index) => {
+                    {data1?.map((el, index) => {
                       return (
                         <SwiperSlide key={el?.image_url?.[index]}>
                           <div className="slide">

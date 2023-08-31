@@ -4,6 +4,7 @@ import React from "react";
 import FooterNewsletter from "./FooterNewsletter";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
     <>
       <section className="footer_section">
@@ -88,7 +89,7 @@ export default function Footer() {
             <div className="row">
               <div className="col-md-6 col-4 footer_text">TMP Direct</div>
               <div className="col-md-6 col-8 text-right footer_text footer_text2">
-                &copy; 2021 TMP Direct All rights reserved.
+                &copy; {year} TMP Direct All rights reserved.
               </div>
             </div>
           </div>
