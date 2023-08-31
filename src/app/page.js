@@ -23,11 +23,14 @@ const WideArrayServices = dynamic(
   () => import("@/components/HomePage/WideArrayServices"),
   {
     loading: () => (
-      <div className="text-center">
-        <Skeleton
-          enableAnimation={true}
-          style={{ width: "80%", height: "300px" }}
-        />
+      <div className="row">
+        <div className="col-md-4">
+          <Skeleton
+            count={7}
+            enableAnimation={true}
+            style={{ width: "100%", height: "300px" }}
+          />
+        </div>
       </div>
     ),
   }
@@ -114,8 +117,9 @@ export default async function Home() {
       <Suspense
         fallback={
           <Skeleton
+            count={7}
             enableAnimation={true}
-            style={{ width: "auto", height: "300px" }}
+            style={{ width: "100%", height: "300px" }}
           />
         }
       >

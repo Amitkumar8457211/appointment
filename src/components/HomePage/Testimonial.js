@@ -7,6 +7,8 @@ import "swiper/css/pagination";
 
 import { Pagination, Autoplay } from "swiper/modules";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Testimonial() {
   const [data, setData] = useState(false);
@@ -52,22 +54,45 @@ export default function Testimonial() {
                       pagination={{
                         clickable: true,
                       }}
-                      autoplay={{
-                        delay: 1500,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true,
-                      }}
+                      // autoplay={{
+                      //   delay: 1500,
+                      //   disableOnInteraction: false,
+                      //   pauseOnMouseEnter: true,
+                      // }}
                       followFinger={true}
                       parallax="true"
                       grabCursor="true"
-                      modules={[Autoplay, Pagination]}
+                      // modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {data.length &&
+                      {data.length ? (
                         data?.map((data, ind) => {
                           return (
                             <SwiperSlide key={ind}>
                               {" "}
+                              <div style={{}}>
+                                <img
+                                  className="mb-2"
+                                  src={
+                                    "https://picsum.photos/200" || (
+                                      <Skeleton
+                                        // count={1}
+                                        enableAnimation="true"
+                                        circle
+                                        width={"10%"}
+                                        height={"50%"}
+                                      />
+                                    )
+                                  }
+                                  alt="Author"
+                                  style={{
+                                    borderRadius: "50%",
+
+                                    height: "90px",
+                                    marginLeft: "450px",
+                                  }}
+                                />
+                              </div>
                               <div className="item-owl">
                                 <div className="test-review">
                                   <p>
@@ -75,20 +100,51 @@ export default function Testimonial() {
                                       src="images/left-quotes.png"
                                       alt="Left Quote"
                                     />
-                                    {data?.quotation}
+                                    {data?.quotation || (
+                                      <Skeleton
+                                        count={1}
+                                        width={"100%"}
+                                        enableAnimation="true"
+                                        height={"20%"}
+                                      />
+                                    )}
                                     <img
                                       src="images/right-quotes.png"
                                       alt="Right Quote"
                                     />
                                   </p>
                                   <h5 className="testimonial_name">
-                                    {data?.writer}
+                                    {data?.writer || (
+                                      <Skeleton
+                                        count={1}
+                                        width={"10%"}
+                                        enableAnimation="true"
+                                        height={"100%"}
+                                      />
+                                    )}
                                   </h5>
                                 </div>
                               </div>
                             </SwiperSlide>
                           );
-                        })}
+                        })
+                      ) : (
+                        <>
+                          <Skeleton
+                            // count={1}
+                            enableAnimation="true"
+                            circle
+                            width={"10%"}
+                            height={"50%"}
+                            style={{ background: "center", marginLeft: "45%" }}
+                          />
+                          <Skeleton
+                            enableAnimation="true"
+                            width={"100%"}
+                            height={"20%"}
+                          />
+                        </>
+                      )}
                     </Swiper>
                   </div>
                 </div>
