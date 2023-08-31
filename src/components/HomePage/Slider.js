@@ -13,7 +13,7 @@ export default function TopSlider() {
 
   const sliderData = async () => {
     try {
-      const response = await axios("http://127.0.0.1:8000/home/all");
+      const response = await axios(`http://127.0.0.1:8000/home/all`);
       if (response.data.status) {
         setData(response.data.response.home_crousel);
       } else {

@@ -15,6 +15,7 @@ router.get("/all", async (req, res) => {
       "https://script.google.com/macros/s/AKfycbyI8OlSN4WTMZ9fm90_7B68FHr3I9UWBthni8SHP1XqTUG38sGJAyXWtwxh2CNmQFGg_w/exec?id=1LbiWn2FTsDOPJlyDFAhLMPO6-6-trotiGKPvMLuZj4M"
     );
     if (data instanceof Object && Object.keys(data).length) {
+      // axios(`http://127.0.0.1:4328/sendMail`);
       res.status(200).json({ status: true, response: data.data });
     } else {
       res

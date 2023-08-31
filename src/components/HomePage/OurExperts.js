@@ -4,7 +4,7 @@ import React from "react";
 export default async function OurExperts() {
   let data = {};
   try {
-    const api = "http://127.0.0.1:8000/home/all";
+    const api = `http://127.0.0.1:8000/home/all`;
     let res = await fetch(api, { next: { revalidate: 30 } });
     data = await res.json();
     if (data.status) {

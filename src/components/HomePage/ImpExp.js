@@ -8,7 +8,7 @@ export default async function ImproveExp() {
   try {
     // const delay = (ms  => new Promise((resolve) => setTimeout(resolve, ms));
     // await delay(3000);
-    const api = "http://127.0.0.1:8000/home/all";
+    const api = `http://127.0.0.1:8000/home/all`;
     // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
     const res = await fetch(api, { next: { revalidate: 30 } });
     data = await res.json();

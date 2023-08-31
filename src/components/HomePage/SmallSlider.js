@@ -13,7 +13,7 @@ export default function SmallSlider() {
 
   const getSmallSliderData = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/home/all");
+      const response = await fetch(`http://127.0.0.1:8000/home/all`);
       const data = await response.json();
 
       if (data.status) {

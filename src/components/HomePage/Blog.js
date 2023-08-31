@@ -7,7 +7,7 @@ import Image from "next/image";
 export default async function Blog() {
   let data = {};
   try {
-    const api = "http://127.0.0.1:8000/blogs/home";
+    const api = `http://127.0.0.1:8000/blogs/home`;
     // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
     const res = await fetch(api, { next: { revalidate: 30 } });
 

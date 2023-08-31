@@ -12,10 +12,15 @@ const Sidebar = dynamic(() => import("@/components/Services/Sidebar"), {
   ),
 });
 
+export const metadata = {
+  title: "Services Section",
+  description: "Service Section",
+};
+
 export default async function page() {
   let data = {};
   try {
-    const api = "http://127.0.0.1:8000/services/services";
+    const api = `http://127.0.0.1:8000/services/services`;
     // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
     const res = await fetch(api, { next: { revalidate: 30 } });
 

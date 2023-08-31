@@ -26,6 +26,7 @@ const routers = router.post("/getmail", async (req, res) => {
 
     // Get all the rows
     await sheet.addRow(req.body);
+    console.log(req.body, "req");
 
     res.status(201).json({ message: "Email added successfully" });
   } catch (error) {

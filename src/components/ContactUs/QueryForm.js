@@ -1,8 +1,6 @@
 "use client";
-
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import Loader from "../Loader/Loader";
 import { ColorRing } from "react-loader-spinner";
 import axios from "axios";
 

@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 export default async function WideArrayServices() {
   let data = {};
   try {
-    const api = "http://127.0.0.1:8000/home/all";
+    const api = `http://127.0.0.1:8000/home/all`;
     const res = await fetch(api, { next: { revalidate: 30 } });
     data = await res.json();
     if (data.status) {

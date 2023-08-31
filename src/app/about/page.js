@@ -11,7 +11,7 @@ export const metadata = {
 export default async function page() {
   let data = {};
   try {
-    const api = `${process.env.API_MASTER}/about/all`;
+    const api = `http://127.0.0.1:8000/about/all`;
     // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
     const res = await fetch(api, { next: { revalidate: 30 } });
 
