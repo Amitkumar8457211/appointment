@@ -1,19 +1,71 @@
-import Sidebar from "@/components/Services/Sidebar";
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
+const Sidebar = dynamic(() => import("@/components/Services/Sidebar"), {
+  loading: () => (
+    <div className="container-fluid">
+      <Skeleton
+        enableAnimation={true}
+        style={{ width: "80%", height: "300px" }}
+      />
+    </div>
+  ),
+});
 
-export default function page() {
+export default async function page() {
+  let data = {};
+  try {
+    const api = "http://127.0.0.1:8000/services/services";
+    // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
+    const res = await fetch(api, { next: { revalidate: 30 } });
+
+    data = await res.json();
+    if (data.status) {
+      data = data.response;
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
   return (
     <>
-      <section className="banner_section resource_center_page inner_page">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 p-0">
-              <span className="page_title">IT Services</span>
-            </div>
-          </div>
+      {data?.banner?.length ? (
+        data.banner.map((e, ind) => {
+          return (
+            <section
+              className="banner_section resource_center_page inner_page"
+              key={ind}
+              style={{ backgroundImage: `url(${e?.image})` }}
+            >
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12 p-0">
+                    <span className="page_title">{e?.title}</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        })
+      ) : (
+        <div className="container-fluid">
+          <Skeleton
+            enableAnimation={true}
+            style={{ width: "100%", height: "400px" }}
+          />
         </div>
-      </section>
-      <Sidebar />
+      )}
+      <Suspense
+        fallback={
+          <div className="container-fluid">
+            <Skeleton
+              enableAnimation={true}
+              style={{ width: "100%", height: "400px" }}
+            />
+          </div>
+        }
+      >
+        <Sidebar />
+      </Suspense>
     </>
   );
 }

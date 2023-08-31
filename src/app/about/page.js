@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
@@ -46,7 +45,7 @@ export default async function page() {
           <div className="text-center p-2">
             <Skeleton
               enableAnimation={true}
-              style={{ width: "100%", height: "500px" }}
+              style={{ width: "100%", height: "400px" }}
             />
           </div>
         </div>
@@ -71,7 +70,6 @@ export default async function page() {
                   </div>
                 </div>
                 <div className="row">
-                  {/* {ind % 1 ? ( */}
                   <div className="col-md-6">
                     <div className="left_img">
                       <div className="slide">
@@ -84,93 +82,29 @@ export default async function page() {
                       <p>{el?.description}</p>
                     </div>
                   </div>
-                  {/* ) : ( */}
-
-                  {/* )} */}
                 </div>
               </div>
             </section>
           );
         })
       ) : (
-        <Skeleton
-          enableAnimation={true}
-          style={{ width: "100%", height: "500px" }}
-        />
-      )}
-      {/* {data?.about_us?.length ? (
-          data?.about_us[1]?.map((el, inde) => {
-            return (
-              <section className="about_content pt-5 pb-5 bg-light">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="title_main">
-                        <span className="main_text">{el?.title}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="right_text">
-                        <p>{el.description}</p>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="left_img">
-                        <div className="slide">
-                          <img src={el?.image} className="img-fluid" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            );
-          })
-        ) : (
-          <Skeleton 
-            enableAnimation={true}
-            style={{ width: "100%", height: "500px" }}
-          />
-        )} */}
-
-      {/* {data?.about_us?.length ? (
-          data?.about_us[2]?.map((el, inde) => {
-            return (
-              <section className="about_content pt-5 pb-5">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="title_main">
-                        <span className="main_text">{el?.title}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="left_img">
-                        <div className="slide">
-                          <img src={el?.image} className="img-fluid" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="right_text">
-                        <p>{el?.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            );
-          })
-        ) : (
+        <>
+          {/* <div className="text-center"> */}
           <Skeleton
             enableAnimation={true}
-            style={{ width: "100%", height: "500px" }}
+            style={{ width: "50%", height: "500px" }}
           />
-        )} */}
+          <Skeleton
+            enableAnimation={true}
+            style={{ width: "50%", height: "500px" }}
+          />
+          <Skeleton
+            enableAnimation={true}
+            style={{ width: "50%", height: "500px" }}
+          />
+          {/* </div> */}
+        </>
+      )}
     </>
   );
 }

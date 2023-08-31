@@ -12,7 +12,7 @@ export default async function Chooseus() {
 
     data = await res.json();
     if (data.status) {
-      data = data.response.whychoose;
+      // data = data.response.whychoose;
     }
   } catch (error) {
     console.log("error", error);
@@ -56,12 +56,44 @@ export default async function Chooseus() {
                 })}
               </>
             ) : (
-              <div className="col-md-4">
-                <Skeleton
-                  enableAnimation={true}
-                  style={{ width: 500, height: "250px" }}
-                />
-              </div>
+              <>
+                <div className="col-md-4 ms-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3 mt-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3 mt-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3 mt-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+              </>
             )}
           </div>
         </div>

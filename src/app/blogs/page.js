@@ -45,7 +45,7 @@ export default async function page() {
                   </div>
                   <h2 className="mb-2 blue_text">{eleven?.title}</h2>
                   <p className="text-left">{eleven?.description}</p>
-                  <p>
+                  {/* <p>
                     <Link href={`${eleven?.title.replace(/" "/g, "-")}`}>
                       <button
                         type="button"
@@ -54,7 +54,7 @@ export default async function page() {
                         Read More
                       </button>
                     </Link>
-                  </p>
+                  </p> */}
                 </div>
               </div>
             );
