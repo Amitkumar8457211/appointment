@@ -26,7 +26,7 @@ export default function Header() {
                 <i className="fa fa-phone"></i>
                 <span>Call us: 1234 - 5678 - 9809</span>
                 <i className="fa fa-envelope"></i>
-                <span> Email us: ourmailo@copary.com </span>
+                <span> Email us: support@altruistindia.com</span>
                 <i className="fa fa-clock-o"></i>
                 <span className="">Working Hours: 8am - 6pm</span>
               </div>

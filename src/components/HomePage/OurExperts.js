@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default async function OurExperts() {
@@ -36,7 +37,13 @@ export default async function OurExperts() {
                 <div className="col-md-3 mt-3" key={index}>
                   <div className="experts_des" style={{ minHeight: "413px" }}>
                     <div className="service_icon m-auto text-center">
-                      <img src={el?.image} className="img-fluid" />
+                      <Image
+                        height={300}
+                        width={250}
+                        src={el?.image}
+                        className="img-fluid"
+                        alt="Experts"
+                      />
                     </div>
                     <h2 className="text-center mb-3 blue_text">{el?.name}</h2>
                     <p className="text-left">

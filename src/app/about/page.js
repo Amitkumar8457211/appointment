@@ -1,3 +1,6 @@
+import LHS from "@/components/About/LHS";
+import RHS from "@/components/About/RHS";
+import Image from "next/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
@@ -55,6 +58,7 @@ export default async function page() {
         data.about_us?.map((el, ind) => {
           return (
             <section
+              key={ind}
               className={
                 ind % 2
                   ? "about_content pt-5 pb-5 bg-light"
@@ -69,20 +73,7 @@ export default async function page() {
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="left_img">
-                      <div className="slide">
-                        <img src={el?.image} className="img-fluid" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="right_text">
-                      <p>{el?.description}</p>
-                    </div>
-                  </div>
-                </div>
+                {ind % 2 == 0 ? <LHS data={el} /> : <RHS data={el} />}
               </div>
             </section>
           );

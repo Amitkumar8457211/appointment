@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Image from "next/image";
 
 export default function Testimonial() {
   const [data, setData] = useState([]);
@@ -59,7 +60,7 @@ export default function Testimonial() {
                       followFinger={true}
                       parallax="true"
                       grabCursor="true"
-                      // modules={[Autoplay, Pagination]}
+                      modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
                       {data?.length ? (
@@ -70,18 +71,23 @@ export default function Testimonial() {
                               <div style={{}}></div>
                               <div className="item-owl">
                                 <div className="test-review text-center">
-                                  <img
+                                  <Image
                                     src={data?.image || <Skeleton circle />}
                                     alt="Partner Logo 1"
+                                    height={100}
+                                    width={100}
                                   />
                                   <h5 className="testimonial_name">
                                     {data?.writer}
                                   </h5>
                                   <br />
                                   <p>
-                                    <img
-                                      src="images/left-quotes.png"
+                                    <Image
+                                      src="/images/left-quotes.png"
                                       alt="Left Quote"
+                                      height={50}
+                                      width={50}
+                                      unoptimized={true}
                                     />
                                     {data?.quotation || (
                                       <Skeleton
@@ -91,9 +97,12 @@ export default function Testimonial() {
                                         height={"20%"}
                                       />
                                     )}
-                                    <img
-                                      src="images/right-quotes.png"
+                                    <Image
+                                      src="/images/right-quotes.png"
                                       alt="Right Quote"
+                                      height={50}
+                                      width={50}
+                                      unoptimized={true}
                                     />
                                   </p>
                                 </div>

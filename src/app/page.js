@@ -1,7 +1,17 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import Skeleton from "react-loading-skeleton";
-// import BootstrapSlider from "@/components/HomePage/BootstrapSlider";
+
+const Map = dynamic(() => import("@/components/HomePage/Map"), {
+  loading: () => (
+    <div className="text-center">
+      <Skeleton
+        enableAnimation={true}
+        style={{ width: "90%", height: "300px" }}
+      />
+    </div>
+  ),
+});
 
 const Slider = dynamic(() => import("@/components/HomePage/Slider"), {
   loading: () => <Skeleton count={3} />,
@@ -225,16 +235,16 @@ export default async function Home() {
         <OurExperts />
       </Suspense>
 
-      {/* <Updates data={data[0]?.value?.data?.response?.our_updates} /> */}
-      <section className="map_section">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3015.5149376362447!2d-74.727421!3d40.904454!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb4b06f723c4be5e2!2sTMP%20Direct!5e0!3m2!1sen!2sin!4v1618039746097!5m2!1sen!2sin"
-          width="100%"
-          height="450"
-          style={{ border: 0 }}
-          loading="lazy"
-        ></iframe>
-      </section>
+      <Suspense
+        fallback={
+          <Skeleton
+            enableAnimation={true}
+            style={{ width: "auto", height: "300px" }}
+          />
+        }
+      >
+        <Map />
+      </Suspense>
     </>
   );
 }

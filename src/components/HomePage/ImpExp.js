@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
@@ -42,9 +43,11 @@ export default async function ImproveExp() {
             <div className="left_img">
               <div className="slide">
                 {data?.[0]?.imageurl ? (
-                  <img
+                  <Image
                     src={data[0]?.imageurl}
                     className="img-fluid"
+                    height={420}
+                    width={520}
                     alt="Call Center"
                   />
                 ) : (

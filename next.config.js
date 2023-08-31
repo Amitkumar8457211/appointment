@@ -4,7 +4,11 @@ const nextConfig = {
     removeConsole: true,
   },
   images: {
-    domains: ["www.tmpwdirect.com"],
+    domains: [
+      "www.tmpwdirect.com",
+      "images.pexels.com",
+      "www.altruistindia.com",
+    ],
   },
 };
 

@@ -1,6 +1,8 @@
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Skeleton from "react-loading-skeleton";
 
 export default async function page() {
   let data = {};
@@ -39,10 +41,13 @@ export default async function page() {
                   >
                     <div className="news_update">
                       <div className="service_icon m-auto text-center">
-                        <img
+                        <Image
+                          height={300}
+                          width={400}
                           src={el?.image}
                           style={{ minHeight: "210px" }}
                           className="img-fluid"
+                          alt="blogs picture"
                         />
                       </div>
 

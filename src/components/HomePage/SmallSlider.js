@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Image from "next/image";
 
 export default function SmallSlider() {
   const [data, setData] = useState([]);
@@ -65,7 +66,9 @@ export default function SmallSlider() {
                       return (
                         <SwiperSlide key={el?.image_url?.[index]}>
                           <div className="slide">
-                            <img
+                            <Image
+                              height={100}
+                              width={100}
                               src={el?.image_url || <Skeleton circle />}
                               alt="Partner Logo 1"
                             />
@@ -80,12 +83,12 @@ export default function SmallSlider() {
                 ) : (
                   <>
                     <div className="row">
-                    {[1, 2, 3, 4].map((index) => (
+                      {[1, 2, 3, 4].map((index) => (
                         <div className="col-md-3 pt-3 text-center" key={index}>
                           <Skeleton width={"75%"} height={"150px"} circle />
                           <Skeleton width={"80%"} />
                         </div>
-                    ))}
+                      ))}
                     </div>
                   </>
                 )}

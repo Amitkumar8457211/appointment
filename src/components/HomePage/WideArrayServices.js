@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
@@ -42,8 +43,10 @@ export default async function WideArrayServices() {
                       style={{ minHeight: "370px" }}
                     >
                       <div className="service_icon w-25 m-auto text-center">
-                        <img
+                        <Image
                           src={e?.logo}
+                          height={100}
+                          width={100}
                           className="img-fluid"
                           alt="Omnichannel Services"
                         />

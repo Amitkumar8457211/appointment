@@ -2,6 +2,7 @@ import Skeleton from "react-loading-skeleton";
 import React from "react";
 import "react-loading-skeleton/dist/skeleton.css";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Blog() {
   let data = {};
@@ -40,15 +41,22 @@ export default async function Blog() {
                   >
                     <div className="news_update">
                       <div className="service_icon m-auto text-center">
-                        <img
+                        <Image
+                          height={300}
+                          width={400}
                           src={el?.image}
                           style={{ minHeight: "210px" }}
                           className="img-fluid"
+                          alt="Blogs"
                         />
                       </div>
 
                       <h2
-                        style={{ fontSize: "1.2rem", minHeight: "70px" }}
+                        style={{
+                          fontSize: "1.2rem",
+                          minHeight: "70px",
+                          textAlign: "center",
+                        }}
                         className="mb-2 blue_text"
                       >
                         {el?.title.substring(0, 60) + "..."}

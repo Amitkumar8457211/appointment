@@ -1,6 +1,7 @@
 "use client";
 import { axiosApi } from "@/axios";
 import axios from "axios";
+import Image from "next/image";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -50,8 +51,6 @@ const Sidebar = () => {
       }
     }
   }, [first?.data?.services]);
-
-  console.log(first, "jello");
 
   return (
     <section className="main_section mt-5 mb-5">
@@ -114,7 +113,13 @@ const Sidebar = () => {
                   </div>
                   <div className="left_img">
                     <div className="slide">
-                      <img src={first?.leftImage} className="img-fluid" />
+                      <Image
+                        height={200}
+                        width={700}
+                        src={first?.leftImage}
+                        className="img-fluid"
+                        alt="services"
+                      />
                     </div>
                   </div>
                   <div className="right_text mb-5">
