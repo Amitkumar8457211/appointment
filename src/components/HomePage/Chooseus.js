@@ -1,6 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import React from "react";
 import "react-loading-skeleton/dist/skeleton.css";
+import Link from "next/link";
 
 export default async function Chooseus() {
   let data = {};
@@ -24,7 +25,7 @@ export default async function Chooseus() {
           <div className="row">
             <div className="col-md-12">
               <div className="title_main">
-                <span className="main_text">Why choose Us</span>
+                <span className="main_text">Blogs</span>
               </div>
             </div>
           </div>
@@ -40,6 +41,15 @@ export default async function Chooseus() {
                         </div>
                         <h2 className="text-center mb-3">{el?.title}</h2>
                         <p className="text-left">{el?.description}</p>
+                        <Link href={`/${el.title.replace(/ /g, " ")}`}>
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary btn-sm"
+                            style={{ border: "none", borderRadius: "2px" }}
+                          >
+                            Read More
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   );

@@ -10,10 +10,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 export default function SmallSlider() {
   const [data, setData] = useState([]);
 
-  // Main Slider
-
-  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   const getSmallSliderData = async () => {
     try {
       const response = await fetch("http://127.0.0.1:8000/home/all");
@@ -32,12 +28,11 @@ export default function SmallSlider() {
 
   useEffect(() => {
     getSmallSliderData();
-    // });
   }, []);
 
   return (
     <>
-      <section className="partners_section pt-5 pb-5">
+      <section className="partners_section pt-1 pb-1">
         <div className="container">
           <div className="row">
             <div className="col-md-2">
@@ -52,10 +47,7 @@ export default function SmallSlider() {
 
             <div className="col-md-10">
               <div className="partners_logos slider">
-                {/* {imagsArr?.map((e, i) => {
-                  return (
-                    <> */}
-                {data?.length > 0 ? (
+                {data?.length ? (
                   <Swiper
                     slidesPerView={4}
                     spaceBetween={30}
@@ -63,7 +55,7 @@ export default function SmallSlider() {
                       clickable: true,
                     }}
                     autoplay={{
-                      delay: 1500,
+                      delay: 2000,
                       disableOnInteraction: true,
                     }}
                     modules={[Autoplay]}
@@ -79,7 +71,7 @@ export default function SmallSlider() {
                             />
                           </div>
                           <p style={{ color: "black", textAlign: "center" }}>
-                            {el?.title}
+                            {el?.title || <Skeleton />}
                           </p>
                         </SwiperSlide>
                       );
@@ -87,13 +79,14 @@ export default function SmallSlider() {
                   </Swiper>
                 ) : (
                   <>
+                    <div className="row">
                     {[1, 2, 3, 4].map((index) => (
-                      <div className="row" key={index}>
-                        <div className="col-md-3">
-                          <Skeleton width={"40%"} height={"90%"} circle />
+                        <div className="col-md-3 pt-3 text-center" key={index}>
+                          <Skeleton width={"75%"} height={"150px"} circle />
+                          <Skeleton width={"80%"} />
                         </div>
-                      </div>
                     ))}
+                    </div>
                   </>
                 )}
               </div>

@@ -46,7 +46,7 @@ export default function Counter() {
       <section className="counts_section">
         <div className="container-fluid">
           {data.length ? (
-            <div className="row" ref={ref}>
+            <div className="row mb-2" ref={ref}>
               {inView && (
                 <>
                   {data?.map((data, i) => {
@@ -87,7 +87,7 @@ export default function Counter() {
           ) : (
             <>
               <div className="container-fluid">
-                <div className="row">
+                <div className="row mb-2">
                   <div className="col-md-3">
                     <Skeleton
                       enableAnimation={true}

@@ -11,7 +11,7 @@ const SmallSlider = dynamic(() => import("@/components/HomePage/SmallSlider"), {
 });
 const ImproveExp = dynamic(() => import("@/components/HomePage/ImpExp"), {
   loading: () => (
-    <div className="text-center">
+    <div className="text-center p-5   ">
       <Skeleton
         enableAnimation={true}
         style={{ width: "80%", height: "300px" }}
@@ -23,11 +23,37 @@ const WideArrayServices = dynamic(
   () => import("@/components/HomePage/WideArrayServices"),
   {
     loading: () => (
-      <div className="text-center">
-        <Skeleton
-          enableAnimation={true}
-          style={{ width: "80%", height: "300px" }}
-        />
+      <div className="container">
+        <div className="row p-3">
+          <div className="col-md-3">
+            <Skeleton
+              count={12}
+              enableAnimation={true}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="col-md-3">
+            <Skeleton
+              count={12}
+              enableAnimation={true}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="col-md-3">
+            <Skeleton
+              count={12}
+              enableAnimation={true}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div className="col-md-3">
+            <Skeleton
+              count={12}
+              enableAnimation={true}
+              style={{ width: "100%" }}
+            />
+          </div>
+        </div>
       </div>
     ),
   }
@@ -44,21 +70,42 @@ const Experts = dynamic(() => import("@/components/HomePage/Experts"), {
 });
 const Chooseus = dynamic(() => import("@/components/HomePage/Chooseus"), {
   loading: () => (
-    <div className="text-center">
-      <Skeleton
-        enableAnimation={true}
-        style={{ width: "80%", height: "300px" }}
-      />
+    <div className="container">
+      <div className="row p-3">
+        <div className="col-md-4">
+          <Skeleton
+            count={12}
+            enableAnimation={true}
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className="col-md-4    ">
+          <Skeleton
+            count={12}
+            enableAnimation={true}
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className="col-md-4    ">
+          <Skeleton
+            count={12}
+            enableAnimation={true}
+            style={{ width: "100%" }}
+          />
+        </div>
+      </div>
     </div>
   ),
 });
 const OurExperts = dynamic(() => import("@/components/HomePage/OurExperts"), {
   loading: () => (
-    <div className="text-center">
-      <Skeleton
-        enableAnimation={true}
-        style={{ width: "80%", height: "300px" }}
-      />
+    <div className="container-fluid">
+      <div className="text-center p-2">
+        <Skeleton
+          enableAnimation={true}
+          style={{ width: "100%", height: "500px" }}
+        />
+      </div>
     </div>
   ),
 });
@@ -114,8 +161,9 @@ export default async function Home() {
       <Suspense
         fallback={
           <Skeleton
+            count={7}
             enableAnimation={true}
-            style={{ width: "auto", height: "300px" }}
+            style={{ width: "100%", height: "300px" }}
           />
         }
       >
