@@ -10,8 +10,8 @@ export default async function page() {
     const res = await fetch(api, { next: { revalidate: 30 } });
 
     data = await res.json();
-    if (data.responseWrapper.statusDescription.statusCode === 200) {
-      data = data.responseWrapper.data;
+    if (data.status) {
+      data = data.response.article_page;
     }
   } catch (error) {
     console.log("error", error);
@@ -19,48 +19,99 @@ export default async function page() {
 
   return (
     <>
-      <div className="container-fluid p-5">
-        <p
-          className="fw-bolder"
-          style={{ textAlign: "center", fontSize: "24px", fontWeight: "bold" }}
-        >
-          Our Latest Blogs
-        </p>
-        <div className="row">
-          {data?.map((eleven, index) => {
-            console.log("hhhh", eleven?.title.replace(/" "/g, "-"));
-            return (
-              <div className="col-md-3 mt-3" key={index}>
-                <div className="news_update">
-                  <div className="service_icon m-auto text-center">
-                    <img src="images/update1.jpg" className="img-fluid" />
-                  </div>
-                  <div className="news_details">
-                    <span>{eleven?.date}</span> -<span>root</span> -
-                    <span>
-                      <a className="blue_text" href="#">
-                        News
-                      </a>
-                    </span>
-                  </div>
-                  <h2 className="mb-2 blue_text">{eleven?.title}</h2>
-                  <p className="text-left">{eleven?.description}</p>
-                  {/* <p>
-                    <Link href={`${eleven?.title.replace(/" "/g, "-")}`}>
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary btn-sm"
-                      >
-                        Read More
-                      </button>
-                    </Link>
-                  </p> */}
-                </div>
+      <section className="our_updates_section pt-5 pb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="title_main">
+                <span className="main_text">Our Blogs</span>
               </div>
-            );
-          })}
-        </div>{" "}
-      </div>
+            </div>
+          </div>
+          <div className="row">
+            {data?.length ? (
+              data?.map((el, index) => {
+                return (
+                  <div
+                    className="col-md-4"
+                    style={{ borderRadius: "5px 5px 5px 5px" }}
+                    key={index}
+                  >
+                    <div className="news_update">
+                      <div className="service_icon m-auto text-center">
+                        <img
+                          src={el?.image}
+                          style={{ minHeight: "210px" }}
+                          className="img-fluid"
+                        />
+                      </div>
+
+                      <h2
+                        style={{ fontSize: "1.2rem", minHeight: "70px" }}
+                        className="mb-2 blue_text"
+                      >
+                        {el?.title.substring(0, 60) + "..."}
+                      </h2>
+                      <p className="text-left" style={{ minHeight: "150px" }}>
+                        {el?.description.substring(0, 150) + "..."}
+                      </p>
+                      {/* <p>
+                        <Link href={`${el?.title?.replace(/g/, "")}`}>
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary btn-sm"
+                          >
+                            Read More
+                          </button>
+                        </Link>
+                      </p> */}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <>
+                <div className="col-md-4 ms-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3 mt-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3 mt-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+                <div className="col-md-4 ms-3 mt-3">
+                  <Skeleton
+                    enableAnimation={true}
+                    style={{ width: "100% ", height: "250px" }}
+                  />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

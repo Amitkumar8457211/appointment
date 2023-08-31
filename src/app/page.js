@@ -68,7 +68,7 @@ const Experts = dynamic(() => import("@/components/HomePage/Experts"), {
     </div>
   ),
 });
-const Chooseus = dynamic(() => import("@/components/HomePage/Chooseus"), {
+const Blog = dynamic(() => import("@/components/HomePage/Blog"), {
   loading: () => (
     <div className="container">
       <div className="row p-3">
@@ -218,7 +218,7 @@ export default async function Home() {
           />
         }
       >
-        <Chooseus />
+        <Blog />
       </Suspense>
 
       <Suspense
