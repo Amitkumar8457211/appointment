@@ -1,5 +1,6 @@
 "use client";
 import { axiosApi } from "@/axios";
+import axios from "axios";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -8,6 +9,7 @@ const Sidebar = () => {
   const [loading, setloading] = useState(true);
   const [first, setfirst] = useState({
     data: [],
+
     mainText: "",
     leftImage: "",
     rightText: "",
@@ -17,11 +19,11 @@ const Sidebar = () => {
   const getAllServices = async () => {
     try {
       setloading(true);
-      const res = await axiosApi(`/services/all`);
-      if (res.data.responseWrapper.statusDescription.statusCode == 200) {
+      const res = await axios(`http://127.0.0.1:8000/services/services`);
+      if (res.data.status) {
         setfirst({
           ...first,
-          data: res.data.responseWrapper.data,
+          data: res.data.response,
         });
       }
     } catch (error) {
@@ -40,14 +42,16 @@ const Sidebar = () => {
   useEffect(() => {
     if (typeof window !== undefined) {
       if (typeof document !== undefined) {
-        if (first?.data?.length > 0) {
+        if (first?.data?.services?.length > 0) {
           // setTimeout(() => {
           document.getElementById("sidebar0").click();
           // }, 500);
         }
       }
     }
-  }, [first?.data]);
+  }, [first?.data?.services]);
+
+  console.log(first, "jello");
 
   return (
     <section className="main_section mt-5 mb-5">
@@ -62,29 +66,28 @@ const Sidebar = () => {
               <>
                 <aside className="left_sidebar">
                   <ul className="sidebar_menu">
-                    {first?.data?.map((evale, index) => {
-                      console.log(evale, "objects");
+                    {first?.data?.services?.map((evale, index) => {
                       return (
-                        <li key={evale?.name[index]}>
+                        <li key={evale?.title[index]}>
                           <a
                             className={
-                              first?.name === evale?.name
+                              first?.name === evale?.title
                                 ? "sidebar-active"
                                 : "sidebar"
                             }
                             onClick={() => {
                               setfirst({
                                 ...first,
-                                mainText: evale?.mainText,
-                                leftImage: evale?.leftImage,
-                                rightText: evale?.rightText,
+                                mainText: evale?.subtitle,
+                                leftImage: evale?.image,
+                                rightText: evale?.description,
                               });
                             }}
                             id={`sidebar${index}`}
                             ref={ref}
                             style={{ cursor: "pointer" }}
                           >
-                            {evale?.name}
+                            {evale?.title}
                           </a>
                         </li>
                       );

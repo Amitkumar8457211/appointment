@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-router.get("/aboutus", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     const data = await axios.get(
       "https://script.google.com/macros/s/AKfycbyI8OlSN4WTMZ9fm90_7B68FHr3I9UWBthni8SHP1XqTUG38sGJAyXWtwxh2CNmQFGg_w/exec?id=1DtwR2OeN1urfR0vQayKjC-tYIGfKkcq09ALV8He4iyE"
