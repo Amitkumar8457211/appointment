@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import React from "react";
 
 export default async function page() {
@@ -27,6 +28,7 @@ export default async function page() {
         </p>
         <div className="row">
           {data?.map((eleven, index) => {
+            console.log("hhhh", eleven?.title.replace(/" "/g, "-"));
             return (
               <div className="col-md-3 mt-3" key={index}>
                 <div className="news_update">
@@ -44,12 +46,14 @@ export default async function page() {
                   <h2 className="mb-2 blue_text">{eleven?.title}</h2>
                   <p className="text-left">{eleven?.description}</p>
                   <p>
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary btn-sm"
-                    >
-                      Read More
-                    </button>
+                    <Link href={`${eleven?.title.replace(/" "/g, "-")}`}>
+                      <button
+                        type="button"
+                        className="btn btn-outline-primary btn-sm"
+                      >
+                        Read More
+                      </button>
+                    </Link>
                   </p>
                 </div>
               </div>
