@@ -76,7 +76,7 @@ export default function Header() {
                           }
                           href={el?.href}
                         >
-                          {el?.title}
+                          {el?.title || <Skeleton count={1} width={"50%"} />}
                         </Link>
                       </li>
                     );

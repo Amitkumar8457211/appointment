@@ -76,7 +76,9 @@ export default function Counter() {
                             ></CountUp>
                           </h1>
 
-                          <p className="count_text">{data?.text}</p>
+                          <p className="count_text">
+                            {data?.text || <Skeleton count={1} />}
+                          </p>
                         </div>
                       </div>
                     );

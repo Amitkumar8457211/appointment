@@ -78,7 +78,7 @@ export default function Testimonial() {
                                     width={100}
                                   />
                                   <h5 className="testimonial_name">
-                                    {data?.writer}
+                                    {data?.writer || <Skeleton count={1} />}
                                   </h5>
                                   <br />
                                   <p>

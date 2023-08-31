@@ -88,7 +88,7 @@ export default function NavContent() {
                             }}
                             style={{ cursor: "pointer" }}
                           >
-                            {el?.name}
+                            {el?.name || <Skeleton count={1} />}
                           </a>
                         </div>
                       );
@@ -120,7 +120,9 @@ export default function NavContent() {
                         ></Image>
                       </div>
                       <div className="col-md-8">
-                        <h3>{Content.content_title}</h3>
+                        <h3>
+                          {Content.content_title || <Skeleton count={2} />}
+                        </h3>
                         <hr />
                         <div
                           className="tab-pane fade show active"
@@ -128,7 +130,7 @@ export default function NavContent() {
                           role="tabpanel"
                           aria-labelledby={`v-pills-home-tab`}
                         >
-                          <p>{Content?.content} </p>
+                          <p>{Content?.content || <Skeleton count={9} />} </p>
                         </div>
                       </div>
                     </div>

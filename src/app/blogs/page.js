@@ -12,7 +12,7 @@ export default async function page() {
   let data = {};
   try {
     const api = `http://127.0.0.1:8000/blogs/all`;
-    // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
+
     const res = await fetch(api, { next: { revalidate: 30 } });
 
     data = await res.json();
@@ -59,21 +59,15 @@ export default async function page() {
                         style={{ fontSize: "1.2rem", minHeight: "70px" }}
                         className="mb-2 blue_text"
                       >
-                        {el?.title.substring(0, 60) + "..."}
+                        {el?.title.substring(0, 60) + "..." || (
+                          <Skeleton count={3} />
+                        )}
                       </h2>
                       <p className="text-left" style={{ minHeight: "150px" }}>
-                        {el?.description.substring(0, 150) + "..."}
+                        {el?.description.substring(0, 150) + "..." || (
+                          <Skeleton count={4} />
+                        )}
                       </p>
-                      {/* <p>
-                        <Link href={`${el?.title?.replace(/g/, "")}`}>
-                          <button
-                            type="button"
-                            className="btn btn-outline-primary btn-sm"
-                          >
-                            Read More
-                          </button>
-                        </Link>
-                      </p> */}
                     </div>
                   </div>
                 );

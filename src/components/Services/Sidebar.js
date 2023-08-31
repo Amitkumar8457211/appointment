@@ -85,7 +85,9 @@ const Sidebar = () => {
                             ref={ref}
                             style={{ cursor: "pointer" }}
                           >
-                            {evale?.title}
+                            {evale?.title || (
+                              <Skeleton count={1} width={"50%"} />
+                            )}
                           </a>
                         </li>
                       );
@@ -108,7 +110,9 @@ const Sidebar = () => {
               ) : (
                 <>
                   <div className="title_main text-left">
-                    <span className="main_text">{first?.mainText}</span>
+                    <span className="main_text">
+                      {first?.mainText || <Skeleton count={5} />}
+                    </span>
                   </div>
                   <div className="left_img">
                     <div className="slide">
@@ -122,9 +126,9 @@ const Sidebar = () => {
                     </div>
                   </div>
                   <div className="right_text mb-5">
-                    <p>{string1[0]}</p>
-                    <p>{string1[1]}</p>
-                    <p>{string1[2]}</p>
+                    <p>{string1[0] || <Skeleton count={1} />}</p>
+                    <p>{string1[1] || <Skeleton count={1} />}</p>
+                    <p>{string1[2] || <Skeleton count={1} />}</p>
                   </div>
                 </>
               )}

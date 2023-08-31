@@ -21,7 +21,7 @@ export default async function page() {
   let data = {};
   try {
     const api = `http://127.0.0.1:8000/services/services`;
-    // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
+
     const res = await fetch(api, { next: { revalidate: 30 } });
 
     data = await res.json();
@@ -44,7 +44,9 @@ export default async function page() {
               <div className="container">
                 <div className="row">
                   <div className="col-md-12 p-0">
-                    <span className="page_title">{e?.title}</span>
+                    <span className="page_title">
+                      {e?.title || <Skeleton count={1} />}
+                    </span>
                   </div>
                 </div>
               </div>

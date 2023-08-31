@@ -45,9 +45,13 @@ export default async function OurExperts() {
                         alt="Experts"
                       />
                     </div>
-                    <h2 className="text-center mb-3 blue_text">{el?.name}</h2>
+                    <h2 className="text-center mb-3 blue_text">
+                      {el?.name || <Skeleton count={1} />}
+                    </h2>
                     <p className="text-left">
-                      {el?.about.substring(0, 85) + "..."}
+                      {el?.about.substring(0, 85) + "..." || (
+                        <Skeleton count={5} />
+                      )}
                     </p>
                   </div>
                 </div>

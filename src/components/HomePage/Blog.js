@@ -59,10 +59,14 @@ export default async function Blog() {
                         }}
                         className="mb-2 blue_text"
                       >
-                        {el?.title.substring(0, 60) + "..."}
+                        {el?.title.substring(0, 60) + "..." || (
+                          <Skeleton count={3} />
+                        )}
                       </h2>
                       <p className="text-left" style={{ minHeight: "150px" }}>
-                        {el?.description.substring(0, 150) + "..."}
+                        {el?.description.substring(0, 150) + "..." || (
+                          <Skeleton count={4} />
+                        )}
                       </p>
                       {/* <p>
                         <Link href={`${el?.title?.replace(/g/, "")}`}>
