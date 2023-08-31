@@ -15,12 +15,16 @@ const Blogsrouter = require("./routes/Blogs");
 const servicesrouter = require("./routes/Services");
 const Resourcerouter = require("./routes/Resource");
 const AboutSection = require("./routes/About");
+const GetmailId = require("./routes/Getmail");
+const ContactForm = require("./routes/ContactForm");
 
 app.use("/home", HomeCarouselRouter);
 app.use("/blogs", Blogsrouter);
 app.use("/services", servicesrouter);
 app.use("/resources", Resourcerouter);
 app.use("/about", AboutSection);
+app.use("/getmail", GetmailId);
+app.use("/contactform", ContactForm);
 //Home routes
 
 app.listen(port, () => {
