@@ -6,28 +6,7 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay, Pagination, Parallax } from "swiper/modules";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import axios from "axios";
-
 export default function TopSlider({ data1 }) {
-  // const [data, setData] = useState(false);
-
-  // const sliderData = async () => {
-  //   try {
-  //     const response = await axios(`http://127.0.0.1:8000/home/all`);
-  //     if (response.data.status) {
-  //       setData(response.data.response.home_crousel);
-  //     } else {
-  //       setData(false);
-  //     }
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     setData(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   sliderData();
-  // }, []);
-
   return (
     <>
       <section className="banner_section">

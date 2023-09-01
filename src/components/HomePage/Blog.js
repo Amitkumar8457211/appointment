@@ -8,7 +8,6 @@ export default async function Blog() {
   let data = {};
   try {
     const api = `http://127.0.0.1:8000/blogs/home`;
-    // const api = "http://127.0.0.1/api/candidate-details/candidate-details/heading.json";
     const res = await fetch(api, { next: { revalidate: 30 } });
 
     data = await res.json();
@@ -68,16 +67,6 @@ export default async function Blog() {
                           <Skeleton count={4} />
                         )}
                       </p>
-                      {/* <p>
-                        <Link href={`${el?.title?.replace(/g/, "")}`}>
-                          <button
-                            type="button"
-                            className="btn btn-outline-primary btn-sm"
-                          >
-                            Read More
-                          </button>
-                        </Link>
-                      </p> */}
                     </div>
                   </div>
                 );

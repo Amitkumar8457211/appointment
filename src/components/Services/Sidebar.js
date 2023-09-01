@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const Sidebar = ({ data1 }) => {
-  // const [loading, setloading] = useState(true);
   const [first, setfirst] = useState({
     data: [],
 
@@ -14,30 +13,7 @@ const Sidebar = ({ data1 }) => {
     leftImage: "",
     rightText: "",
   });
-
-  // const ref = useRef(null);
-  // const getAllServices = async () => {
-  //   try {
-  //     setloading(true);
-  //     const res = await axios(`http://127.0.0.1:8000/services/services`);
-  //     if (res.data.status) {
-  //       setfirst({
-  //         ...first,
-  //         data: res.data.response,
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setloading(false);
-  //   }
-  // };
-
   var string1 = data1?.map((e) => e?.description?.split("."));
-
-  // useEffect(() => {
-  //   getAllServices();
-  // }, []);
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -56,12 +32,6 @@ const Sidebar = ({ data1 }) => {
       <div className="container">
         <div className="row">
           <div className="col-md-3">
-            {/* {loading ? (
-              <>
-                <Skeleton count={13} />
-              </>
-            ) : (
-              <> */}
             <aside className="left_sidebar">
               <ul className="sidebar_menu">
                 {data1?.map((evale, index) => {
@@ -91,21 +61,9 @@ const Sidebar = ({ data1 }) => {
                 })}
               </ul>
             </aside>
-            {/* </>
-            )} */}
           </div>
           <div className="col-md-9">
             <div className="right_content solution_content">
-              {/* {loading ? (
-                <>
-                  <Skeleton
-                    count={1}
-                    enableAnimation={true}
-                    style={{ width: "100%", height: "300px" }}
-                  />
-                </>
-              ) : (
-                <> */}
               <div className="title_main text-left">
                 <span className="main_text">
                   {first?.mainText || <Skeleton count={1} />}
@@ -134,8 +92,6 @@ const Sidebar = ({ data1 }) => {
                 <p>{string1[1] || <Skeleton count={1} />}</p>
                 <p>{string1[2] || <Skeleton count={1} />}</p>
               </div>
-              {/* </>
-              )} */}
             </div>
           </div>
         </div>

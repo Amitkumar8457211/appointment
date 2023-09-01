@@ -13,36 +13,8 @@ export default function Counter({ data1 }) {
     threshold: 0,
   });
 
-  // const [data, setData] = useState(false);
-
-  // // Main Slider
-
-  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  // useEffect(() => {
-  //   delay(0).then(async () => {
-  //     try {
-  //       const response = await axios(`http://127.0.0.1:8000/home/all`);
-  //       if (response.data.status) {
-  //         setData(response.data.response.counter);
-  //       } else {
-  //         setData(false);
-  //       }
-  //     } catch (error) {
-  //       console.log("error", error);
-  //       setData(false);
-  //     }
-  //   });
-  // }, []);
-
   return (
     <>
-      {/* <h1>hii</h1>
-      <Skeleton
-        enableAnimation={true}
-        style={{ width: "100%", height: "300px" }}
-      /> */}
-
       <section className="counts_section">
         <div className="container-fluid">
           {data1.length ? (
@@ -71,8 +43,6 @@ export default function Counter({ data1 }) {
                                   ? "+"
                                   : ""
                               }
-                              // onEnd={() => console.log("Ended! 👏")}
-                              // onStart={() => console.log("Started! 💨")}
                             ></CountUp>
                           </h1>
 

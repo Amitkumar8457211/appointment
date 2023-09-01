@@ -7,29 +7,6 @@ import Image from "next/image";
 
 export default function NavContent({ data1 }) {
   const [Content, setContent] = useState("");
-
-  // const [data, setData] = useState(false);
-
-  // // Main Slider
-
-  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  // useEffect(() => {
-  //   delay(0).then(async () => {
-  //     try {
-  //       const response = await axios(`http://127.0.0.1:8000/home/all`);
-  //       if (response.data.status) {
-  //         setData(response.data.response.navcontent);
-  //       } else {
-  //         setData(false);
-  //       }
-  //     } catch (error) {
-  //       console.log("error", error);
-  //       setData(false);
-  //     }
-  //   });
-  // }, []);
-
   useEffect(() => {
     if (data1?.length > 0) {
       document.getElementById("v-pills-0-tab")?.click();

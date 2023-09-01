@@ -9,28 +9,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
 
 export default function SmallSlider({ data1 }) {
-  // const [data, setData] = useState([]);
-
-  // const getSmallSliderData = async () => {
-  //   try {
-  //     const response = await fetch(`http://127.0.0.1:8000/home/all`);
-  //     const data = await response.json();
-
-  //     if (data.status) {
-  //       setData(data.response.technology_partner);
-  //     } else {
-  //       setData(false);
-  //     }
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     setData(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getSmallSliderData();
-  // }, []);
-
   return (
     <>
       <section className="partners_section pt-1 pb-1">

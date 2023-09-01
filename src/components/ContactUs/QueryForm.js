@@ -64,20 +64,6 @@ export default function QueryForm() {
           timer: 3000,
           timerProgressBar: true,
         });
-        // await setContactDetails({
-        //   name: "",
-        //   company: "",
-        //   title: "",
-        //   address: "",
-        //   city: "",
-        //   state: null,
-        //   zip: "",
-        //   phone: "",
-        //   email: "",
-        //   companyWebsite: "",
-        //   support: null,
-        //   help: "",
-        // });
       } else {
         Swal.fire({
           icon: "warning",

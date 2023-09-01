@@ -10,26 +10,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
 
 export default function Testimonial({ data1 }) {
-  // const [data, setData] = useState([]);
-
-  // const getdata = async () => {
-  //   try {
-  //     const response = await axios(`http://127.0.0.1:8000/home/all`);
-  //     if (response.data.status) {
-  //       setData(response.data.response.testimonial);
-  //     } else {
-  //       setData(false);
-  //     }
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     setData(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getdata();
-  // }, []);
-
   return (
     <>
       <section className="testimonial_section">
