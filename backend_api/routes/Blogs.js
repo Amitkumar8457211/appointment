@@ -9,12 +9,10 @@ router.get("/all", async (req, res) => {
     );
     if (data instanceof Object && Object.keys(data).length) {
       res.status(200).json({ status: true, response: data.data });
-      console.log("ifcasee");
     } else {
       res
         .status(200)
         .json({ status: false, response: "Error reading sheet data" });
-      console.log("elsecsasee");
     }
   } catch (err) {
     res
@@ -31,12 +29,10 @@ router.get("/home", async (req, res) => {
     if (data instanceof Object && Object.keys(data).length) {
       homeblog = data.data.article_page.slice(0, 3);
       res.status(200).json({ status: true, response: { blog: homeblog } });
-      console.log("ifcasee");
     } else {
       res
         .status(200)
         .json({ status: false, response: "Error reading sheet data" });
-      console.log("elsecsasee");
     }
   } catch (err) {
     res
