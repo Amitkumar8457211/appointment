@@ -14,7 +14,10 @@ const QueryForm = dynamic(() => import("@/components/ContactUs/QueryForm"), {
 export default function page() {
   return (
     <>
-      <section className="banner_section contact_page inner_page">
+      <section
+        className="banner_section contact_page inner_page"
+        style={{ backgroundRepeat: "no-repeat" }}
+      >
         <div className="container">
           <div className="row">
             <div className="col-md-12 p-0">
