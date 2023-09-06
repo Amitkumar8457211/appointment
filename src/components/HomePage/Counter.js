@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import axios from "axios";
 
 export default function Counter({ data1 }) {
   const [ref, inView] = useInView({
@@ -17,7 +16,7 @@ export default function Counter({ data1 }) {
     <>
       <section className="counts_section">
         <div className="container-fluid">
-          {data1.length ? (
+          {data1?.length ? (
             <div className="row mb-2" ref={ref}>
               {inView && (
                 <>
@@ -47,7 +46,7 @@ export default function Counter({ data1 }) {
                           </h1>
 
                           <p className="count_text">
-                            {data?.text || <Skeleton count={1} />}
+                            {data?.text || <Skeleton count={1} width={"70%"} />}
                           </p>
                         </div>
                       </div>

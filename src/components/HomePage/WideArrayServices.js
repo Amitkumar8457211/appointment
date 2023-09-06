@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default async function WideArrayServices() {
   let data = {};

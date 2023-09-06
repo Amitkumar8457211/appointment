@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import axios from "axios";
+import "react-loading-skeleton/dist/skeleton.css";
 import Image from "next/image";
 
 export default function NavContent({ data1 }) {
@@ -40,7 +40,7 @@ export default function NavContent({ data1 }) {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                {!data1.length ? (
+                {!data1?.length ? (
                   <>
                     <Skeleton count={18} />
                   </>
@@ -88,13 +88,17 @@ export default function NavContent({ data1 }) {
                   <div className="tab-content" id="v-pills-tabContent">
                     <div className="row">
                       <div className="col-md-4">
-                        <Image
-                          src={Content?.image}
-                          width={250}
-                          height={500}
-                          alt="Picture of the author"
-                          unoptimised={true}
-                        ></Image>
+                        {!Content?.image ? (
+                          <Skeleton width={"100%"} height={"100%"} />
+                        ) : (
+                          <Image
+                            src={Content?.image}
+                            width={250}
+                            height={500}
+                            alt="Picture of the author"
+                            unoptimised={true}
+                          ></Image>
+                        )}
                       </div>
                       <div className="col-md-8">
                         <h3>
@@ -107,7 +111,7 @@ export default function NavContent({ data1 }) {
                           role="tabpanel"
                           aria-labelledby={`v-pills-home-tab`}
                         >
-                          <p>{Content?.content || <Skeleton count={9} />} </p>
+                          <p>{Content?.content || <Skeleton count={13} />} </p>
                         </div>
                       </div>
                     </div>

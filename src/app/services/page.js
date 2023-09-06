@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const Sidebar = dynamic(() => import("@/components/Services/Sidebar"), {
   loading: () => (
     <div className="container-fluid">

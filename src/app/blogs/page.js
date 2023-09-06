@@ -3,14 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const metadata = {
-  title: "Blogs Section",
+  title: "Blogs",
   description: "Blogs Section",
 };
 export default async function page() {
   let data = {};
   try {
+    console.log("hjere");
     const api = `http://127.0.0.1:8000/blogs/all`;
 
     const res = await fetch(api, { next: { revalidate: 30 } });
@@ -45,29 +47,57 @@ export default async function page() {
                   >
                     <div className="news_update">
                       <div className="service_icon m-auto text-center">
-                        <Image
-                          height={300}
-                          width={400}
-                          src={el?.image}
-                          style={{ minHeight: "210px" }}
-                          className="img-fluid"
-                          alt="blogs picture"
-                        />
+                        {el?.image ? (
+                          <Image
+                            height={300}
+                            width={400}
+                            src={el?.image}
+                            style={{ minHeight: "210px" }}
+                            className="img-fluid"
+                            alt="blogs picture"
+                          />
+                        ) : (
+                          <>
+                            <div className="col-md-12">
+                              <Skeleton
+                                enableAnimation={true}
+                                style={{ width: "100%", height: "200px" }}
+                              />
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       <h2
-                        style={{ fontSize: "1.2rem", minHeight: "70px" }}
+                        style={{
+                          fontSize: "1.2rem",
+                          minHeight: "70px",
+                          fontWeight: "900",
+                        }}
                         className="mb-2 blue_text"
                       >
-                        {el?.title.substring(0, 60) + "..." || (
-                          <Skeleton count={3} />
+                        {el?.title || el?.title != "" ? (
+                          el?.title.substring(0, 60) + "..."
+                        ) : (
+                          <Skeleton count={1} />
                         )}
                       </h2>
                       <p className="text-left" style={{ minHeight: "150px" }}>
-                        {el?.description.substring(0, 150) + "..." || (
-                          <Skeleton count={4} />
+                        {el?.description ? (
+                          el?.description.substring(0, 150) + "..."
+                        ) : (
+                          <Skeleton count={5} />
                         )}
                       </p>
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary btn-sm"
+                        style={{ padding: "5px" }}
+                        ok
+                        sir
+                      >
+                        Read More
+                      </button>
                     </div>
                   </div>
                 );

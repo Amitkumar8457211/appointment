@@ -83,6 +83,9 @@ export default function Header() {
                     );
                   })}
                 </ul>
+                {/* <button className=" btn btn-outline-primary btn-sm">
+                  Search
+                </button> */}
               </div>
             </nav>
           </div>

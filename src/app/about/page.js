@@ -3,6 +3,7 @@ import RHS from "@/components/About/RHS";
 import Image from "next/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const metadata = {
   title: "About us",

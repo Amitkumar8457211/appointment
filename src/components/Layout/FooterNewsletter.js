@@ -33,6 +33,12 @@ export default function FooterNewsletter() {
       }
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "warning",
+        html: "Something went wrong ! Please try again later",
+        timer: 3000,
+        timerProgressBar: true,
+      });
     } finally {
       setLoading(false);
     }

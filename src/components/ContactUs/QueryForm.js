@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { ColorRing } from "react-loader-spinner";
 import axios from "axios";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function QueryForm() {
   const [ContactDetails, setContactDetails] = useState({
@@ -75,6 +76,12 @@ export default function QueryForm() {
     } catch (error) {
       console.log(error);
       await document.getElementById("resetbtn")?.click();
+      Swal.fire({
+        icon: "error",
+        html: "Something went wrong ! Please try again later",
+        timer: 3000,
+        timerProgressBar: true,
+      });
     } finally {
       setLoading(false);
       await document.getElementById("resetbtn")?.click();

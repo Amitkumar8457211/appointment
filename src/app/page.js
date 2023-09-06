@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Map = dynamic(() => import("@/components/HomePage/Map"), {
   loading: () => (
@@ -14,7 +15,14 @@ const Map = dynamic(() => import("@/components/HomePage/Map"), {
 });
 
 const Slider = dynamic(() => import("@/components/HomePage/Slider"), {
-  loading: () => <Skeleton count={3} />,
+  loading: () => (
+    <div className="container-fluid">
+      <Skeleton
+        enableAnimation={true}
+        style={{ width: "100%", height: "400px" }}
+      />
+    </div>
+  ),
 });
 const SmallSlider = dynamic(() => import("@/components/HomePage/SmallSlider"), {
   loading: () => <Skeleton circle count={3} />,
@@ -143,8 +151,32 @@ const Testimonial = dynamic(() => import("@/components/HomePage/Testimonial"), {
   ),
 });
 
+// Seo Data
+
+export async function generateMetadata({ params }) {
+  var seoData = {
+    title: "jkkjjj",
+  };
+  try {
+    const api = `http://127.0.0.1:8000/home/all`;
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+    const seores = await res.json();
+    console.log(seores, "seo Data");
+    seoData = {
+      title: "seores?.seo?.title",
+      description: seores?.seo?.desc,
+      keyword: seores?.seo?.keyword,
+      og_image: seores?.seo?.og_image,
+    };
+  } catch (error) {
+    console.log("error", error);
+  }
+  return seoData;
+}
+
 export default async function Home() {
-  let data = {};
+  var data = {};
 
   try {
     const api = `http://127.0.0.1:8000/home/all`;
