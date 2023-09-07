@@ -1,14 +1,28 @@
-import LHS from "@/components/About/LHS";
-import RHS from "@/components/About/RHS";
-import Image from "next/image";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import LHS from "@/components/About/LHS";
+import RHS from "@/components/About/RHS";
 
-export const metadata = {
-  title: "About us",
-  description: "About us Section",
-};
+export async function generateMetadata() {
+
+  var seoData = {};
+  try {
+    const api = `http://127.0.0.1:8000/about/all`;
+    const seores = await fetch(api).then((res) => res.json());
+    seoData = {
+      title: seores?.response?.seo[0]?.title,
+      description: seores?.response?.seo[0]?.desc,
+      keywords: seores?.response?.seo[0]?.keyword,
+      og_image: seores?.response?.seo[0]?.og_image,
+    };
+  } catch (error) {
+    console.log("error", error);
+  }
+
+  return seoData;
+}
+
 export default async function page() {
   let data = {};
   try {
