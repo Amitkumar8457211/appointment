@@ -5,22 +5,22 @@ import LHS from "@/components/About/LHS";
 import RHS from "@/components/About/RHS";
 
 export async function generateMetadata() {
-
-  var seoData = {};
   try {
     const api = `http://127.0.0.1:8000/about/all`;
-    const seores = await fetch(api).then((res) => res.json());
-    seoData = {
-      title: seores?.response?.seo[0]?.title,
-      description: seores?.response?.seo[0]?.desc,
-      keywords: seores?.response?.seo[0]?.keyword,
-      og_image: seores?.response?.seo[0]?.og_image,
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+    const seores = await res.json();
+
+    return {
+      title: seores?.response?.seo?.[0]?.title,
+      description: seores?.response?.seo?.[0]?.desc,
+
+      keywords: seores?.response?.seo?.[0]?.keyword,
+      og_image: seores?.response?.seo?.[0]?.og_image,
     };
   } catch (error) {
     console.log("error", error);
   }
-
-  return seoData;
 }
 
 export default async function page() {

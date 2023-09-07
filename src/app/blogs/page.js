@@ -1,18 +1,30 @@
-import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export const metadata = {
-  title: "Blogs",
-  description: "Blogs Section",
-};
+export async function generateMetadata() {
+  try {
+    const api = `http://127.0.0.1:8000/blogs/all`;
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+    const seores = await res.json();
+
+    console.log(seores, "seroes");
+
+    return {
+      title: seores?.response?.seo?.[0]?.title,
+      description: seores?.response?.seo?.[0]?.desc,
+      keywords: seores?.response?.seo?.[0]?.keyword,
+      og_image: seores?.response?.seo?.[0]?.og_image,
+    };
+  } catch (error) {
+    console.log("error", error);
+  }
+}
 export default async function page() {
   let data = {};
   try {
-    console.log("hjere");
     const api = `http://127.0.0.1:8000/blogs/all`;
 
     const res = await fetch(api, { next: { revalidate: 30 } });
@@ -89,7 +101,7 @@ export default async function page() {
                           <Skeleton count={5} />
                         )}
                       </p>
-                      <button
+                      {/* <button
                         type="button"
                         class="btn btn-outline-primary btn-sm"
                         style={{ padding: "5px" }}
@@ -97,7 +109,7 @@ export default async function page() {
                         sir
                       >
                         Read More
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 );

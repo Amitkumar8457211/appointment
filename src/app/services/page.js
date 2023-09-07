@@ -13,10 +13,24 @@ const Sidebar = dynamic(() => import("@/components/Services/Sidebar"), {
   ),
 });
 
-export const metadata = {
-  title: "Services Section",
-  description: "Service Section",
-};
+export async function generateMetadata() {
+  try {
+    const api = `http://127.0.0.1:8000/services/services`;
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+    const seores = await res.json();
+
+    return {
+      title: seores?.response?.seo?.[0]?.title,
+      description: seores?.response?.seo?.[0]?.description,
+
+      keywords: seores?.response?.seo?.[0]?.keyword,
+      og_image: seores?.response?.seo?.[0]?.og_image,
+    };
+  } catch (error) {
+    console.log("error", error);
+  }
+}
 
 export default async function page() {
   let data = {};
