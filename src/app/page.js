@@ -153,26 +153,22 @@ const Testimonial = dynamic(() => import("@/components/HomePage/Testimonial"), {
 
 // Seo Data
 
-export async function generateMetadata({ params }) {
-  var seoData = {
-    title: "jkkjjj",
-  };
+export async function generateMetadata() {
   try {
     const api = `http://127.0.0.1:8000/home/all`;
 
     const res = await fetch(api, { next: { revalidate: 30 } });
     const seores = await res.json();
-    console.log(seores, "seo Data");
-    seoData = {
-      title: "seores?.seo?.title",
-      description: seores?.seo?.desc,
-      keyword: seores?.seo?.keyword,
-      og_image: seores?.seo?.og_image,
+
+    return {
+      title: seores?.response?.seo?.[0]?.title,
+      description: seores?.response?.seo?.[0]?.desc,
+      keywords: seores?.response?.seo?.[0]?.keyword,
+      og_image: seores?.response?.seo?.[0]?.og_image,
     };
   } catch (error) {
     console.log("error", error);
   }
-  return seoData;
 }
 
 export default async function Home() {
