@@ -7,7 +7,6 @@ const routers = router.post("/article", async (req, res) => {
     const data = await axios.get(
       `https://script.google.com/macros/s/AKfycbzWwXGkmnhNRrrP-J4gMCiKT773cJqMEPb4Sw9lOP3Cp8qtDTK_XiTuV4gvYRH_sPNQFQ/exec?id=${req.body.article_id}`
     );
-    // console.log("dataaa", data);
     console.log("redddd", req.body);
     if (data instanceof Object) {
       return res.status(200).json({ status: true, response: data.data });

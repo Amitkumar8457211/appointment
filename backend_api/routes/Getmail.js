@@ -11,21 +11,22 @@ const CREDENTIALS = JSON.parse(
 const axios = require("axios");
 const routers = router.post("/getmail", async (req, res) => {
   try {
-    const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
-    // use service account creds
-    await doc.useServiceAccountAuth({
-      client_email: CREDENTIALS.client_email,
-      private_key: CREDENTIALS.private_key,
-    });
+    // const doc = new GoogleSpreadsheet(RESPONSES_SHEET_ID);
+    // // use service account creds
+    // await doc.useServiceAccountAuth({
+    //   client_email: CREDENTIALS.client_email,
+    //   private_key: CREDENTIALS.private_key,
+    // });
 
-    // load the documents info
-    await doc.loadInfo();
+    // // load the documents info
+    // await doc.loadInfo();
 
-    // Index of the sheet
-    let sheet = doc.sheetsByIndex[0];
+    // // Index of the sheet
+    // let sheet = doc.sheetsByIndex[0];
 
-    // Get all the rows
-    await sheet.addRow(req.body);
+    // // Get all the rows
+    // await sheet.addRow(req.body);
+
     var data = JSON.stringify({
       email: req.body.email,
     });
