@@ -55,20 +55,20 @@ export default function QueryForm() {
         }
       );
 
-      if (res.data.message == "Contact Form submitted successfully") {
+      if (res.data.status == "true") {
         setTimeout(async () => {
           await document.getElementById("resetbtn")?.click();
         }, 100);
         Swal.fire({
           icon: "success",
-          html: res.data.message,
+          html: res.data.response,
           timer: 3000,
           timerProgressBar: true,
         });
       } else {
         Swal.fire({
           icon: "warning",
-          html: res.data.message,
+          html: res.data.response,
           timer: 3000,
           timerProgressBar: true,
         });
