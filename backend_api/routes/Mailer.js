@@ -57,7 +57,6 @@ function getmailconfig() {
 const routers = router.post("/getmailnew", async (req, res) => {
   const usermail = req?.body?.email || "";
   const date = new Date().toString();
-
   try {
     const allResult = await Promise.allSettled([
       getmailconfig(),
