@@ -12,13 +12,16 @@ export default function FooterNewsletter() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(`http://127.0.0.1:8000/getmail/getmail`, {
-        email: email,
-      });
-      if (res.data.message == "Email added successfully") {
+      const res = await axios.post(
+        `http://127.0.0.1:8000/getmailnew/getmailnew`,
+        {
+          email: email,
+        }
+      );
+      if (res.data.status == true) {
         Swal.fire({
           icon: "success",
-          html: res.data.message,
+          html: res.data.response,
           timer: 3000,
           timerProgressBar: true,
         });
@@ -26,7 +29,7 @@ export default function FooterNewsletter() {
       } else {
         Swal.fire({
           icon: "warning",
-          html: res.data.message,
+          html: res.data.response,
           timer: 3000,
           timerProgressBar: true,
         });

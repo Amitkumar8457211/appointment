@@ -55,7 +55,7 @@ export default function QueryForm() {
         }
       );
 
-      if (res.data.status == "true") {
+      if (res.data.status == true) {
         setTimeout(async () => {
           await document.getElementById("resetbtn")?.click();
         }, 100);
