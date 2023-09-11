@@ -3,10 +3,25 @@ import React, { Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export const metadata = {
-  title: "Contact Us",
-  description: "Contact us Form",
-};
+export async function generateMetadata() {
+  try {
+    const api = `http://127.0.0.1:8000/blogs/all`;
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+    const seores = await res.json();
+
+    console.log(seores, "seroes");
+
+    return {
+      title: seores?.response?.seo?.[0]?.title,
+      description: seores?.response?.seo?.[0]?.desc,
+      keywords: seores?.response?.seo?.[0]?.keyword,
+      og_image: seores?.response?.seo?.[0]?.og_image,
+    };
+  } catch (error) {
+    console.log("error", error);
+  }
+}
 
 const QueryForm = dynamic(() => import("@/components/ContactUs/QueryForm"), {
   loading: () => <h1> loading </h1>,

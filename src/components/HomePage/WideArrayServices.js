@@ -34,7 +34,10 @@ export default async function WideArrayServices() {
               </div>
             </div>
           </div>
-          <div className={data?.length > 0 ? "row" : ""}>
+          <div
+            className={data?.length > 0 ? "row" : ""}
+            style={{ justifyContent: "center" }}
+          >
             {data.length ? (
               data?.map((e, index) => {
                 return (
