@@ -44,12 +44,18 @@ export default function SmallSlider({ data1 }) {
                       return (
                         <SwiperSlide key={el?.image_url?.[index]}>
                           <div className="slide">
-                            <Image
-                              height={100}
-                              width={100}
-                              src={el?.image_url || <Skeleton circle />}
-                              alt={el?.alt}
-                            />
+                            {el?.image_url ? (
+                              <Image
+                                height={100}
+                                width={100}
+                                src={el?.image_url || <Skeleton circle />}
+                                alt={el?.alt}
+                                blurDataURL="/images/blurImage.webp"
+                                placeholder="blur"
+                              />
+                            ) : (
+                              <Skeleton circle />
+                            )}
                           </div>
                           <p style={{ color: "black", textAlign: "center" }}>
                             {el?.title || <Skeleton />}

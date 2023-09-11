@@ -51,10 +51,10 @@ export default async function WideArrayServices() {
                           src={e?.logo}
                           height={100}
                           width={100}
-                          blurDataURL={e?.logo}
+                          blurDataURL="/images/blurImage.webp"
                           placeholder="blur"
                           className="img-fluid"
-                          alt={el?.title}
+                          alt={e?.title}
                         />
                       </div>
                       <h2

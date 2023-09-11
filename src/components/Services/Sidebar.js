@@ -80,7 +80,7 @@ const Sidebar = ({ data1 }) => {
                     <Image
                       height={200}
                       width={700}
-                      blurDataURL={first?.image}
+                      blurDataURL="/images/blurImage.webp"
                       placeholder="blur"
                       src={first?.leftImage}
                       className="img-fluid"

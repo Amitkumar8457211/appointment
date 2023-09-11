@@ -12,7 +12,7 @@ export default function LHS({ data }) {
                 height={500}
                 width={500}
                 src={data?.image}
-                blurDataURL={data?.image}
+                blurDataURL="/images/blurImage.webp"
                 placeholder="blur"
                 class="img-fluid"
                 alt={data?.title}

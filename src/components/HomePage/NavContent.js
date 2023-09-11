@@ -93,7 +93,7 @@ export default function NavContent({ data1 }) {
                         ) : (
                           <Image
                             src={Content?.image}
-                            blurDataURL={Content?.image}
+                            blurDataURL="/images/blurImage.webp"
                             placeholder="blur"
                             width={250}
                             height={500}

@@ -43,7 +43,7 @@ export default async function OurExperts() {
                         height={300}
                         width={250}
                         src={el?.image}
-                        blurDataURL={el?.image}
+                        blurDataURL="/images/blurImage.webp"
                         placeholder="blur"
                         className="img-fluid"
                         alt={el?.name}
