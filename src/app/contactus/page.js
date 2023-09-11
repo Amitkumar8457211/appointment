@@ -5,12 +5,10 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 export async function generateMetadata() {
   try {
-    const api = `http://127.0.0.1:8000/blogs/all`;
+    const api = `http://127.0.0.1:8000/contact/all`;
 
     const res = await fetch(api, { next: { revalidate: 30 } });
     const seores = await res.json();
-
-    console.log(seores, "seroes");
 
     return {
       title: seores?.response?.seo?.[0]?.title,
@@ -27,17 +25,35 @@ const QueryForm = dynamic(() => import("@/components/ContactUs/QueryForm"), {
   loading: () => <h1> loading </h1>,
 });
 
-export default function page() {
+export default async function page() {
+  let data = {};
+  try {
+    const api = `http://127.0.0.1:8000/contact/all`;
+
+    const res = await fetch(api, { next: { revalidate: 30 } });
+
+    data = await res.json();
+    if (data.status) {
+      data = data.response;
+    }
+  } catch (error) {
+    console.log("error", error);
+  }
+
   return (
     <>
       <section
         className="banner_section contact_page inner_page"
-        style={{ backgroundRepeat: "no-repeat" }}
+        style={{
+          backgroundRepeat: "no-repeat",
+          height: "400px",
+          backgroundImage: `url(${data?.contact_us?.[0]?.banner_image})`,
+        }}
       >
         <div className="container">
           <div className="row">
             <div className="col-md-12 p-0">
-              <span className="page_title">Contact Us</span>
+              <span className="page_title">{data?.contact_us?.[0]?.title}</span>
             </div>
           </div>
         </div>

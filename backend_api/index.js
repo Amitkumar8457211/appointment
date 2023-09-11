@@ -19,6 +19,7 @@ const GetmailId = require("./routes/Getmail");
 const ContactForm = require("./routes/ContactForm");
 const Articlerouter = require("./routes/Article");
 const Mailerrouter = require("./routes/Mailer");
+const ContactusPage = require("./routes/ContactusPage");
 
 app.use("/home", HomeCarouselRouter);
 app.use("/blogs", Blogsrouter);
@@ -29,6 +30,7 @@ app.use("/getmail", GetmailId);
 app.use("/contactform", ContactForm);
 app.use("/article", Articlerouter);
 app.use("/getmailnew", Mailerrouter);
+app.use("/contact", ContactusPage);
 //Home routes
 
 app.listen(port, () => {

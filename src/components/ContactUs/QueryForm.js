@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { ColorRing } from "react-loader-spinner";
 import axios from "axios";
 import "react-loading-skeleton/dist/skeleton.css";
+import Skeleton from "react-loading-skeleton";
 
 export default function QueryForm() {
   const [ContactDetails, setContactDetails] = useState({
@@ -21,17 +22,32 @@ export default function QueryForm() {
     help: "",
   });
   const [loading, setLoading] = useState(false);
+  const [dataa, setDataa] = useState({
+    services: [],
+  });
 
-  const StateArr = ["HR", "HP", "AP", "J&K", "TN"];
-  const serviceSelect = [
-    "Sales Support Services",
-    "Customer Care Services",
-    "Inbound",
-    "Outbound",
-    "Fulfillment & Distribution",
-    "E-Mail & Web Services",
-    "Other",
-  ];
+  const getAllData = async () => {
+    try {
+      // setLoading(true);
+      const api = `http://127.0.0.1:8000/contact/all`;
+
+      const res = await axios(api, { next: { revalidate: 30 } });
+
+      if (res.data.status == true) {
+        setDataa({
+          services: res?.data?.response?.data_options,
+        });
+      }
+    } catch (error) {
+      console.log("error", error);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllData();
+  }, []);
 
   const submitQuery = async (e) => {
     e.preventDefault();
@@ -172,26 +188,39 @@ export default function QueryForm() {
           </div>
           <div className="form-group col-md-4">
             <label>State</label>
-            <select
-              className="form-control"
-              name={ContactDetails.state}
-              required
-              onChange={(e) => {
-                setContactDetails({
-                  ...ContactDetails,
-                  state: e.target.value,
-                });
-              }}
-            >
-              <option value="">Please Select :-</option>
-              {StateArr?.map((el, ind) => {
-                return (
-                  <>
-                    <option>{el}</option>
-                  </>
-                );
-              })}
-            </select>
+            {dataa?.services?.length > 0 ? (
+              <select
+                className="form-control"
+                name={ContactDetails.state}
+                required
+                onChange={(e) => {
+                  setContactDetails({
+                    ...ContactDetails,
+                    state: e.target.value,
+                  });
+                }}
+              >
+                <option value="">Please Select :-</option>
+
+                {dataa?.services?.map((el, ind) => {
+                  return (
+                    <>
+                      <option>{el?.state}</option>
+                    </>
+                  );
+                })}
+              </select>
+            ) : (
+              <Skeleton
+                style={{
+                  marginTop: "40px",
+                  marginLeft: "40px",
+                }}
+                count={1}
+                height={"40px"}
+                width={"59%"}
+              />
+            )}
           </div>
           <div className="form-group col-md-2">
             <label>Zip</label>
@@ -262,26 +291,38 @@ export default function QueryForm() {
           </div>
           <div className="form-group col-md-6">
             <label>How Can We Help You?</label>
-            <select
-              className="custom-select"
-              name={ContactDetails.support}
-              onChange={(e) => {
-                setContactDetails({
-                  ...ContactDetails,
-                  support: e.target.value,
-                });
-              }}
-              required
-            >
-              <option value="">Select any One :-</option>
-              {serviceSelect?.map((val, index) => {
-                return (
-                  <>
-                    <option>{val}</option>
-                  </>
-                );
-              })}
-            </select>
+            {dataa?.services?.length > 0 ? (
+              <select
+                className="custom-select"
+                name={ContactDetails.support}
+                onChange={(e) => {
+                  setContactDetails({
+                    ...ContactDetails,
+                    support: e.target.value,
+                  });
+                }}
+                required
+              >
+                <option value="">Select any One :-</option>
+                {dataa?.services?.map((val, index) => {
+                  return (
+                    <>
+                      <option>{val?.help}</option>
+                    </>
+                  );
+                })}
+              </select>
+            ) : (
+              <Skeleton
+                style={{
+                  marginTop: "40px",
+                  marginLeft: "40px",
+                }}
+                count={1}
+                height={"40px"}
+                width={"59%"}
+              />
+            )}
           </div>
         </div>
         <div className="form-row">
