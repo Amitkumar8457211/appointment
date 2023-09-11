@@ -52,7 +52,9 @@ export default function Testimonial({ data1 }) {
                                 <div className="test-review text-center">
                                   <Image
                                     src={data?.image || <Skeleton circle />}
-                                    alt="Partner Logo 1"
+                                    blurDataURL={data?.image}
+                                    placeholder="blur"
+                                    alt={data?.writer}
                                     height={100}
                                     width={100}
                                   />

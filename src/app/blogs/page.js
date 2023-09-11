@@ -61,12 +61,14 @@ export default async function page() {
                       <div className="service_icon m-auto text-center">
                         {el?.image ? (
                           <Image
+                            blurDataURL={el?.image}
+                            placeholder="blur"
                             height={300}
                             width={400}
                             src={el?.image}
                             style={{ minHeight: "210px" }}
                             className="img-fluid"
-                            alt="blogs picture"
+                            alt={el?.title}
                           />
                         ) : (
                           <>

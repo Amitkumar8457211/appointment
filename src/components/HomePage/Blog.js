@@ -44,9 +44,11 @@ export default async function Blog() {
                             height={300}
                             width={400}
                             src={el?.image}
+                            blurDataURL={el?.image}
+                            placeholder="blur"
                             style={{ minHeight: "210px" }}
                             className="img-fluid"
-                            alt="Blogs"
+                            alt={el?.title?.substring(0, 6)}
                           />
                         ) : (
                           <div className="col-md-12">

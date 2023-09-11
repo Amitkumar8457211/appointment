@@ -48,7 +48,7 @@ export default function SmallSlider({ data1 }) {
                               height={100}
                               width={100}
                               src={el?.image_url || <Skeleton circle />}
-                              alt="Partner Logo 1"
+                              alt={el?.alt}
                             />
                           </div>
                           <p style={{ color: "black", textAlign: "center" }}>

@@ -80,9 +80,11 @@ const Sidebar = ({ data1 }) => {
                     <Image
                       height={200}
                       width={700}
+                      blurDataURL={first?.image}
+                      placeholder="blur"
                       src={first?.leftImage}
                       className="img-fluid"
-                      alt="services"
+                      alt={first?.mainText}
                     />
                   )}
                 </div>

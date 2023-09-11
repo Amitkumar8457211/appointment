@@ -12,8 +12,10 @@ export default function LHS({ data }) {
                 height={500}
                 width={500}
                 src={data?.image}
+                blurDataURL={data?.image}
+                placeholder="blur"
                 class="img-fluid"
-                alt="Left Image"
+                alt={data?.title}
               />
             </div>
           </div>

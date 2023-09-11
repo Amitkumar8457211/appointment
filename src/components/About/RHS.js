@@ -16,9 +16,11 @@ export default function RHS({ data }) {
               <Image
                 height={500}
                 width={500}
+                blurDataURL={data?.image}
+                placeholder="blur"
                 src={data?.image}
                 class="img-fluid"
-                alt="Left Image"
+                alt={data?.title}
               />
             </div>
           </div>

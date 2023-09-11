@@ -43,8 +43,10 @@ export default async function OurExperts() {
                         height={300}
                         width={250}
                         src={el?.image}
+                        blurDataURL={el?.image}
+                        placeholder="blur"
                         className="img-fluid"
-                        alt="Experts"
+                        alt={el?.name}
                       />
                     </div>
                     <h2 className="text-center mb-3 blue_text">

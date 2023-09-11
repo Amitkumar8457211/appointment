@@ -51,8 +51,10 @@ export default async function WideArrayServices() {
                           src={e?.logo}
                           height={100}
                           width={100}
+                          blurDataURL={e?.logo}
+                          placeholder="blur"
                           className="img-fluid"
-                          alt="Omnichannel Services"
+                          alt={el?.title}
                         />
                       </div>
                       <h2

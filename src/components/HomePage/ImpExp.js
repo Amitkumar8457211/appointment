@@ -46,8 +46,10 @@ export default async function ImproveExp() {
                     src={data[0]?.imageurl}
                     className="img-fluid"
                     height={420}
+                    blurDataURL={data[0]?.image}
+                    placeholder="blur"
                     width={520}
-                    alt="Call Center"
+                    alt={data?.[0]?.title}
                   />
                 ) : (
                   <Skeleton
