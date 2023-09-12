@@ -42,7 +42,7 @@ export default function SmallSlider({ data1 }) {
                   >
                     {data1?.map((el, index) => {
                       return (
-                        <SwiperSlide key={el?.image_url?.[index]}>
+                        <SwiperSlide key={el?.image_url+index}>
                           <div className="slide">
                             {el?.image_url ? (
                               <Image
