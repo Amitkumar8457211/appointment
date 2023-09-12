@@ -6,7 +6,33 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay, Pagination, Parallax } from "swiper/modules";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+
 export default function TopSlider({ data1 }) {
+  console.log("use");
+
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      // window.addEventListener("load", () => {
+      Notification.requestPermission().then((perm) => {
+        if (perm === "granted") {
+          alert("here");
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log(
+                "Service Worker registered with scope:",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.error("Service Worker registration failed:", error);
+            });
+        }
+      });
+      // });
+    }
+  }, []);
+
   return (
     <>
       <section className="banner_section">
