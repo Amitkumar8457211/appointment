@@ -99,7 +99,7 @@ export default function NavContent({ data1 }) {
                             width={250}
                             height={500}
                             alt={Content?.name}
-                            unoptimised={true}
+                            unoptimised={"true"}
                           ></Image>
                         )}
                       </div>
