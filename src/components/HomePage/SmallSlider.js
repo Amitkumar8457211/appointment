@@ -55,8 +55,10 @@ export default function SmallSlider({ data1 }) {
                                 placeholder="blur"
                                 onError={({ currentTarget }) => {
                                   currentTarget.onerror = null; // prevents looping
-                                  currentTarget.src = "/images/blurImage.webp";
+                                  // currentTarget.src = "/images/blurImage.webp";
+                                  currentTarget.srcset = "/images/blurImage.webp";
                                 }}
+                                // onError={() => setSrc('/images/blurImage.webp')}
                               />
                             ) : (
                               <Skeleton circle />
