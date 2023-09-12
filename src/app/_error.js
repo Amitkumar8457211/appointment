@@ -12,7 +12,7 @@ export default function Error({ error, reset }) {
   return (
     <div>
       <h2>Something went wrong!</h2>
-      <Link href="/">
+      <Link href="/" title="/">
         <button>Go Home</button>
       </Link>
     </div>

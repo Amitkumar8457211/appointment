@@ -48,6 +48,7 @@ export default async function WideArrayServices() {
                     >
                       <div className="service_icon w-25 m-auto text-center">
                         <Image
+                          title={e?.logo}
                           src={e?.logo}
                           height={100}
                           width={100}

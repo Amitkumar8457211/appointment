@@ -39,11 +39,12 @@ export default function Header() {
         <div className="header_main">
           <div className="container-fluid">
             <nav className="navbar navbar-expand-lg navbar-light pl-0 pr-0">
-              <Link className="navbar-brand" href="/">
+              <Link className="navbar-brand" href="/" title="/">
                 <Image
                   width={45}
                   height={45}
                   src="/images/logo.png"
+                  title="/images/logo.png"
                   alt="tmp_direct_logo"
                   unoptimized
                   className="logo"
@@ -75,6 +76,7 @@ export default function Header() {
                               ? "nav-link active"
                               : "nav-link"
                           }
+                          title={el?.href}
                           href={el?.href}
                         >
                           {el?.title || <Skeleton count={1} width={"50%"} />}

@@ -16,6 +16,7 @@ export default function Footer() {
                   <div className="footer_text">
                     <p>
                       <Image
+                        title="/images/footer_logo.png"
                         src="/images/footer_logo.png"
                         alt="tmp direct logo"
                         className="img-fluid footer_logo"
@@ -58,19 +59,29 @@ export default function Footer() {
                       <div className="footer_menu_container">
                         <ul className="footer_menu">
                           <li className="footer_menu_item">
-                            <Link href="/">Home</Link>
+                            <Link href="/" title="/">
+                              Home
+                            </Link>
                           </li>
                           <li className="footer_menu_item">
-                            <Link href="/about">About Us</Link>
+                            <Link href="/about" title="about us">
+                              About Us
+                            </Link>
                           </li>
                           <li className="footer_menu_item">
-                            <Link href="/services">Services</Link>
+                            <Link href="/services" title="services">
+                              Services
+                            </Link>
                           </li>
                           <li className="footer_menu_item">
-                            <Link href="/blogs">Blogs</Link>
+                            <Link href="/blogs" title="blogs">
+                              Blogs
+                            </Link>
                           </li>
                           <li className="footer_menu_item">
-                            <Link href="/contactus">Contact Us</Link>
+                            <Link href="/contactus" title="contactus">
+                              Contact Us
+                            </Link>
                           </li>
                         </ul>
                       </div>

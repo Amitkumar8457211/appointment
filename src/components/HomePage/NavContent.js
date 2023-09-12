@@ -92,6 +92,7 @@ export default function NavContent({ data1 }) {
                           <Skeleton width={"100%"} height={"100%"} />
                         ) : (
                           <Image
+                            title={Content?.image}
                             src={Content?.image}
                             blurDataURL="/images/blurImage.webp"
                             placeholder="blur"

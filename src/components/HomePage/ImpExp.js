@@ -43,6 +43,7 @@ export default async function ImproveExp() {
               <div className="slide">
                 {data?.[0]?.imageurl ? (
                   <Image
+                    title={data[0]?.imageurl}
                     src={data[0]?.imageurl}
                     className="img-fluid"
                     height={420}

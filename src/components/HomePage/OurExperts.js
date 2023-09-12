@@ -40,6 +40,7 @@ export default async function OurExperts() {
                   <div className="experts_des" style={{ minHeight: "413px" }}>
                     <div className="service_icon m-auto text-center">
                       <Image
+                        title={el?.image}
                         height={300}
                         width={250}
                         src={el?.image}

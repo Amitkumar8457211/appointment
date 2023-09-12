@@ -61,6 +61,7 @@ export default async function page() {
                       <div className="service_icon m-auto text-center">
                         {el?.image ? (
                           <Image
+                            title={el?.image}
                             blurDataURL="/images/blurImage.webp"
                             placeholder="blur"
                             height={300}
