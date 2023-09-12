@@ -41,6 +41,7 @@ export default async function Blog() {
                       <div className="service_icon m-auto text-center">
                         {el?.image ? (
                           <Image
+                            title={el?.image}
                             height={300}
                             width={400}
                             src={el?.image}

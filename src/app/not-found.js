@@ -1976,7 +1976,7 @@ export default function NotFound() {
           >
             D
           </text>
-          <Link href={"/"}>
+          <Link href={"/"} title="/">
             <text
               transform="translate(742 682.9)"
               style={{

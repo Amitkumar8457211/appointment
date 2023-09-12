@@ -14,6 +14,7 @@ export default function RHS({ data }) {
           <div className="left_img">
             <div className="slide">
               <Image
+                title={data?.image}
                 height={500}
                 width={500}
                 blurDataURL="/images/blurImage.webp"

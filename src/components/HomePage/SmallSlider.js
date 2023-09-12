@@ -48,10 +48,15 @@ export default function SmallSlider({ data1 }) {
                               <Image
                                 height={100}
                                 width={100}
+                                title={el?.image_url}
                                 src={el?.image_url || <Skeleton circle />}
                                 alt={el?.alt}
                                 blurDataURL="/images/blurImage.webp"
                                 placeholder="blur"
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null; // prevents looping
+                                  currentTarget.src = "/images/blurImage.webp";
+                                }}
                               />
                             ) : (
                               <Skeleton circle />

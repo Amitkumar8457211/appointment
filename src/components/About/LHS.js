@@ -9,6 +9,7 @@ export default function LHS({ data }) {
           <div className="left_img">
             <div className="slide">
               <Image
+                title={data?.image}
                 height={500}
                 width={500}
                 src={data?.image}

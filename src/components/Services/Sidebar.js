@@ -78,6 +78,7 @@ const Sidebar = ({ data1 }) => {
                     />
                   ) : (
                     <Image
+                      title={first?.leftImage}
                       height={200}
                       width={700}
                       blurDataURL="/images/blurImage.webp"

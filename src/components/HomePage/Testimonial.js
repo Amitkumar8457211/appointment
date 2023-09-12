@@ -51,6 +51,7 @@ export default function Testimonial({ data1 }) {
                               <div className="item-owl">
                                 <div className="test-review text-center">
                                   <Image
+                                    title={data?.image}
                                     src={data?.image || <Skeleton circle />}
                                     blurDataURL="/images/blurImage.webp"
                                     placeholder="blur"
@@ -64,6 +65,7 @@ export default function Testimonial({ data1 }) {
                                   <br />
                                   <p>
                                     <Image
+                                      title="/images/left-quotes.png"
                                       src="/images/left-quotes.png"
                                       alt="Left Quote"
                                       height={50}
@@ -79,6 +81,7 @@ export default function Testimonial({ data1 }) {
                                       />
                                     )}
                                     <Image
+                                      title="/images/right-quotes.png"
                                       src="/images/right-quotes.png"
                                       alt="Right Quote"
                                       height={50}
