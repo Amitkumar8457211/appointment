@@ -6,15 +6,33 @@ import "react-loading-skeleton/dist/skeleton.css";
 export async function generateMetadata() {
   try {
     const api = `http://127.0.0.1:8000/contact/all`;
-
     const res = await fetch(api, { next: { revalidate: 30 } });
     const seores = await res.json();
-
     return {
       title: seores?.response?.seo?.[0]?.title,
       description: seores?.response?.seo?.[0]?.desc,
       keywords: seores?.response?.seo?.[0]?.keyword,
-      og_image: seores?.response?.seo?.[0]?.og_image,
+      openGraph: {
+        title: seores?.response?.seo?.[0]?.title,
+        description: seores?.response?.seo?.[0]?.desc,
+        url: '/',
+        siteName: seores?.response?.seo?.[0]?.title,
+        images: [
+          {
+            url: seores?.response?.seo?.[0]?.og_image,
+            width: 800,
+            height: 600,
+          },
+          {
+            url: seores?.response?.seo?.[0]?.og_image,
+            width: 1800,
+            height: 1600,
+            alt: seores?.response?.seo?.[0]?.title,
+          },
+        ],
+        locale: 'en_US',
+        type: 'website',
+      },
     };
   } catch (error) {
     console.log("error", error);
@@ -29,9 +47,7 @@ export default async function page() {
   let data = {};
   try {
     const api = `http://127.0.0.1:8000/contact/all`;
-
     const res = await fetch(api, { next: { revalidate: 30 } });
-
     data = await res.json();
     if (data.status) {
       data = data.response;
