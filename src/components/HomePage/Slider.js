@@ -15,7 +15,6 @@ export default function TopSlider({ data1 }) {
       // window.addEventListener("load", () => {
       Notification.requestPermission().then((perm) => {
         if (perm === "granted") {
-          alert("here");
           navigator.serviceWorker
             .register("/sw.js")
             .then((registration) => {
