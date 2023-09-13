@@ -12,12 +12,14 @@ const nextConfig = {
   compiler: {
     removeConsole: true,
   },
+  poweredByHeader: false,
   images: {
     domains: [
       "www.tmpwdirect.com",
       "images.pexels.com",
       "www.altruistindia.com",
     ],
+    minimumCacheTTL: 60,
   },
 };
 
