@@ -50,6 +50,11 @@ export default async function ImproveExp() {
                     blurDataURL="/images/blurImage.webp"
                     placeholder="blur"
                     width={520}
+                    // onError={() => {
+                    //   // prevents looping
+
+                    //   setSrc("/images/blurImage.webp");
+                    // }}
                     alt={data?.[0]?.title}
                   />
                 ) : (

@@ -1,13 +1,7 @@
-const { GoogleSpreadsheet } = require("google-spreadsheet");
 const express = require("express");
-const fs = require("fs");
-const { StatusDescription } = require("../classes/StatusDescription");
-const { ResponseWrapper } = require("../classes/responseWrapper");
+
 const router = express.Router();
-const RESPONSES_SHEET_ID = "1LbiWn2FTsDOPJlyDFAhLMPO6-6-trotiGKPvMLuZj4M";
-const CREDENTIALS = JSON.parse(
-  fs.readFileSync("./config/western-well-396305-5d14ad187d68.json")
-);
+
 const axios = require("axios");
 router.get("/all", async (req, res) => {
   try {

@@ -24,7 +24,8 @@
     "nodemon": "^2.0.22",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
-    "simple-excel-to-json": "^2.3.0"
+    "simple-excel-to-json": "^2.3.0",
+    "web-push": "^3.6.5"
   },
   "engines": {
     "node": "16.19.10"
