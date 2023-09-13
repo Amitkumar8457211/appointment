@@ -42,7 +42,7 @@ export default function SmallSlider({ data1 }) {
                   >
                     {data1?.map((el, index) => {
                       return (
-                        <SwiperSlide key={el?.image_url+index}>
+                        <SwiperSlide key={el?.image_url + index}>
                           <div className="slide">
                             {el?.image_url ? (
                               <Image
@@ -55,10 +55,10 @@ export default function SmallSlider({ data1 }) {
                                 placeholder="blur"
                                 onError={({ currentTarget }) => {
                                   currentTarget.onerror = null; // prevents looping
-                                  // currentTarget.src = "/images/blurImage.webp";
-                                  currentTarget.srcset = "/images/blurImage.webp";
+
+                                  currentTarget.srcset =
+                                    "/images/blurImage.webp";
                                 }}
-                                // onError={() => setSrc('/images/blurImage.webp')}
                               />
                             ) : (
                               <Skeleton circle />

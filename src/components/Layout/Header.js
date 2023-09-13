@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 
@@ -16,6 +16,26 @@ export default function Header() {
 
   let location = usePathname();
   location = location.split("/")[1];
+
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      Notification.requestPermission().then((perm) => {
+        if (perm === "granted") {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log(
+                "Service Worker registered with scope:",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.error("Service Worker registration failed:", error);
+            });
+        }
+      });
+    }
+  }, []);
 
   return (
     <>
