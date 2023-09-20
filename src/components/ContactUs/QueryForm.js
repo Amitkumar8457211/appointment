@@ -215,11 +215,7 @@ export default function QueryForm() {
                 <option value="">Please Select :-</option>
 
                 {dataa?.services?.map((el, ind) => {
-                  return (
-                    <>
-                      <option>{el?.state}</option>
-                    </>
-                  );
+                  return (<option key={`${ind}state`}>{el?.state}</option>);
                 })}
               </select>
             ) : (
@@ -317,11 +313,7 @@ export default function QueryForm() {
               >
                 <option value="">Select any One :-</option>
                 {dataa?.services?.map((val, index) => {
-                  return (
-                    <>
-                      <option>{val?.help}</option>
-                    </>
-                  );
+                  return (<option key={`${index}services`}>{val?.help}</option>);
                 })}
               </select>
             ) : (
