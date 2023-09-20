@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import Swal from "sweetalert2";
 import { ColorRing } from "react-loader-spinner";
 import axios from "axios";
-import "react-loading-skeleton/dist/skeleton.css";
+import ReCAPTCHA from "react-google-recaptcha"
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function QueryForm() {
   const [ContactDetails, setContactDetails] = useState({
@@ -21,10 +22,14 @@ export default function QueryForm() {
     support: null,
     help: "",
   });
+  const [hasMounted, setHasMounted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isVerified, setIsverified] = useState(false)
   const [dataa, setDataa] = useState({
     services: [],
   });
+
+  const recaptchaRef = useRef(null);
 
   const getAllData = async () => {
     try {
@@ -45,8 +50,15 @@ export default function QueryForm() {
     }
   };
 
+  const handleCaptchaSubmission = async(token) => {
+    console.log("token",token);
+    const res = await axios.get(`http://127.0.0.1:8000/captcha/verify?token=${token}`)
+    setIsverified(res.data.status);
+  }
+
   useEffect(() => {
     getAllData();
+    setHasMounted(true);
   }, []);
 
   const submitQuery = async (e) => {
@@ -341,6 +353,19 @@ export default function QueryForm() {
             ></textarea>
           </div>
         </div>
+        <div className="form-row">
+          <div className="form-group col-md-12">     
+            { (hasMounted) ? 
+              <div style={{width:'300px',height:'80px'}}>
+                <ReCAPTCHA
+                  sitekey="6Lc-MDwoAAAAAFhjsKHxYIlslYWdFBfsvrpRUrwR"
+                  ref={recaptchaRef}
+                  onChange={handleCaptchaSubmission}
+                />            
+              </div> : <Skeleton  width={300} style={{height:'35px'}} count={1} />
+            }      
+          </div>
+        </div>
         {/* Other form fields go here */}
         {loading ? (
           <ColorRing
@@ -359,6 +384,7 @@ export default function QueryForm() {
                 type="submit"
                 className="btn btn-primary text-start"
                 style={{ marginRight: "20px" }}
+                disabled={!isVerified}
               >
                 Send
               </button>

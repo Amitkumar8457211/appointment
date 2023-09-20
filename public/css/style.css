@@ -145,9 +145,9 @@ input[type="email"],
 input[type="password"],
 input[type="submit"],
 textarea,
-.form-control {
+/* .form-control {
   -webkit-appearance: none;
-}
+} */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -286,6 +286,8 @@ select,
   display: flex;
 }
 .social_icon {
+  display: flex;
+  align-items: center;
   margin-left: auto;
 }
 .social_icon .fa {
@@ -693,4 +695,29 @@ ul.sidebar_menu li:hover a {
 
 .swiper-wrapper {
   transition-timing-function: linear;
+}
+
+/* google search bar */
+
+.gsc-control-cse {
+  border-color: #0083bd !important;
+  background-color: #0083bd !important;
+}
+.gsc-input {
+  height: 20px !important;
+}
+
+.gsc-control-cse {
+  padding: 1px !important;
+}
+
+.gsc-control-cse{
+  width: 300px !important;
+}
+
+.gsc-search-button-v2 {
+  padding: 8px 24px !important;
+  border: 1px solid #1f169d !important;
+  border-color: #1f169d !important; 
+  background-color: #1f169d !important;
 }

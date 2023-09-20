@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
+        {/* <script src="https://www.google.com/recaptcha/api.js" async defer></script> */}
         <body className={inter.className}>
           <Header />
           {children}

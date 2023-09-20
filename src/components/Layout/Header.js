@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Header() {
+  const [hasMounted, setHasMounted] = useState(false);
   const arr = [
     { title: "Home", href: "/" },
     { title: "About Us", href: "/about" },
@@ -35,6 +37,7 @@ export default function Header() {
         }
       });
     }
+    setHasMounted(true);
   }, []);
 
   return (
@@ -43,13 +46,21 @@ export default function Header() {
         <div className="header_top">
           <div className="container-fluid">
             <div className="connect_us">
-              <div className="social_icon">
+              <div className="social_icon">               
                 <i className="fa fa-phone"></i>
-                <span>Call us: 1234 - 5678 - 9809</span>
+                <span>Call us: 1234 - 5678 - 9809</span>               
                 <i className="fa fa-envelope"></i>
-                <span> Email us: support@altruistindia.com</span>
+                <span> Email us: support@altruistindia.com</span>               
                 <i className="fa fa-clock-o"></i>
-                <span className="">Working Hours: 8am - 6pm</span>
+                <span>Working Hours: 8am - 6pm</span>            
+                { (hasMounted) ? 
+                <div style={{width:'300px',height:'40px'}}>
+                  <div style={{display:"inline-flex"}}>
+                    <div className="gcse-search"></div>
+                    <script async src="https://cse.google.com/cse.js?cx=91f320d4a5fb7484c"></script>
+                  </div>
+                </div> : <Skeleton  width={300} style={{height:'35px'}} count={1} />
+                }          
               </div>
             </div>
           </div>

@@ -21,6 +21,7 @@ const ContactForm = require("./routes/ContactForm");
 const Articlerouter = require("./routes/Article");
 const Mailerrouter = require("./routes/Mailer");
 const ContactusPage = require("./routes/ContactusPage");
+const CaptchaVerify = require("./routes/CaptchaVerify");
 
 app.use("/home", HomeCarouselRouter);
 app.use("/blogs", Blogsrouter);
@@ -32,6 +33,7 @@ app.use("/contactform", ContactForm);
 app.use("/article", Articlerouter);
 app.use("/getmailnew", Mailerrouter);
 app.use("/contact", ContactusPage);
+app.use("/captcha", CaptchaVerify);
 //Home routes
 
 app.get("/webpush", (req, res) => {
