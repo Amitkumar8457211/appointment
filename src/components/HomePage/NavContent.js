@@ -100,6 +100,10 @@ export default function NavContent({ data1 }) {
                             height={500}
                             alt={Content?.name}
                             unoptimised={"true"}
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null; // prevents looping
+                              currentTarget.srcset = "/images/blurImage.webp";
+                            }}
                           ></Image>
                         )}
                       </div>

@@ -58,6 +58,10 @@ export default function Testimonial({ data1 }) {
                                     alt={data?.writer}
                                     height={100}
                                     width={100}
+                                    onError={({ currentTarget }) => {
+                                      currentTarget.onerror = null; // prevents looping
+                                      currentTarget.srcset = "/images/blurImage.webp";
+                                    }}
                                   />
                                   <h5 className="testimonial_name">
                                     {data?.writer || <Skeleton count={1} />}

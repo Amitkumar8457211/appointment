@@ -86,6 +86,10 @@ const Sidebar = ({ data1 }) => {
                       src={first?.leftImage}
                       className="img-fluid"
                       alt={first?.mainText}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.srcset = "/images/blurImage.webp";
+                      }}
                     />
                   )}
                 </div>

@@ -17,7 +17,7 @@ export default function Counter({ data1 }) {
       <section className="counts_section">
         <div className="container-fluid">
           {data1?.length ? (
-            <div className="row mb-2" ref={ref}>
+            <div className="row" ref={ref}>
               {inView && (
                 <>
                   {data1?.map((data, i) => {
