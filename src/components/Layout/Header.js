@@ -24,9 +24,19 @@ export default function Header() {
           navigator.serviceWorker
             .register("/sw.js")
             .then((registration) => {
+              // const api = `http://127.0.0.1:8000/startsubscription`;
+              // const res = axios.post(api, {
+              //   notification: {
+              //     title: "Abuzz Oxfordcaps",
+              //     body: "Booking started",
+              //     icon: "assets/icons/abuzzOC_logo.png",
+              //   },
+              // });
               console.log(
                 "Service Worker registered with scope:",
-                registration.scope
+                registration,
+                "subbsres"
+                // res
               );
             })
             .catch((error) => {

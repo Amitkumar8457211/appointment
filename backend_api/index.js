@@ -79,14 +79,20 @@ app.get("/webpush", (req, res) => {
         })
       )
       .catch(function (err) {
-        console.log(err.body, "hjello");
+        console.log(err.body, "error");
       });
   } catch (error) {
-    console.log(err.body, "hjello");
+    console.log(err.body, "error");
   }
   //function to send the notification to the subscribed device
 
   res.end();
+});
+
+app.post("/startsubscription", (req, res) => {
+  const fakeDatabase = [];
+  const subscription = req.body;
+  subscription ? fakeDatabase.push(subscription) : res.send(subscription);
 });
 
 app.listen(port, () => {
