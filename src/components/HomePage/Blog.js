@@ -46,7 +46,7 @@ export default async function Blog() {
                             width={400}
                             src={el?.image}
                             blurDataURL="/images/blurImage.webp"
-                            style={{ minHeight: "210px" }}
+                            style={{ minHeight: "240px" }}
                             className="img-fluid"
                             alt={el?.title?.substring(0, 6)}
                           />

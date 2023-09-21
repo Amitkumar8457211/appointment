@@ -35,7 +35,7 @@ export default function TopSlider({ data1 }) {
                 return (
                   <SwiperSlide
                     key={el?.title?.[index]}
-                    style={{ height: "550px" }}
+                    style={{ height: "525px" }}
                   >
                     <div
                       key={el?.imageUrl?.[index]}

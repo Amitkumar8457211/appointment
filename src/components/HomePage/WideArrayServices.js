@@ -1,5 +1,6 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -48,7 +49,7 @@ export default async function WideArrayServices() {
                     >
                       <div className="service_icon w-25 m-auto text-center">
                         <Image
-                          title={e?.logo}
+                          title={e?.title}
                           src={e?.logo}
                           height={100}
                           width={100}

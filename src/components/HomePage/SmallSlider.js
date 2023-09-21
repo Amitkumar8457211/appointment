@@ -55,9 +55,7 @@ export default function SmallSlider({ data1 }) {
                                 placeholder="blur"
                                 onError={({ currentTarget }) => {
                                   currentTarget.onerror = null; // prevents looping
-
-                                  currentTarget.srcset =
-                                    "/images/blurImage.webp";
+                                  currentTarget.srcset = "/images/blurImage.webp";
                                 }}
                               />
                             ) : (
