@@ -10,9 +10,13 @@ export async function generateMetadata() {
     const res = await fetch(api, { next: { revalidate: 30 } });
     const seores = await res.json();
     return {
+      metadataBase: new URL('http://localhost:3000/'),
       title: seores?.response?.seo?.[0]?.title,
       description: seores?.response?.seo?.[0]?.desc,
       keywords: seores?.response?.seo?.[0]?.keyword,
+      alternates: {
+        canonical: '/about/',
+      },
       openGraph: {
         title: seores?.response?.seo?.[0]?.title,
         description: seores?.response?.seo?.[0]?.desc,

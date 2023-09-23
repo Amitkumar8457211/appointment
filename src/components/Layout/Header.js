@@ -1,10 +1,14 @@
 "use client";
+import React, { useState,useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState,useEffect } from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+
+import { initializeApp } from "firebase/app";
+import {onMessage,getToken,getMessaging} from "firebase/messaging";
+import localforage from "localforage";
 
 export default function Header() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -19,26 +23,72 @@ export default function Header() {
   let location = usePathname();
   location = location.split("/")[1];
 
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      Notification.requestPermission().then((perm) => {
-        if (perm === "granted") {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log(
-                "Service Worker registered with scope:",
-                registration.scope
-              );
-            })
-            .catch((error) => {
-              console.error("Service Worker registration failed:", error);
-            });
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJnv_W0JUO3RRjb7t_Ar1DWUmNKpJY-CY",
+    authDomain: "tmpwdirect-a3756.firebaseapp.com",
+    projectId: "tmpwdirect-a3756",
+    storageBucket: "tmpwdirect-a3756.appspot.com",
+    messagingSenderId: "27634757272",
+    appId: "1:27634757272:web:1a4793ff1fda760039aaed",
+    measurementId: "G-XYESEH4K45"
+  };
+
+  const init = async (messaging) => {
+    try {
+      const tokenInLocalForage = await localforage.getItem("fcm_token");
+      if (tokenInLocalForage !== null) {
+          return tokenInLocalForage;
+      }
+      const status = await Notification.requestPermission();
+      if (status && status === "granted") {
+        console.log("Permission graanted");
+        const fcm_token = await getToken(messaging,{
+          vapidKey: "BIaY1Y-JfSFqwu3W7UWXnJU9qb5t6HTyMQu9n7r8XdYezFZh1wVo2CuZafBXVfINyBjZMSMagheZslipYbXkZoc",
+        });
+        if (fcm_token) {
+          localforage.setItem("fcm_token", fcm_token);
+          return fcm_token;
         }
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  const setToken = async (messaging) => {
+    try {
+      const token = await init(messaging);
+      console.log("token", token);
+      if (token) {
+        onMessage(messaging, (payload) => {
+          console.log('Message received. ', payload);
+        });
+      }
+    }catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      const app = initializeApp(firebaseConfig);
+      const messaging = getMessaging(app);
+      setToken(messaging);
+      navigator.serviceWorker.register("/firebase-messaging-sw.js").then((registration) => {
+        console.log("Service Worker registered with scope:",registration);
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
       });
+
+      navigator.serviceWorker.addEventListener("message", (event) => {
+        console.log("event for the service worker", event);
+      });
+
     }
     setHasMounted(true);
-  }, []);
+  },[]);
 
   return (
     <>

@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -8,11 +7,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 const Sidebar = ({ data1 }) => {
   const [first, setfirst] = useState({
     data: [],
-
     mainText: "",
     leftImage: "",
     rightText: "",
   });
+  
   var string1 = data1?.map((e) => e?.description?.split("."));
 
   useEffect(() => {

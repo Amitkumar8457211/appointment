@@ -19,9 +19,13 @@ export async function generateMetadata() {
     const res = await fetch(api, { next: { revalidate: 30 } });
     const seores = await res.json();
     return {
+      metadataBase: new URL('http://localhost:3000/'),
       title: seores?.response?.seo?.[0]?.title,
       description: seores?.response?.seo?.[0]?.description,
       keywords: seores?.response?.seo?.[0]?.keyword,
+      alternates: {
+        canonical: '/services/',
+      },
       openGraph: {
         title: seores?.response?.seo?.[0]?.title,
         description: seores?.response?.seo?.[0]?.desc,
@@ -64,7 +68,7 @@ export default async function page() {
   return (
     <>
       {data?.banner?.length ? (
-        data.banner.map((e, ind) => {
+        data?.banner?.map((e, ind) => {
           return (
             <section
               className="banner_section resource_center_page inner_page"
