@@ -11,6 +11,7 @@ export default function Counter({ data1 }) {
     triggerOnce: true,
     threshold: 0,
   });
+
   return (
     <>
       <section className="counts_section">
